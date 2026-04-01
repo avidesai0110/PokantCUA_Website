@@ -15,18 +15,23 @@ const jetbrains = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Pokant - Comprehensive Voice AI Testing",
+  title: "Pokant - Production reliability for browser agents",
   description:
-    "The complete voice AI evaluation platform. Test accuracy, latency, noise resilience, and edge cases across real-world conditions.",
-  generator: "v0.app",
-  keywords: ["voice AI", "AI testing", "speech recognition", "audio evaluation", "ML testing", "robustness"],
+    "Add reliability, observability, and error recovery to any browser automation agent. Two lines of code. Zero dependencies.",
+  keywords: [
+    "browser automation",
+    "agent reliability",
+    "error recovery",
+    "browser use",
+    "playwright",
+    "observability",
+    "web scraping",
+    "RPA",
+  ],
 }
 
 export const viewport: Viewport = {
-  themeColor: [
-    { media: "(prefers-color-scheme: light)", color: "#F8F8F6" },
-    { media: "(prefers-color-scheme: dark)", color: "#1F2121" },
-  ],
+  themeColor: "#0a0a0a",
 }
 
 export default function RootLayout({

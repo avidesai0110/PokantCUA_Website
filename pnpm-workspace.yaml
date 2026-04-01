@@ -1,4 +1,4 @@
 packages:
   - "pokant-landing-page"
-  - "pokant-backend"
+  # - "pokant-backend"  # legacy, not part of current product
 
