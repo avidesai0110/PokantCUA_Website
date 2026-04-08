@@ -1,0 +1,733 @@
+"use client"
+
+import { useState } from "react"
+import { motion } from "motion/react"
+import { Marquee } from "@/components/ui/marquee"
+import {
+  Globe,
+  RefreshCw,
+  TrendingDown,
+  Send,
+  Cpu,
+  FileJson,
+  Shield,
+  Zap,
+  Eye,
+  Check,
+  Menu,
+  X,
+  ArrowRight,
+  Terminal,
+} from "lucide-react"
+
+/* ─── animation helpers ─── */
+const ease = [0.25, 0.4, 0.25, 1] as const
+const fadeUp = { hidden: { opacity: 0, y: 24 }, visible: { opacity: 1, y: 0 } }
+const fadeIn = { hidden: { opacity: 0 }, visible: { opacity: 1 } }
+
+function Section({
+  children,
+  className = "",
+  id,
+}: {
+  children: React.ReactNode
+  className?: string
+  id?: string
+}) {
+  return (
+    <motion.section
+      id={id}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{ staggerChildren: 0.1 }}
+      className={className}
+    >
+      {children}
+    </motion.section>
+  )
+}
+
+/* ─── Nav ─── */
+function Nav() {
+  const [open, setOpen] = useState(false)
+  const links = [
+    { label: "Features", href: "#features" },
+    { label: "How It Works", href: "#how-it-works" },
+    { label: "Enterprise", href: "#enterprise" },
+    { label: "Pricing", href: "#pricing" },
+  ]
+
+  return (
+    <nav className="fixed inset-x-0 top-0 z-50 border-b border-white/5 bg-black/60 backdrop-blur-xl">
+      <div className="mx-auto flex h-16 max-w-6xl items-center justify-between px-6">
+        <a href="#" className="font-display text-xl font-bold tracking-tight text-white">
+          Pokant
+        </a>
+
+        {/* Desktop */}
+        <div className="hidden items-center gap-8 md:flex">
+          {links.map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              className="text-sm text-gray-400 transition hover:text-white"
+            >
+              {l.label}
+            </a>
+          ))}
+        </div>
+        <div className="hidden items-center gap-4 md:flex">
+          <a href="#" className="text-sm text-gray-400 transition hover:text-white">
+            GitHub
+          </a>
+          <a
+            href="#"
+            className="rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white transition hover:bg-blue-700"
+          >
+            Get Started
+          </a>
+        </div>
+
+        {/* Mobile toggle */}
+        <button
+          onClick={() => setOpen(!open)}
+          className="text-gray-400 md:hidden"
+          aria-label="Toggle menu"
+        >
+          {open ? <X size={22} /> : <Menu size={22} />}
+        </button>
+      </div>
+
+      {/* Mobile dropdown */}
+      {open && (
+        <div className="border-t border-white/5 bg-black/90 px-6 pb-6 pt-4 md:hidden">
+          {links.map((l) => (
+            <a
+              key={l.label}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className="block py-2 text-sm text-gray-400 transition hover:text-white"
+            >
+              {l.label}
+            </a>
+          ))}
+          <div className="mt-4 flex flex-col gap-3">
+            <a href="#" className="text-sm text-gray-400">
+              GitHub
+            </a>
+            <a
+              href="#"
+              className="rounded-lg bg-blue-600 px-5 py-2.5 text-center text-sm font-medium text-white"
+            >
+              Get Started
+            </a>
+          </div>
+        </div>
+      )}
+    </nav>
+  )
+}
+
+/* ─── Hero ─── */
+function Hero() {
+  return (
+    <section className="relative flex min-h-screen items-center justify-center overflow-hidden pt-16">
+      {/* z-0: animated gradient */}
+      <div
+        className="absolute inset-0 z-0"
+        style={{
+          background:
+            "radial-gradient(ellipse 80% 50% at 50% -20%, rgba(59,130,246,0.15), transparent 70%), radial-gradient(ellipse 60% 40% at 80% 50%, rgba(59,130,246,0.08), transparent 60%), radial-gradient(ellipse 60% 40% at 20% 80%, rgba(59,130,246,0.06), transparent 60%)",
+        }}
+      />
+
+      {/* z-10: dot grid with radial mask */}
+      <div
+        className="absolute inset-0 z-10 opacity-40"
+        style={{
+          backgroundImage:
+            "radial-gradient(rgba(255,255,255,0.15) 1px, transparent 1px)",
+          backgroundSize: "24px 24px",
+          maskImage:
+            "radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 100%)",
+          WebkitMaskImage:
+            "radial-gradient(ellipse 70% 60% at 50% 50%, black 30%, transparent 100%)",
+        }}
+      />
+
+      {/* z-20: floating glow blobs */}
+      <div className="absolute inset-0 z-20 overflow-hidden">
+        <div
+          className="absolute -left-32 top-1/4 h-[500px] w-[500px] rounded-full bg-blue-500/20 blur-[120px]"
+          style={{ animation: "float-blob-1 12s ease-in-out infinite" }}
+        />
+        <div
+          className="absolute -right-32 top-1/3 h-[400px] w-[400px] rounded-full bg-blue-600/15 blur-[100px]"
+          style={{ animation: "float-blob-2 15s ease-in-out infinite" }}
+        />
+        <div
+          className="absolute bottom-1/4 left-1/3 h-[350px] w-[350px] rounded-full bg-blue-400/10 blur-[100px]"
+          style={{ animation: "float-blob-3 18s ease-in-out infinite" }}
+        />
+      </div>
+
+      {/* z-30: content */}
+      <div className="relative z-30 mx-auto max-w-5xl px-6 text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease }}
+        >
+          <h1 className="font-display text-5xl font-bold leading-[1.05] tracking-tight text-white md:text-7xl lg:text-8xl">
+            Give your agents
+            <br />
+            access to the{" "}
+            <span className="relative inline-block">
+              <span className="relative z-10 bg-gradient-to-r from-blue-400 via-blue-300 to-blue-500 bg-clip-text text-transparent">
+                entire web
+              </span>
+              <span className="absolute -inset-x-3 -inset-y-1 z-0 rounded-lg bg-blue-500/15" />
+            </span>
+          </h1>
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.15, ease }}
+          className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-gray-400 md:text-xl"
+        >
+          One API to automate any browser workflow. AI-powered navigation,
+          adaptive retries, and structured output — production-ready from day one.
+        </motion.p>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.3, ease }}
+          className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+        >
+          <a
+            href="#"
+            className="rounded-lg bg-blue-600 px-8 py-3 font-medium text-white transition hover:bg-blue-700"
+          >
+            Get API Key
+          </a>
+          <a
+            href="#"
+            className="rounded-lg border border-white/20 px-8 py-3 text-gray-300 transition hover:border-white/40"
+          >
+            View Docs
+          </a>
+        </motion.div>
+
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 0.45, ease }}
+          className="mt-10 text-sm text-gray-500"
+        >
+          Powering browser automation for developers and enterprises
+        </motion.p>
+      </div>
+    </section>
+  )
+}
+
+/* ─── Trust Bar ─── */
+const tools = [
+  "Browser Use",
+  "Playwright",
+  "Puppeteer",
+  "Claude",
+  "GPT-4o",
+  "Browserbase",
+  "Chromium",
+  "Selenium",
+]
+
+function TrustBar() {
+  return (
+    <Section className="border-y border-white/5 py-10">
+      <motion.p
+        variants={fadeIn}
+        className="mb-6 text-center text-xs font-medium uppercase tracking-[0.2em] text-gray-500"
+      >
+        Works with the tools you already use
+      </motion.p>
+      <motion.div variants={fadeIn}>
+        <Marquee pauseOnHover className="[--duration:30s]">
+          {tools.map((t) => (
+            <span
+              key={t}
+              className="mx-4 whitespace-nowrap text-sm font-medium text-gray-500"
+            >
+              {t}
+            </span>
+          ))}
+        </Marquee>
+      </motion.div>
+    </Section>
+  )
+}
+
+/* ─── Features ─── */
+const features = [
+  {
+    icon: Globe,
+    title: "Automate Any Website",
+    desc: "Send a URL and a task in plain English. Get structured JSON back. No scripts, no selectors, no maintenance.",
+  },
+  {
+    icon: RefreshCw,
+    title: "Self-Healing Retries",
+    desc: "When tasks fail, our AI diagnoses why and retries with a different approach. Not the same thing three times.",
+  },
+  {
+    icon: TrendingDown,
+    title: "95% Cost Reduction",
+    desc: "First run uses AI ($0.40). Every run after replays deterministically ($0.02). Same results, fraction of the cost.",
+  },
+]
+
+function Features() {
+  return (
+    <Section id="features" className="mx-auto max-w-6xl px-6 py-24 md:py-32">
+      <motion.div variants={fadeUp} className="mb-16 text-center">
+        <p className="mb-3 text-sm font-medium uppercase tracking-[0.15em] text-blue-400">
+          What Pokant Does
+        </p>
+        <h2 className="font-display text-3xl font-bold tracking-tight text-white md:text-5xl">
+          Browser automation that actually works
+        </h2>
+      </motion.div>
+
+      <div className="grid gap-6 md:grid-cols-3">
+        {features.map((f, i) => (
+          <motion.div
+            key={f.title}
+            variants={fadeUp}
+            transition={{ delay: i * 0.1 }}
+            className="group rounded-2xl border border-white/10 bg-white/[0.03] p-8 transition-all duration-300 hover:border-blue-500/30 hover:bg-white/[0.05]"
+          >
+            <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400">
+              <f.icon size={22} />
+            </div>
+            <h3 className="mb-3 font-display text-lg font-semibold text-white">
+              {f.title}
+            </h3>
+            <p className="text-sm leading-relaxed text-gray-400">{f.desc}</p>
+          </motion.div>
+        ))}
+      </div>
+    </Section>
+  )
+}
+
+/* ─── How It Works ─── */
+const steps = [
+  {
+    icon: Send,
+    num: "01",
+    title: "Send a task",
+    desc: "Pass a URL, a plain-English instruction, and an optional output schema. That's it.",
+  },
+  {
+    icon: Cpu,
+    num: "02",
+    title: "We handle the rest",
+    desc: "Our AI navigates pages, fills forms, clicks buttons, and verifies results — with automatic retries on failure.",
+  },
+  {
+    icon: FileJson,
+    num: "03",
+    title: "Get structured data",
+    desc: "Receive validated JSON matching your schema. Every run is logged with screenshots and a full execution trace.",
+  },
+]
+
+function HowItWorks() {
+  return (
+    <Section
+      id="how-it-works"
+      className="border-t border-white/5 py-24 md:py-32"
+    >
+      <div className="mx-auto max-w-6xl px-6">
+        <motion.div variants={fadeUp} className="mb-16 text-center">
+          <p className="mb-3 text-sm font-medium uppercase tracking-[0.15em] text-blue-400">
+            How It Works
+          </p>
+          <h2 className="font-display text-3xl font-bold tracking-tight text-white md:text-5xl">
+            Three steps. Zero config.
+          </h2>
+        </motion.div>
+
+        <div className="grid gap-12 md:grid-cols-3">
+          {steps.map((s, i) => (
+            <motion.div key={s.num} variants={fadeUp} transition={{ delay: i * 0.12 }}>
+              <span className="font-display text-5xl font-bold text-blue-600/20">
+                {s.num}
+              </span>
+              <div className="mt-4 flex items-center gap-3">
+                <s.icon size={20} className="text-blue-400" />
+                <h3 className="font-display text-lg font-semibold text-white">
+                  {s.title}
+                </h3>
+              </div>
+              <p className="mt-3 text-sm leading-relaxed text-gray-400">
+                {s.desc}
+              </p>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Code example */}
+        <motion.div
+          variants={fadeUp}
+          className="mx-auto mt-16 max-w-2xl overflow-hidden rounded-xl border border-white/10 bg-[#111113]"
+        >
+          <div className="flex items-center gap-2 border-b border-white/5 px-5 py-3">
+            <Terminal size={14} className="text-gray-500" />
+            <span className="text-xs font-medium text-gray-500">
+              python
+            </span>
+          </div>
+          <pre className="overflow-x-auto p-5 text-sm leading-7">
+            <code>
+              <span className="text-gray-500">{"# "}</span>
+              <span className="text-gray-500">Extract pricing data from any site</span>
+              {"\n"}
+              <span className="text-blue-400">result</span>
+              <span className="text-gray-300">{" = "}</span>
+              <span className="text-blue-400">await</span>
+              <span className="text-gray-300">{" pokant."}</span>
+              <span className="text-emerald-400">run_task</span>
+              <span className="text-gray-300">{"("}</span>
+              {"\n"}
+              <span className="text-gray-300">{"    url"}</span>
+              <span className="text-gray-500">{"="}</span>
+              <span className="text-amber-300">{'"https://example.com"'}</span>
+              <span className="text-gray-300">{","}</span>
+              {"\n"}
+              <span className="text-gray-300">{"    task"}</span>
+              <span className="text-gray-500">{"="}</span>
+              <span className="text-amber-300">{'"Extract all pricing plans"'}</span>
+              <span className="text-gray-300">{","}</span>
+              {"\n"}
+              <span className="text-gray-300">{"    schema"}</span>
+              <span className="text-gray-500">{"="}</span>
+              <span className="text-gray-300">{"{"}</span>
+              <span className="text-amber-300">{'"plans"'}</span>
+              <span className="text-gray-300">{": [{"}</span>
+              <span className="text-amber-300">{'"name"'}</span>
+              <span className="text-gray-300">{": "}</span>
+              <span className="text-amber-300">{'"str"'}</span>
+              <span className="text-gray-300">{", "}</span>
+              <span className="text-amber-300">{'"price"'}</span>
+              <span className="text-gray-300">{": "}</span>
+              <span className="text-amber-300">{'"float"'}</span>
+              <span className="text-gray-300">{"}]}"}</span>
+              {"\n"}
+              <span className="text-gray-300">{")"}</span>
+            </code>
+          </pre>
+        </motion.div>
+      </div>
+    </Section>
+  )
+}
+
+/* ─── Enterprise ─── */
+const enterpriseProps = [
+  { icon: Zap, title: "10x Faster", desc: "Parallel execution across distributed browser pools." },
+  { icon: Shield, title: "99% Reliable", desc: "Self-healing retries with intelligent failure recovery." },
+  { icon: Eye, title: "Full Visibility", desc: "Screenshots, traces, and logs for every single run." },
+]
+
+function Enterprise() {
+  return (
+    <Section
+      id="enterprise"
+      className="relative overflow-hidden border-t border-white/5 py-24 md:py-32"
+    >
+      {/* subtle gradient bg */}
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-950/5 to-transparent" />
+
+      <div className="relative mx-auto max-w-6xl px-6">
+        <motion.div variants={fadeUp} className="mb-16 text-center">
+          <p className="mb-3 text-sm font-medium uppercase tracking-[0.15em] text-blue-400">
+            For Enterprise
+          </p>
+          <h2 className="font-display text-3xl font-bold tracking-tight text-white md:text-5xl">
+            We build and monitor browser
+            <br className="hidden md:block" /> automation for your team.
+          </h2>
+        </motion.div>
+
+        <div className="grid gap-8 md:grid-cols-3">
+          {enterpriseProps.map((p, i) => (
+            <motion.div
+              key={p.title}
+              variants={fadeUp}
+              transition={{ delay: i * 0.1 }}
+              className="text-center"
+            >
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-blue-500/10 text-blue-400">
+                <p.icon size={22} />
+              </div>
+              <h3 className="font-display text-lg font-semibold text-white">
+                {p.title}
+              </h3>
+              <p className="mt-2 text-sm text-gray-400">{p.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+
+        <motion.div variants={fadeUp} className="mt-14 text-center">
+          <a
+            href="#"
+            className="inline-flex items-center gap-2 text-sm font-medium text-blue-400 transition hover:text-blue-300"
+          >
+            Talk to Sales <ArrowRight size={16} />
+          </a>
+        </motion.div>
+      </div>
+    </Section>
+  )
+}
+
+/* ─── Pricing ─── */
+const plans = [
+  {
+    name: "Free",
+    price: "$0",
+    period: "forever",
+    desc: "For experimenting and small projects.",
+    features: ["100 runs/month", "Community support", "Basic logging", "Single user"],
+    cta: "Get Started",
+    popular: false,
+  },
+  {
+    name: "Pro",
+    price: "$99",
+    period: "/month",
+    desc: "For teams shipping browser automation in production.",
+    features: [
+      "10,000 runs/month",
+      "Priority support",
+      "Full execution traces",
+      "Team access",
+      "Custom schemas",
+      "Webhook integrations",
+    ],
+    cta: "Start Free Trial",
+    popular: true,
+  },
+  {
+    name: "Enterprise",
+    price: "Custom",
+    period: "",
+    desc: "For organizations with scale and compliance needs.",
+    features: [
+      "Unlimited runs",
+      "Dedicated support",
+      "SLA guarantee",
+      "SSO & SAML",
+      "On-prem option",
+      "Custom integrations",
+    ],
+    cta: "Talk to Sales",
+    popular: false,
+  },
+]
+
+function Pricing() {
+  return (
+    <Section id="pricing" className="border-t border-white/5 py-24 md:py-32">
+      <div className="mx-auto max-w-6xl px-6">
+        <motion.div variants={fadeUp} className="mb-16 text-center">
+          <p className="mb-3 text-sm font-medium uppercase tracking-[0.15em] text-blue-400">
+            Pricing
+          </p>
+          <h2 className="font-display text-3xl font-bold tracking-tight text-white md:text-5xl">
+            Simple, transparent pricing
+          </h2>
+        </motion.div>
+
+        <div className="grid gap-6 md:grid-cols-3">
+          {plans.map((plan, i) => (
+            <motion.div
+              key={plan.name}
+              variants={fadeUp}
+              transition={{ delay: i * 0.1 }}
+              className={`relative flex flex-col rounded-2xl border p-8 ${
+                plan.popular
+                  ? "border-blue-500/40 bg-white/[0.05]"
+                  : "border-white/10 bg-white/[0.03]"
+              }`}
+            >
+              {plan.popular && (
+                <span className="absolute -top-3 left-6 rounded-full bg-blue-600 px-3 py-1 text-xs font-medium text-white">
+                  Popular
+                </span>
+              )}
+              <h3 className="font-display text-lg font-semibold text-white">
+                {plan.name}
+              </h3>
+              <div className="mt-4 flex items-baseline gap-1">
+                <span className="font-display text-4xl font-bold text-white">
+                  {plan.price}
+                </span>
+                {plan.period && (
+                  <span className="text-sm text-gray-500">{plan.period}</span>
+                )}
+              </div>
+              <p className="mt-3 text-sm text-gray-400">{plan.desc}</p>
+
+              <ul className="mt-8 flex-1 space-y-3">
+                {plan.features.map((f) => (
+                  <li key={f} className="flex items-center gap-3 text-sm text-gray-300">
+                    <Check size={16} className="shrink-0 text-blue-400" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+
+              <a
+                href="#"
+                className={`mt-8 block rounded-lg py-3 text-center text-sm font-medium transition ${
+                  plan.popular
+                    ? "bg-blue-600 text-white hover:bg-blue-700"
+                    : "border border-white/20 text-gray-300 hover:border-white/40"
+                }`}
+              >
+                {plan.cta}
+              </a>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </Section>
+  )
+}
+
+/* ─── Final CTA ─── */
+function FinalCTA() {
+  return (
+    <Section className="border-t border-white/5 py-24 md:py-32">
+      <div className="mx-auto max-w-3xl px-6 text-center">
+        <motion.h2
+          variants={fadeUp}
+          className="font-display text-3xl font-bold tracking-tight text-white md:text-5xl"
+        >
+          Start automating in 5 minutes.
+        </motion.h2>
+        <motion.p variants={fadeUp} className="mt-5 text-gray-400">
+          Install the SDK, grab your API key, and run your first browser task.
+        </motion.p>
+        <motion.div
+          variants={fadeUp}
+          className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row"
+        >
+          <a
+            href="#"
+            className="rounded-lg bg-blue-600 px-8 py-3 font-medium text-white transition hover:bg-blue-700"
+          >
+            Get API Key
+          </a>
+          <a
+            href="#"
+            className="rounded-lg border border-white/20 px-8 py-3 text-gray-300 transition hover:border-white/40"
+          >
+            View Docs
+          </a>
+        </motion.div>
+        <motion.div
+          variants={fadeUp}
+          className="mx-auto mt-8 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-2.5"
+        >
+          <Terminal size={14} className="text-gray-500" />
+          <code className="font-mono text-sm text-gray-400">
+            pip install pokant
+          </code>
+        </motion.div>
+      </div>
+    </Section>
+  )
+}
+
+/* ─── Footer ─── */
+const footerCols = [
+  {
+    title: "Product",
+    links: ["Features", "Pricing", "Enterprise", "Changelog"],
+  },
+  {
+    title: "Developers",
+    links: ["Documentation", "API Reference", "SDKs", "Status"],
+  },
+  {
+    title: "Company",
+    links: ["About", "Blog", "Careers", "Contact"],
+  },
+  {
+    title: "Legal",
+    links: ["Privacy", "Terms", "Security"],
+  },
+]
+
+function Footer() {
+  return (
+    <footer className="border-t border-white/5 py-16">
+      <div className="mx-auto max-w-6xl px-6">
+        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+          {footerCols.map((col) => (
+            <div key={col.title}>
+              <h4 className="mb-4 text-sm font-semibold text-white">
+                {col.title}
+              </h4>
+              <ul className="space-y-3">
+                {col.links.map((link) => (
+                  <li key={link}>
+                    <a
+                      href="#"
+                      className="text-sm text-gray-500 transition hover:text-gray-300"
+                    >
+                      {link}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/5 pt-8 md:flex-row">
+          <span className="font-display text-sm font-semibold text-gray-500">
+            Pokant
+          </span>
+          <p className="text-xs text-gray-600">
+            &copy; {new Date().getFullYear()} Pokant. All rights reserved.
+          </p>
+        </div>
+      </div>
+    </footer>
+  )
+}
+
+/* ─── Page ─── */
+export default function Page() {
+  return (
+    <main className="min-h-screen bg-[#0a0a0a] text-white">
+      <Nav />
+      <Hero />
+      <TrustBar />
+      <Features />
+      <HowItWorks />
+      <Enterprise />
+      <Pricing />
+      <FinalCTA />
+      <Footer />
+    </main>
+  )
+}

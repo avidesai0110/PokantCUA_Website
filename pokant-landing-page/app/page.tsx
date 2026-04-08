@@ -1,991 +1,404 @@
 "use client"
 
-import { useState, useEffect, useRef, useCallback } from "react"
-import Link from "next/link"
-import {
-  ArrowRight,
-  ArrowDown,
-  Menu,
-  X,
-  Check,
-  Copy,
-  AlertTriangle,
-  RefreshCw,
-  EyeOff,
-  Shield,
-  Activity,
-  Camera,
-  DollarSign,
-  Lock,
-  LayoutDashboard,
-  Package,
-  HardDrive,
-  Scale,
-  GitBranch,
-  Clock,
-  Sparkles,
-  Star,
-  ExternalLink,
-  Terminal,
-} from "lucide-react"
+import type React from "react"
 
-/* ─── Hooks ──────────────────────────────────────────────────────── */
+import { useState, useEffect, useRef } from "react"
+import SmartSimpleBrilliant from "../components/smart-simple-brilliant"
+import EffortlessIntegration from "../components/effortless-integration-updated"
+import { DashboardPreview } from "../components/dashboard-preview"
+import DocumentationSection from "../components/documentation-section"
+import EnterpriseSection from "../components/enterprise-section"
+import FAQSection from "../components/faq-section"
+import CTASection from "../components/cta-section"
+import FooterSection from "../components/footer-section"
 
-function useInView(threshold = 0.1) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [isInView, setIsInView] = useState(false)
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsInView(true)
-      },
-      { threshold }
-    )
-    if (ref.current) observer.observe(ref.current)
-    return () => observer.disconnect()
-  }, [threshold])
-
-  return { ref, isInView }
-}
-
-/* ─── Components ─────────────────────────────────────────────────── */
-
-function CopyButton({ text, variant = "icon" }: { text: string; variant?: "icon" | "pill" }) {
-  const [copied, setCopied] = useState(false)
-
-  const handleCopy = useCallback(async () => {
-    await navigator.clipboard.writeText(text)
-    setCopied(true)
-    setTimeout(() => setCopied(false), 2000)
-  }, [text])
-
-  if (variant === "pill") {
-    return (
-      <button
-        onClick={handleCopy}
-        className="group inline-flex items-center gap-3 bg-primary hover:bg-primary/90 text-primary-foreground px-5 py-3 rounded-lg font-mono text-sm transition-colors"
-      >
-        <span className="opacity-50">$</span>
-        <span>{text}</span>
-        {copied ? (
-          <Check className="w-3.5 h-3.5 ml-1" />
-        ) : (
-          <Copy className="w-3.5 h-3.5 ml-1 opacity-40 group-hover:opacity-80 transition-opacity" />
-        )}
-      </button>
-    )
-  }
-
+// Reusable Badge Component
+function Badge({ icon, text }: { icon: React.ReactNode; text: string }) {
   return (
-    <button
-      onClick={handleCopy}
-      className="text-zinc-500 hover:text-zinc-300 transition-colors p-1"
-      aria-label={copied ? "Copied" : "Copy to clipboard"}
-    >
-      {copied ? <Check className="w-3.5 h-3.5 text-green-400" /> : <Copy className="w-3.5 h-3.5" />}
-    </button>
+    <div className="px-[14px] py-[6px] bg-white shadow-[0px_0px_0px_4px_rgba(55,50,47,0.05)] overflow-hidden rounded-[90px] flex justify-start items-center gap-[8px] border border-[rgba(2,6,23,0.08)] shadow-xs">
+      <div className="w-[14px] h-[14px] relative overflow-hidden flex items-center justify-center">{icon}</div>
+      <div className="text-center flex justify-center flex-col text-[#37322F] text-xs font-medium leading-3 font-sans">
+        {text}
+      </div>
+    </div>
   )
 }
 
-/* ─── Data ───────────────────────────────────────────────────────── */
-
-const problems = [
-  {
-    icon: AlertTriangle,
-    title: "Silent failures",
-    description:
-      "Your agent crashes on a transient API error at 3 am. No retry, no alert, no visibility into what happened. You find out when a customer complains.",
-  },
-  {
-    icon: RefreshCw,
-    title: "Infinite loops",
-    description:
-      "The agent clicks the same button 47 times because the page didn\u2019t load as expected. You burn $12 in API costs before the timeout kills it.",
-  },
-  {
-    icon: EyeOff,
-    title: "Black box execution",
-    description:
-      "The task failed. Why? Was it the website, the LLM, the network, the credentials? Without step-by-step replay, you\u2019re guessing.",
-  },
-]
-
-const features = [
-  {
-    icon: Shield,
-    title: "Error Classification & Auto-Retry",
-    description:
-      "Seven error categories. Transient failures retry automatically with exponential backoff. Permanent failures surface immediately.",
-  },
-  {
-    icon: Activity,
-    title: "Stuck Detection",
-    description:
-      "Detects visual stagnation, action loops, and failure spirals in real time. Kills the agent before it wastes your budget.",
-  },
-  {
-    icon: Camera,
-    title: "Step-by-Step Replay",
-    description:
-      "Every action screenshotted, timestamped, and saved. HTML files you can open in any browser\u2014no account needed.",
-  },
-  {
-    icon: DollarSign,
-    title: "Cost & Token Tracking",
-    description:
-      "Per-step and total LLM cost monitoring. Know exactly how much each task costs before your invoice surprises you.",
-  },
-  {
-    icon: Lock,
-    title: "Session Persistence",
-    description:
-      "Encrypted cookie storage across runs. Your agent stays logged in without re-authenticating every time.",
-  },
-  {
-    icon: LayoutDashboard,
-    title: "Local Dashboard",
-    description:
-      "pokant dashboard launches a debugging UI on your machine. See all runs, replay steps, inspect errors. No cloud required.",
-  },
-]
-
-const beforeItems = [
-  "Task fails silently on 429 rate limit",
-  "No way to see what the agent did",
-  "No retry \u2014 manual re-run required",
-  "Session cookies lost \u2014 re-authenticates every run",
-  "Cost unknown until monthly invoice",
-]
-
-const afterItems = [
-  "429 classified as rate_limited, auto-retried after backoff",
-  "Step replay shows exactly what happened on each page",
-  "3 retries with exponential backoff, succeeded on attempt 2",
-  "Cookies persisted \u2014 agent stayed logged in",
-  "Cost tracked: $0.034 for the successful run",
-]
-
-const openSourcePoints = [
-  {
-    icon: Package,
-    title: "Zero dependencies",
-    description:
-      "Core library is pure Python. No accounts, no API keys beyond your LLM provider, no vendor lock-in.",
-  },
-  {
-    icon: HardDrive,
-    title: "Your data stays local",
-    description:
-      "Screenshots, replays, and run metadata saved to .pokant/ on your machine. Nothing leaves your environment unless you configure it.",
-  },
-  {
-    icon: Scale,
-    title: "MIT Licensed",
-    description: "Use it commercially, modify it, contribute back. The code is on GitHub.",
-  },
-]
-
-const roadmapItems = [
-  {
-    icon: GitBranch,
-    title: "Workflow Definitions",
-    description: "Save and reuse task templates with parameterized inputs.",
-  },
-  {
-    icon: Clock,
-    title: "Scheduled Execution",
-    description: "Run workflows on a cron schedule.",
-  },
-  {
-    icon: Sparkles,
-    title: "Self-Improving Playbooks",
-    description: "The system learns from every run. Success patterns become reusable knowledge.",
-  },
-]
-
-const architectureLayers = [
-  "Error Classification",
-  "Auto-Retry (exp backoff)",
-  "Stuck Detection",
-  "Screenshot Capture",
-  "Cost Tracking",
-  "Report Generation",
-]
-
-const dashboardSteps = [
-  { step: "Navigate to acme.com/pricing", time: "0.8s", cost: "$0.003", ok: true },
-  { step: "Click \u2018Enterprise\u2019 tab", time: "1.2s", cost: "$0.008", ok: true },
-  { step: "Extract pricing table", time: "2.1s", cost: "$0.012", ok: true },
-  { step: "Handle rate limit (retry 1)", time: "3.0s", cost: "$0.004", ok: false },
-  { step: "Extract feature comparison", time: "1.8s", cost: "$0.011", ok: true },
-]
-
-/* ─── Page ───────────────────────────────────────────────────────── */
-
 export default function LandingPage() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [activeCard, setActiveCard] = useState(0)
+  const [progress, setProgress] = useState(0)
+  const mountedRef = useRef(true)
 
-  const problemRef = useInView()
-  const featuresRef = useInView()
-  const architectureRef = useInView()
-  const worksWithRef = useInView()
-  const quickStartRef = useInView()
-  const beforeAfterRef = useInView()
-  const openSourceRef = useInView()
-  const roadmapRef = useInView()
+  useEffect(() => {
+    const progressInterval = setInterval(() => {
+      if (!mountedRef.current) return
+
+      setProgress((prev) => {
+        if (prev >= 100) {
+          if (mountedRef.current) {
+            setActiveCard((current) => (current + 1) % 3)
+          }
+          return 0
+        }
+        return prev + 2 // 2% every 100ms = 5 seconds total
+      })
+    }, 100)
+
+    return () => {
+      clearInterval(progressInterval)
+      mountedRef.current = false
+    }
+  }, [])
+
+  useEffect(() => {
+    return () => {
+      mountedRef.current = false
+    }
+  }, [])
+
+  const handleCardClick = (index: number) => {
+    if (!mountedRef.current) return
+    setActiveCard(index)
+    setProgress(0)
+  }
+
+  const getDashboardContent = () => {
+    switch (activeCard) {
+      case 0:
+        return <div className="text-[#828387] text-sm">Customer Subscription Status and Details</div>
+      case 1:
+        return <div className="text-[#828387] text-sm">Analytics Dashboard - Real-time Insights</div>
+      case 2:
+        return <div className="text-[#828387] text-sm">Data Visualization - Charts and Metrics</div>
+      default:
+        return <div className="text-[#828387] text-sm">Customer Subscription Status and Details</div>
+    }
+  }
 
   return (
-    <div className="min-h-screen bg-background">
-      {/* ── Navigation ───────────────────────────────────────────── */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border/50">
-        <div className="max-w-6xl mx-auto px-6">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/" prefetch={false} className="text-foreground font-bold text-xl tracking-tight font-mono">
-              pokant
-            </Link>
+    <div className="w-full min-h-screen relative bg-[#F7F5F3] overflow-x-hidden flex flex-col justify-start items-center">
+      <div className="relative flex flex-col justify-start items-center w-full">
+        {/* Main container with proper margins */}
+        <div className="w-full max-w-none px-4 sm:px-6 md:px-8 lg:px-0 lg:max-w-[1060px] lg:w-[1060px] relative flex flex-col justify-start items-start min-h-screen">
+          {/* Left vertical line */}
+          <div className="w-[1px] h-full absolute left-4 sm:left-6 md:left-8 lg:left-0 top-0 bg-[rgba(55,50,47,0.12)] shadow-[1px_0px_0px_white] z-0"></div>
 
-            <div className="hidden md:flex items-center gap-8">
-              <Link href="#problem" prefetch={false} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                Problem
-              </Link>
-              <Link href="#features" prefetch={false} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                Features
-              </Link>
-              <Link href="#quick-start" prefetch={false} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                Quick Start
-              </Link>
-              <Link href="#open-source" prefetch={false} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
-                Open Source
-              </Link>
-            </div>
+          {/* Right vertical line */}
+          <div className="w-[1px] h-full absolute right-4 sm:right-6 md:right-8 lg:right-0 top-0 bg-[rgba(55,50,47,0.12)] shadow-[1px_0px_0px_white] z-0"></div>
 
-            <div className="hidden md:flex items-center gap-4">
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-muted-foreground hover:text-foreground transition-colors inline-flex items-center gap-1.5"
-              >
-                GitHub
-                <ExternalLink className="w-3 h-3" />
-              </a>
-              <Link
-                href="#quick-start"
-                className="inline-flex items-center justify-center rounded-md text-sm font-medium bg-primary hover:bg-primary/90 text-primary-foreground h-9 px-4 transition-colors"
-              >
-                Get Started
-              </Link>
-            </div>
+          <div className="self-stretch pt-[9px] overflow-hidden border-b border-[rgba(55,50,47,0.06)] flex flex-col justify-center items-center gap-4 sm:gap-6 md:gap-8 lg:gap-[66px] relative z-10">
+            {/* Navigation */}
+            <div className="w-full h-14 sm:h-16 md:h-20 lg:h-[100px] absolute left-0 top-0 flex justify-center items-center z-20 px-6 sm:px-8 md:px-12 lg:px-0">
+              <div className="w-full h-0 absolute left-0 top-7 sm:top-8 md:top-10 lg:top-[50px] border-t border-[rgba(55,50,47,0.12)] shadow-[0px_1px_0px_white]"></div>
 
-            <button className="md:hidden text-foreground" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-              {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-            </button>
-          </div>
-        </div>
-
-        {mobileMenuOpen && (
-          <div className="md:hidden bg-background/95 backdrop-blur-xl border-t border-border/50">
-            <div className="px-6 py-6 space-y-4">
-              <Link href="#problem" onClick={() => setMobileMenuOpen(false)} className="block text-sm text-muted-foreground hover:text-foreground">
-                Problem
-              </Link>
-              <Link href="#features" onClick={() => setMobileMenuOpen(false)} className="block text-sm text-muted-foreground hover:text-foreground">
-                Features
-              </Link>
-              <Link href="#quick-start" onClick={() => setMobileMenuOpen(false)} className="block text-sm text-muted-foreground hover:text-foreground">
-                Quick Start
-              </Link>
-              <Link href="#open-source" onClick={() => setMobileMenuOpen(false)} className="block text-sm text-muted-foreground hover:text-foreground">
-                Open Source
-              </Link>
-              <hr className="border-border/50" />
-              <a href="#" target="_blank" rel="noopener noreferrer" className="block text-sm text-muted-foreground hover:text-foreground">
-                GitHub
-              </a>
-              <CopyButton text="pip install pokant" variant="pill" />
-            </div>
-          </div>
-        )}
-      </nav>
-
-      {/* ── Hero ─────────────────────────────────────────────────── */}
-      <section className="relative pt-32 pb-20 px-6 lg:px-8">
-        <div className="absolute inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[900px] h-[600px] bg-primary/[0.07] rounded-full blur-[128px]" />
-          <div className="absolute top-40 left-0 w-[400px] h-[400px] bg-violet-500/[0.04] rounded-full blur-[100px]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-background" />
-        </div>
-
-        <div className="max-w-5xl mx-auto">
-          {/* Headline */}
-          <div
-            className="text-center mb-12"
-            style={{ animation: "fade-in-up 0.8s ease-out 0.1s both" }}
-          >
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold tracking-tight mb-6 leading-[1.1]">
-              Your browser agent works in demos.
-              <br />
-              <span className="text-primary">Make it work in production.</span>
-            </h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8 leading-relaxed">
-              Pokant adds reliability, observability, and error recovery to any browser automation agent. Two lines of code. Zero dependencies.
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-4">
-              <CopyButton text="pip install pokant" variant="pill" />
-              <a
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-border text-foreground hover:bg-card text-sm transition-colors"
-              >
-                View on GitHub
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </div>
-          </div>
-
-          {/* Code Comparison */}
-          <div
-            className="grid md:grid-cols-2 gap-4"
-            style={{ animation: "fade-in-up 0.8s ease-out 0.35s both" }}
-          >
-            {/* Without Pokant */}
-            <div className="rounded-xl overflow-hidden border border-white/[0.06] bg-[#0d1117]">
-              <div className="flex items-center gap-3 px-4 py-2.5 bg-white/[0.02] border-b border-white/[0.06]">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-[#ff5f57]/80" />
-                  <div className="w-3 h-3 rounded-full bg-[#febc2e]/80" />
-                  <div className="w-3 h-3 rounded-full bg-[#28c840]/80" />
+              <div className="w-full max-w-[calc(100%-32px)] sm:max-w-[calc(100%-48px)] md:max-w-[calc(100%-64px)] lg:max-w-[760px] lg:w-[760px] h-12 sm:h-13 md:h-14 py-2 sm:py-2.5 px-4 sm:px-5 pr-2.5 sm:pr-3 bg-[#F7F5F3] backdrop-blur-sm shadow-[0px_0px_0px_2px_white] overflow-hidden rounded-[50px] flex justify-between items-center relative z-30">
+                <div className="flex justify-center items-center">
+                  <a href="/" className="flex justify-start items-center no-underline">
+                    <div className="flex flex-col justify-center text-[#2F3037] text-base sm:text-lg md:text-xl lg:text-xl font-semibold leading-5 font-sans">
+                      Pokant
+                    </div>
+                  </a>
+                  <nav className="pl-4 sm:pl-5 lg:pl-6 hidden sm:flex flex-row gap-3 md:gap-5">
+                    <a href="#features" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
+                      Features
+                    </a>
+                    <a href="https://api.pokant.live/docs" target="_blank" rel="noopener noreferrer" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
+                      Docs
+                    </a>
+                    <a href="/enterprise" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
+                      Enterprise
+                    </a>
+                  </nav>
                 </div>
-                <span className="text-[11px] text-zinc-500 font-mono">without_pokant.py</span>
-              </div>
-              <div className="p-5 overflow-x-auto">
-                <code className="font-mono text-[13px] leading-7 block whitespace-pre">
-                  <div>
-                    <span className="text-zinc-300">agent</span>
-                    <span className="text-zinc-500"> = </span>
-                    <span className="code-property">Agent</span>
-                    <span className="text-zinc-400">(task=</span>
-                    <span className="code-string">&quot;Extract pricing&quot;</span>
-                    <span className="text-zinc-400">, llm=llm)</span>
-                  </div>
-                  <div>
-                    <span className="text-zinc-300">result</span>
-                    <span className="text-zinc-500"> = </span>
-                    <span className="code-keyword">await</span>
-                    <span className="text-zinc-300"> agent.</span>
-                    <span className="code-property">run</span>
-                    <span className="text-zinc-400">()</span>
-                  </div>
-                  <div className="text-red-400/50"># Crashes on API errors</div>
-                  <div className="text-red-400/50"># Loops forever on broken pages</div>
-                  <div className="text-red-400/50"># No idea what happened</div>
-                  <div className="text-red-400/50"># Costs spiral invisibly</div>
-                </code>
-              </div>
-            </div>
-
-            {/* With Pokant */}
-            <div className="rounded-xl overflow-hidden border border-primary/30 bg-[#0d1117] shadow-[0_0_40px_-12px_rgba(59,130,246,0.15)]">
-              <div className="flex items-center gap-3 px-4 py-2.5 bg-primary/[0.03] border-b border-primary/10">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-[#ff5f57]/80" />
-                  <div className="w-3 h-3 rounded-full bg-[#febc2e]/80" />
-                  <div className="w-3 h-3 rounded-full bg-[#28c840]/80" />
+                <div className="flex items-center gap-2 sm:gap-3">
+                  <a
+                    href="https://pokant.live/login"
+                    className="px-3 sm:px-4 md:px-[16px] py-1.5 sm:py-2 bg-white shadow-[0px_1px_2px_rgba(55,50,47,0.12)] overflow-hidden rounded-full flex justify-center items-center no-underline hover:bg-gray-50 transition-colors"
+                  >
+                    <span className="text-[#37322F] text-xs md:text-[13px] font-medium leading-5 font-sans">Log in</span>
+                  </a>
+                  <a
+                    href="https://pokant.live/login"
+                    className="px-3 sm:px-4 md:px-[16px] py-1.5 sm:py-2 bg-[#37322F] shadow-[0px_1px_2px_rgba(55,50,47,0.12)] overflow-hidden rounded-full flex justify-center items-center no-underline hover:bg-[#2A2520] transition-colors"
+                  >
+                    <span className="text-white text-xs md:text-[13px] font-medium leading-5 font-sans">Get Started</span>
+                  </a>
                 </div>
-                <span className="text-[11px] text-zinc-500 font-mono">with_pokant.py</span>
-              </div>
-              <div className="p-5 overflow-x-auto">
-                <code className="font-mono text-[13px] leading-7 block whitespace-pre">
-                  <div>
-                    <span className="code-keyword">from</span>
-                    <span className="text-zinc-300"> pokant </span>
-                    <span className="code-keyword">import</span>
-                    <span className="text-zinc-300"> </span>
-                    <span className="code-property">wrap</span>
-                  </div>
-                  <div>
-                    <span className="text-zinc-300">result</span>
-                    <span className="text-zinc-500"> = </span>
-                    <span className="code-keyword">await</span>
-                    <span className="text-zinc-300"> </span>
-                    <span className="code-property">wrap</span>
-                    <span className="text-zinc-400">(agent)</span>
-                    <span className="text-zinc-300">.</span>
-                    <span className="code-property">run</span>
-                    <span className="text-zinc-400">()</span>
-                  </div>
-                  <div className="text-emerald-400/60"># Auto-retry on transient errors</div>
-                  <div className="text-emerald-400/60"># Stuck detection kills loops</div>
-                  <div className="text-emerald-400/60"># Step-by-step screenshots + replay</div>
-                  <div className="text-emerald-400/60"># Cost tracking per step</div>
-                </code>
               </div>
             </div>
-          </div>
-        </div>
 
-        {/* Scroll indicator */}
-        <div
-          className="flex justify-center mt-16"
-          style={{ animation: "fade-in 0.8s ease-out 1.2s both" }}
-        >
-          <div className="flex flex-col items-center gap-2 text-muted-foreground">
-            <span className="text-xs">Scroll to explore</span>
-            <ArrowDown className="w-4 h-4 animate-bounce" />
-          </div>
-        </div>
-      </section>
-
-      {/* ── The Problem ──────────────────────────────────────────── */}
-      <section id="problem" className="py-24 px-6 lg:px-8" ref={problemRef.ref}>
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2
-              className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 transition-all duration-700 ${
-                problemRef.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
-              Browser agents break in production.
-              <br className="hidden sm:block" />
-              Every team hits the same wall.
-            </h2>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {problems.map((item, i) => (
-              <div
-                key={item.title}
-                className={`group bg-card border border-border/50 rounded-xl p-6 transition-all duration-700 hover:border-primary/30 hover:-translate-y-1 ${
-                  problemRef.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
-                style={{ transitionDelay: `${i * 100}ms` }}
-              >
-                <div className="w-10 h-10 rounded-lg bg-red-500/10 flex items-center justify-center mb-4 group-hover:bg-red-500/15 transition-colors">
-                  <item.icon className="w-5 h-5 text-red-400" />
+            {/* Hero Section */}
+            <div className="pt-16 sm:pt-20 md:pt-24 lg:pt-[216px] pb-8 sm:pb-12 md:pb-16 flex flex-col justify-start items-center px-2 sm:px-4 md:px-8 lg:px-0 w-full sm:pl-0 sm:pr-0 pl-0 pr-0">
+              <div className="w-full max-w-[937px] lg:w-[937px] flex flex-col justify-center items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+                <div className="self-stretch rounded-[3px] flex flex-col justify-center items-center gap-4 sm:gap-5 md:gap-6 lg:gap-8">
+                  <div className="w-full max-w-[820px] text-center flex justify-center flex-col text-[#37322F] text-[28px] sm:text-[42px] md:text-[62px] lg:text-[84px] font-bold leading-[1.05] tracking-tight font-display px-2 sm:px-4 md:px-0">
+                    Give your agents access
+                    <br />
+                    to the entire web.
+                  </div>
+                  <div className="w-full max-w-[520px] text-center text-[rgba(55,50,47,0.70)] text-sm sm:text-base md:text-lg leading-relaxed font-sans font-normal px-2 sm:px-4 md:px-0">
+                    One API call. Any website. Structured JSON back.
+                    <br className="hidden sm:block" />
+                    No selectors, no scripts, no maintenance.
+                  </div>
                 </div>
-                <h3 className="text-base font-semibold mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ── Features ─────────────────────────────────────────────── */}
-      <section id="features" className="py-24 px-6 lg:px-8 bg-card/30" ref={featuresRef.ref}>
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2
-              className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 transition-all duration-700 ${
-                featuresRef.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
-              Production reliability in one function call.
-            </h2>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {features.map((item, i) => (
-              <div
-                key={item.title}
-                className={`group bg-card border border-border/50 rounded-xl p-6 transition-all duration-700 hover:border-primary/30 hover:-translate-y-1 ${
-                  featuresRef.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
-                style={{ transitionDelay: `${i * 80}ms` }}
-              >
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/15 transition-colors">
-                  <item.icon className="w-5 h-5 text-primary" />
+              <div className="w-full max-w-[497px] lg:w-[497px] flex flex-col justify-center items-center gap-4 relative z-10 mt-6 sm:mt-8 md:mt-10 lg:mt-12">
+                <div className="backdrop-blur-[8.25px] flex justify-start items-center gap-4">
+                  <a href="https://pokant.live/login" className="h-10 sm:h-11 md:h-12 px-6 sm:px-8 md:px-10 lg:px-12 py-2 sm:py-[6px] relative bg-[#37322F] shadow-[0px_0px_0px_2.5px_rgba(255,255,255,0.08)_inset] overflow-hidden rounded-full flex justify-center items-center no-underline hover:bg-[#2A2520] transition-colors">
+                    <div className="w-20 sm:w-24 md:w-28 lg:w-44 h-[41px] absolute left-0 top-[-0.5px] bg-gradient-to-b from-[rgba(255,255,255,0)] to-[rgba(0,0,0,0.10)] mix-blend-multiply"></div>
+                    <div className="flex flex-col justify-center text-white text-sm sm:text-base md:text-[15px] font-medium leading-5 font-sans">
+                      Get Started
+                    </div>
+                  </a>
+                  <a href="/enterprise" className="h-10 sm:h-11 md:h-12 px-6 sm:px-8 md:px-10 lg:px-10 py-2 sm:py-[6px] relative bg-transparent border border-[#37322F]/30 overflow-hidden rounded-full flex justify-center items-center cursor-pointer hover:border-[#37322F]/60 transition-colors no-underline">
+                    <div className="flex flex-col justify-center text-[#37322F] text-sm sm:text-base md:text-[15px] font-medium leading-5 font-sans">
+                      For Enterprises
+                    </div>
+                  </a>
                 </div>
-                <h3 className="text-base font-semibold mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── Architecture ─────────────────────────────────────────── */}
-      <section id="architecture" className="py-24 px-6 lg:px-8" ref={architectureRef.ref}>
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2
-              className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 transition-all duration-700 ${
-                architectureRef.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
-              Sits between your agent and the browser.
-              <br className="hidden sm:block" />
-              Intercepts nothing, observes everything.
-            </h2>
-          </div>
-
-          <div
-            className={`flex flex-col items-center transition-all duration-700 delay-150 ${
-              architectureRef.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            {/* Your Code */}
-            <div className="px-8 py-3 bg-card border border-border/50 rounded-lg">
-              <span className="font-mono text-sm">Your Code</span>
-            </div>
-
-            <div className="w-px h-8 bg-border/60" />
-
-            {/* wrap / track */}
-            <div className="px-8 py-3 bg-card border border-border/50 rounded-lg text-center">
-              <span className="font-mono text-sm text-primary">wrap(agent)</span>
-              <span className="text-sm text-muted-foreground mx-2">or</span>
-              <span className="font-mono text-sm text-primary">track(page)</span>
-            </div>
-
-            <div className="w-px h-8 bg-border/60" />
-
-            {/* Pokant Layer */}
-            <div className="w-full max-w-sm bg-card border border-primary/20 rounded-xl overflow-hidden">
-              <div className="px-6 py-3 bg-primary/[0.04] border-b border-primary/10">
-                <span className="font-semibold text-sm">Pokant Layer</span>
-              </div>
-              <div className="px-6 py-4 space-y-2.5">
-                {architectureLayers.map((item) => (
-                  <div key={item} className="flex items-center gap-2.5 text-sm text-muted-foreground">
-                    <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0" />
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="w-px h-8 bg-border/60" />
-
-            {/* Browser */}
-            <div className="px-8 py-3 bg-card border border-border/50 rounded-lg text-center">
-              <span className="font-mono text-sm">Browser</span>
-              <span className="block text-xs text-muted-foreground mt-0.5">Chromium / Browserbase / CDP</span>
-            </div>
-          </div>
-
-          <p className="text-center text-muted-foreground max-w-2xl mx-auto mt-12 text-sm leading-relaxed">
-            Works with Browser Use, Playwright, or any browser automation framework. Bring your own agent&mdash;Pokant doesn&rsquo;t replace it, it makes it reliable.
-          </p>
-        </div>
-      </section>
-
-      {/* ── Works With ───────────────────────────────────────────── */}
-      <section id="works-with" className="py-24 px-6 lg:px-8 bg-card/30" ref={worksWithRef.ref}>
-        <div className="max-w-4xl mx-auto">
-          <h2
-            className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-14 transition-all duration-700 ${
-              worksWithRef.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            Agent agnostic. Framework agnostic.
-          </h2>
-
-          <div
-            className={`grid md:grid-cols-3 gap-10 text-center transition-all duration-700 delay-150 ${
-              worksWithRef.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            <div>
-              <div className="text-[11px] uppercase tracking-widest text-primary font-semibold mb-5">Browser Automation</div>
-              <div className="space-y-3">
-                <div className="text-sm font-medium">Browser Use <span className="text-muted-foreground font-normal text-xs ml-1">81K+ stars</span></div>
-                <div className="text-sm font-medium">Playwright</div>
-                <div className="text-sm text-muted-foreground">Any agent with a run() method</div>
-              </div>
-            </div>
-            <div>
-              <div className="text-[11px] uppercase tracking-widest text-primary font-semibold mb-5">LLM Providers</div>
-              <div className="space-y-3">
-                <div className="text-sm font-medium">Claude</div>
-                <div className="text-sm font-medium">GPT-4o</div>
-                <div className="text-sm text-muted-foreground">Any LangChain-compatible model</div>
-              </div>
-            </div>
-            <div>
-              <div className="text-[11px] uppercase tracking-widest text-primary font-semibold mb-5">Browser Infrastructure</div>
-              <div className="space-y-3">
-                <div className="text-sm font-medium">Local Chromium</div>
-                <div className="text-sm font-medium">Browserbase</div>
-                <div className="text-sm text-muted-foreground">Any CDP-compatible browser</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Quick Start ──────────────────────────────────────────── */}
-      <section id="quick-start" className="py-24 px-6 lg:px-8" ref={quickStartRef.ref}>
-        <div className="max-w-3xl mx-auto">
-          <h2
-            className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-14 transition-all duration-700 ${
-              quickStartRef.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            60 seconds to production reliability.
-          </h2>
-
-          <div
-            className={`space-y-10 transition-all duration-700 delay-150 ${
-              quickStartRef.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            {/* Step 1 */}
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-sm font-bold text-primary font-mono">
-                  1
-                </div>
-                <h3 className="font-semibold">Install</h3>
-              </div>
-              <div className="bg-[#0d1117] rounded-xl border border-white/[0.06] px-5 py-4 flex items-center justify-between">
-                <code className="font-mono text-sm text-zinc-300">
-                  <span className="text-zinc-500">$ </span>pip install pokant
-                </code>
-                <CopyButton text="pip install pokant" />
-              </div>
-            </div>
-
-            {/* Step 2 */}
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-sm font-bold text-primary font-mono">
-                  2
-                </div>
-                <h3 className="font-semibold">Wrap your agent</h3>
-              </div>
-              <div className="bg-[#0d1117] rounded-xl border border-white/[0.06] px-5 py-4 flex items-start justify-between gap-4">
-                <code className="font-mono text-[13px] leading-7 block">
-                  <div>
-                    <span className="code-keyword">from</span>
-                    <span className="text-zinc-300"> pokant </span>
-                    <span className="code-keyword">import</span>
-                    <span className="text-zinc-300"> </span>
-                    <span className="code-property">wrap</span>
-                  </div>
-                  <div>
-                    <span className="text-zinc-300">result</span>
-                    <span className="text-zinc-500"> = </span>
-                    <span className="code-keyword">await</span>
-                    <span className="text-zinc-300"> </span>
-                    <span className="code-property">wrap</span>
-                    <span className="text-zinc-400">(agent)</span>
-                    <span className="text-zinc-300">.</span>
-                    <span className="code-property">run</span>
-                    <span className="text-zinc-400">()</span>
-                  </div>
-                </code>
-                <CopyButton text={"from pokant import wrap\nresult = await wrap(agent).run()"} />
-              </div>
-            </div>
-
-            {/* Step 3 */}
-            <div>
-              <div className="flex items-center gap-3 mb-3">
-                <div className="w-8 h-8 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center text-sm font-bold text-primary font-mono">
-                  3
-                </div>
-                <h3 className="font-semibold">See what happened</h3>
-              </div>
-              <div className="bg-[#0d1117] rounded-xl border border-white/[0.06] px-5 py-4 flex items-start justify-between gap-4 mb-4">
-                <code className="font-mono text-sm leading-7 block text-zinc-300">
-                  <div><span className="text-zinc-500">$ </span>pip install pokant[dashboard]</div>
-                  <div><span className="text-zinc-500">$ </span>pokant dashboard</div>
-                </code>
-                <CopyButton text={"pip install pokant[dashboard]\npokant dashboard"} />
               </div>
 
-              {/* Dashboard Mockup */}
-              <div className="bg-card border border-border/50 rounded-xl overflow-hidden">
-                <div className="px-4 py-2.5 bg-card border-b border-border/50 flex items-center gap-3">
-                  <div className="flex gap-1.5">
-                    <div className="w-3 h-3 rounded-full bg-[#ff5f57]/80" />
-                    <div className="w-3 h-3 rounded-full bg-[#febc2e]/80" />
-                    <div className="w-3 h-3 rounded-full bg-[#28c840]/80" />
-                  </div>
-                  <span className="text-[11px] text-muted-foreground font-mono">pokant dashboard &mdash; localhost:8420</span>
-                </div>
-                <div className="p-5">
-                  <div className="flex items-center gap-3 mb-5 pb-4 border-b border-border/30">
-                    <div className="w-2 h-2 rounded-full bg-green-500" />
-                    <span className="text-sm font-mono font-medium">Extract pricing data from acme.com</span>
-                    <span className="text-xs text-green-400 ml-auto">Completed</span>
-                  </div>
-                  <div className="space-y-2.5">
-                    {dashboardSteps.map((s, i) => (
-                      <div key={i} className="flex items-center gap-3 text-[13px]">
-                        <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${s.ok ? "bg-green-500" : "bg-amber-500"}`} />
-                        <span className="text-muted-foreground font-mono flex-1 truncate">{s.step}</span>
-                        <span className="text-zinc-600 font-mono text-xs shrink-0">{s.time}</span>
-                        <span className="text-zinc-600 font-mono text-xs shrink-0 w-14 text-right">{s.cost}</span>
-                      </div>
+              <div className="absolute top-[232px] sm:top-[248px] md:top-[264px] lg:top-[320px] left-1/2 transform -translate-x-1/2 z-0 pointer-events-none">
+                <img
+                  src="/mask-group-pattern.svg"
+                  alt=""
+                  className="w-[936px] sm:w-[1404px] md:w-[2106px] lg:w-[2808px] h-auto opacity-30 sm:opacity-40 md:opacity-50 mix-blend-multiply"
+                  style={{
+                    filter: "hue-rotate(15deg) saturate(0.7) brightness(1.2)",
+                  }}
+                />
+              </div>
+
+              <div className="w-full relative z-5 my-8 sm:my-12 md:my-16 lg:my-16 mb-0">
+                <DashboardPreview />
+              </div>
+
+              <div id="features" className="self-stretch border-t border-[#E0DEDB] border-b border-[#E0DEDB] flex justify-center items-start">
+                <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden">
+                  {/* Left decorative pattern */}
+                  <div className="w-[120px] sm:w-[140px] md:w-[162px] left-[-40px] sm:left-[-50px] md:left-[-58px] top-[-120px] absolute flex flex-col justify-start items-start">
+                    {Array.from({ length: 50 }).map((_, i) => (
+                      <div
+                        key={i}
+                        className="self-stretch h-3 sm:h-4 rotate-[-45deg] origin-top-left outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
+                      ></div>
                     ))}
                   </div>
-                  <div className="mt-4 pt-3 border-t border-border/30 flex items-center justify-between text-xs font-mono text-muted-foreground">
-                    <span>5 steps &middot; 1 retry &middot; 8.9s total</span>
-                    <span className="text-foreground">$0.038</span>
+                </div>
+
+                <div className="flex-1 px-0 sm:px-2 md:px-0 flex flex-col md:flex-row justify-center items-stretch gap-0">
+                  {/* Feature Cards */}
+                  <FeatureCard
+                    title="Automate Any Website"
+                    description="Send a URL and task in plain English. Get structured JSON back. No scripts, no selectors, no maintenance."
+                    isActive={activeCard === 0}
+                    progress={activeCard === 0 ? progress : 0}
+                    onClick={() => handleCardClick(0)}
+                  />
+                  <FeatureCard
+                    title="Self-Healing Retries"
+                    description="When tasks fail, our AI diagnoses why and retries with a different approach. Not blind retries — intelligent recovery."
+                    isActive={activeCard === 1}
+                    progress={activeCard === 1 ? progress : 0}
+                    onClick={() => handleCardClick(1)}
+                  />
+                  <FeatureCard
+                    title="Compile to Replay"
+                    description="First run uses AI to explore the workflow. Every run after replays the compiled script deterministically. Reliable, fast, consistent."
+                    isActive={activeCard === 2}
+                    progress={activeCard === 2 ? progress : 0}
+                    onClick={() => handleCardClick(2)}
+                  />
+                </div>
+
+                <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden">
+                  {/* Right decorative pattern */}
+                  <div className="w-[120px] sm:w-[140px] md:w-[162px] left-[-40px] sm:left-[-50px] md:left-[-58px] top-[-120px] absolute flex flex-col justify-start items-start">
+                    {Array.from({ length: 50 }).map((_, i) => (
+                      <div
+                        key={i}
+                        className="self-stretch h-3 sm:h-4 rotate-[-45deg] origin-top-left outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
+                      ></div>
+                    ))}
                   </div>
                 </div>
               </div>
+
+              {/* Bento Grid Section */}
+              <div className="w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center">
+                {/* Header Section */}
+                <div className="self-stretch px-4 sm:px-6 md:px-8 lg:px-0 lg:max-w-[1060px] lg:w-[1060px] py-8 sm:py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center gap-6">
+                  <div className="w-full max-w-[616px] lg:w-[616px] px-4 sm:px-6 py-4 sm:py-5 shadow-[0px_2px_4px_rgba(50,45,43,0.06)] overflow-hidden rounded-lg flex flex-col justify-start items-center gap-3 sm:gap-4 shadow-none">
+                    <Badge
+                      icon={
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect x="1" y="1" width="4" height="4" stroke="#37322F" strokeWidth="1" fill="none" />
+                          <rect x="7" y="1" width="4" height="4" stroke="#37322F" strokeWidth="1" fill="none" />
+                          <rect x="1" y="7" width="4" height="4" stroke="#37322F" strokeWidth="1" fill="none" />
+                          <rect x="7" y="7" width="4" height="4" stroke="#37322F" strokeWidth="1" fill="none" />
+                        </svg>
+                      }
+                      text="How Pokant works"
+                    />
+                    <div className="w-full max-w-[598.06px] lg:w-[598.06px] text-center flex justify-center flex-col text-[#49423D] text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold leading-tight md:leading-[60px] font-display tracking-tight">
+                      Explore once. Replay forever.
+                    </div>
+                    <div className="self-stretch text-center text-[#605A57] text-sm sm:text-base font-normal leading-6 sm:leading-7 font-sans">
+                      AI navigates to figure out the workflow once,
+                      <br />
+                      then replays it deterministically every time after.
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bento Grid Content */}
+                <div className="self-stretch flex justify-center items-start">
+                  <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden">
+                    {/* Left decorative pattern */}
+                    <div className="w-[120px] sm:w-[140px] md:w-[162px] left-[-40px] sm:left-[-50px] md:left-[-58px] top-[-120px] absolute flex flex-col justify-start items-start">
+                      {Array.from({ length: 200 }).map((_, i) => (
+                        <div
+                          key={i}
+                          className="self-stretch h-3 sm:h-4 rotate-[-45deg] origin-top-left outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
+                        />
+                      ))}
+                    </div>
+                  </div>
+
+                  <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-0 border-l border-r border-[rgba(55,50,47,0.12)]">
+                    {/* Step 1 — Explore */}
+                    <div className="border-b md:border-b-0 border-r-0 md:border-r border-[rgba(55,50,47,0.12)] p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-start items-start gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-[#37322F] flex items-center justify-center text-white text-xs font-semibold font-sans flex-shrink-0">1</div>
+                        <h3 className="text-[#37322F] text-lg font-semibold leading-tight font-sans">Explore</h3>
+                      </div>
+                      <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
+                        Send a task in plain English. Our AI agent navigates the website, fills forms, clicks buttons, and extracts data.
+                      </p>
+                      <div className="w-full mt-2 bg-[#fbfaf9] border border-[rgba(55,50,47,0.12)] rounded-lg p-3 text-xs font-mono text-[#605A57] space-y-1">
+                        <div className="text-[#37322F] font-medium">→ Navigate to pricing page</div>
+                        <div>→ Wait for page load</div>
+                        <div>→ Extract plan names &amp; prices</div>
+                        <div>→ Return structured JSON</div>
+                        <div className="text-green-600 font-medium mt-1">✓ Compiled to workflow_id</div>
+                      </div>
+                    </div>
+
+                    {/* Step 2 — Compile */}
+                    <div className="border-b md:border-b-0 border-r-0 md:border-r border-[rgba(55,50,47,0.12)] p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-start items-start gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-[#37322F] flex items-center justify-center text-white text-xs font-semibold font-sans flex-shrink-0">2</div>
+                        <h3 className="text-[#37322F] text-lg font-semibold leading-tight font-sans">Compile</h3>
+                      </div>
+                      <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
+                        We record every action and compile the successful run into a deterministic Playwright script. No AI needed for replays.
+                      </p>
+                      <div className="w-full mt-2 flex items-center justify-center overflow-hidden">
+                        <SmartSimpleBrilliant
+                          width="100%"
+                          height={180}
+                          theme="light"
+                        />
+                      </div>
+                    </div>
+
+                    {/* Step 3 — Replay */}
+                    <div className="p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-start items-start gap-4">
+                      <div className="flex items-center gap-3">
+                        <div className="w-8 h-8 rounded-full bg-[#37322F] flex items-center justify-center text-white text-xs font-semibold font-sans flex-shrink-0">3</div>
+                        <h3 className="text-[#37322F] text-lg font-semibold leading-tight font-sans">Replay</h3>
+                      </div>
+                      <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
+                        Execute the compiled workflow unlimited times. Self-healing fallback automatically fixes broken selectors when sites change.
+                      </p>
+                      <div className="w-full mt-auto bg-[#fbfaf9] border border-[rgba(55,50,47,0.12)] rounded-lg p-3 text-xs font-mono text-[#605A57] space-y-1">
+                        <div className="text-[#37322F] font-medium">→ Load compiled workflow</div>
+                        <div>→ Execute deterministic script</div>
+                        <div>→ Verify output schema</div>
+                        <div>→ Return structured JSON</div>
+                        <div className="text-green-600 font-medium mt-1">✓ Completed in 1.2s</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden">
+                    {/* Right decorative pattern */}
+                    <div className="w-[120px] sm:w-[140px] md:w-[162px] left-[-40px] sm:left-[-50px] md:left-[-58px] top-[-120px] absolute flex flex-col justify-start items-start">
+                      {Array.from({ length: 200 }).map((_, i) => (
+                        <div
+                          key={i}
+                          className="self-stretch h-3 sm:h-4 rotate-[-45deg] origin-top-left outline outline-[0.5px] outline-[rgba(3,7,18,0.08)] outline-offset-[-0.25px]"
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Documentation Section */}
+              <DocumentationSection />
+
+              {/* Enterprise Section */}
+              <div id="enterprise" className="w-full">
+                <EnterpriseSection />
+              </div>
+
+              {/* FAQ Section */}
+              <FAQSection />
+
+              {/* CTA Section */}
+              <CTASection />
+
+              {/* Footer Section */}
+              <FooterSection />
             </div>
           </div>
         </div>
-      </section>
+      </div>
+    </div>
+  )
+}
 
-      {/* ── Before / After ───────────────────────────────────────── */}
-      <section id="before-after" className="py-24 px-6 lg:px-8 bg-card/30" ref={beforeAfterRef.ref}>
-        <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-14">
-            <h2
-              className={`text-2xl sm:text-3xl lg:text-4xl font-bold mb-4 transition-all duration-700 ${
-                beforeAfterRef.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
-              Real example: extracting data from a SaaS portal.
-            </h2>
-            <p
-              className={`text-muted-foreground max-w-xl mx-auto transition-all duration-700 delay-100 ${
-                beforeAfterRef.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-            >
-              Same task, same agent, same target website. The only difference is two lines of code.
-            </p>
-          </div>
-
+// FeatureCard component definition inline to fix import error
+function FeatureCard({
+  title,
+  description,
+  isActive,
+  progress,
+  onClick,
+}: {
+  title: string
+  description: string
+  isActive: boolean
+  progress: number
+  onClick: () => void
+}) {
+  return (
+    <div
+      className={`w-full md:flex-1 self-stretch px-6 py-5 overflow-hidden flex flex-col justify-start items-start gap-2 cursor-pointer relative border-b md:border-b-0 last:border-b-0 ${
+        isActive
+          ? "bg-white shadow-[0px_0px_0px_0.75px_#E0DEDB_inset]"
+          : "border-l-0 border-r-0 md:border border-[#E0DEDB]/80"
+      }`}
+      onClick={onClick}
+    >
+      {isActive && (
+        <div className="absolute top-0 left-0 w-full h-0.5 bg-[rgba(50,45,43,0.08)]">
           <div
-            className={`grid md:grid-cols-2 gap-5 transition-all duration-700 delay-200 ${
-              beforeAfterRef.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            {/* Before */}
-            <div className="bg-card border border-border/50 rounded-xl p-6">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-2 h-2 rounded-full bg-red-500" />
-                <span className="text-sm font-semibold text-red-400">Before (raw Browser Use)</span>
-              </div>
-              <div className="space-y-4">
-                {beforeItems.map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <X className="w-4 h-4 text-red-500/60 mt-0.5 shrink-0" />
-                    <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* After */}
-            <div className="bg-card border border-primary/20 rounded-xl p-6">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="w-2 h-2 rounded-full bg-green-500" />
-                <span className="text-sm font-semibold text-green-400">After (with Pokant)</span>
-              </div>
-              <div className="space-y-4">
-                {afterItems.map((item, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <Check className="w-4 h-4 text-green-500/60 mt-0.5 shrink-0" />
-                    <span className="text-sm text-muted-foreground leading-relaxed">{item}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+            className="h-full bg-[#322D2B] transition-all duration-100 ease-linear"
+            style={{ width: `${progress}%` }}
+          />
         </div>
-      </section>
+      )}
 
-      {/* ── Open Source ───────────────────────────────────────────── */}
-      <section id="open-source" className="py-24 px-6 lg:px-8" ref={openSourceRef.ref}>
-        <div className="max-w-5xl mx-auto">
-          <h2
-            className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-14 transition-all duration-700 ${
-              openSourceRef.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            Open source. Local first. No cloud required.
-          </h2>
-
-          <div
-            className={`grid sm:grid-cols-3 gap-5 transition-all duration-700 delay-150 ${
-              openSourceRef.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            {openSourcePoints.map((item, i) => (
-              <div
-                key={item.title}
-                className="bg-card border border-border/50 rounded-xl p-6 text-center"
-                style={{ transitionDelay: `${i * 80}ms` }}
-              >
-                <div className="w-11 h-11 rounded-lg bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                  <item.icon className="w-5 h-5 text-primary" />
-                </div>
-                <h3 className="text-base font-semibold mb-2">{item.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="flex items-center justify-center gap-6 mt-10">
-            <a href="#" className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors">
-              <Star className="w-4 h-4" />
-              Star on GitHub
-            </a>
-            <a href="#" className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors">
-              View Source
-              <ArrowRight className="w-3.5 h-3.5" />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Roadmap ──────────────────────────────────────────────── */}
-      <section id="roadmap" className="py-24 px-6 lg:px-8 bg-card/30" ref={roadmapRef.ref}>
-        <div className="max-w-2xl mx-auto">
-          <h2
-            className={`text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-14 transition-all duration-700 ${
-              roadmapRef.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            Where it&apos;s going.
-          </h2>
-
-          <div
-            className={`space-y-0 transition-all duration-700 delay-150 ${
-              roadmapRef.isInView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-            }`}
-          >
-            {roadmapItems.map((item, i) => (
-              <div key={item.title} className="flex gap-4">
-                <div className="flex flex-col items-center">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center shrink-0">
-                    <item.icon className="w-5 h-5 text-primary" />
-                  </div>
-                  {i < roadmapItems.length - 1 && <div className="w-px flex-1 bg-border/60 mt-2" />}
-                </div>
-                <div className="pb-8">
-                  <h3 className="font-semibold mb-1">{item.title}</h3>
-                  <p className="text-sm text-muted-foreground">{item.description}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-4">
-            <a href="#" className="inline-flex items-center gap-2 text-sm text-primary hover:text-primary/80 transition-colors">
-              <Star className="w-4 h-4" />
-              Star the repo to follow progress
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Footer CTA ───────────────────────────────────────────── */}
-      <section className="py-24 px-6 lg:px-8 border-t border-border/50">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-6">
-            Two lines of code. That&apos;s it.
-          </h2>
-
-          <div className="bg-[#0d1117] rounded-xl border border-white/[0.06] p-6 max-w-sm mx-auto mb-10">
-            <code className="font-mono text-[13px] leading-7 block text-left">
-              <div>
-                <span className="code-keyword">from</span>
-                <span className="text-zinc-300"> pokant </span>
-                <span className="code-keyword">import</span>
-                <span className="text-zinc-300"> </span>
-                <span className="code-property">wrap</span>
-              </div>
-              <div>
-                <span className="text-zinc-300">result</span>
-                <span className="text-zinc-500"> = </span>
-                <span className="code-keyword">await</span>
-                <span className="text-zinc-300"> </span>
-                <span className="code-property">wrap</span>
-                <span className="text-zinc-400">(agent)</span>
-                <span className="text-zinc-300">.</span>
-                <span className="code-property">run</span>
-                <span className="text-zinc-400">()</span>
-              </div>
-            </code>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-4">
-            <CopyButton text="pip install pokant" variant="pill" />
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-border text-foreground hover:bg-card text-sm transition-colors"
-            >
-              Read the Docs
-              <ArrowRight className="w-4 h-4" />
-            </a>
-            <a
-              href="#"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-3 rounded-lg border border-border text-foreground hover:bg-card text-sm transition-colors"
-            >
-              GitHub
-              <ExternalLink className="w-3.5 h-3.5" />
-            </a>
-          </div>
-        </div>
-      </section>
-
-      {/* ── Footer ───────────────────────────────────────────────── */}
-      <footer className="border-t border-border/50 py-12 px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-            <div>
-              <div className="font-bold text-lg mb-3 font-mono">pokant</div>
-              <p className="text-sm text-muted-foreground leading-relaxed">
-                Production reliability for browser automation agents.
-              </p>
-            </div>
-            <div>
-              <div className="text-sm font-semibold mb-3">Product</div>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <a href="#" className="hover:text-foreground transition-colors">Documentation</a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-foreground transition-colors">GitHub</a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-foreground transition-colors">PyPI</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <div className="text-sm font-semibold mb-3">Resources</div>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <Link href="#quick-start" className="hover:text-foreground transition-colors">Quick Start</Link>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-foreground transition-colors">Examples</a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-foreground transition-colors">Changelog</a>
-                </li>
-              </ul>
-            </div>
-            <div>
-              <div className="text-sm font-semibold mb-3">Legal</div>
-              <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>
-                  <a href="#" className="hover:text-foreground transition-colors">MIT License</a>
-                </li>
-                <li>
-                  <a href="#" className="hover:text-foreground transition-colors">Privacy</a>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="pt-8 border-t border-border/50 text-center text-sm text-muted-foreground">
-            &copy; 2026 Pokant. MIT Licensed.
-          </div>
-        </div>
-      </footer>
+      <div className="self-stretch flex justify-center flex-col text-[#49423D] text-sm md:text-sm font-semibold leading-6 md:leading-6 font-sans">
+        {title}
+      </div>
+      <div className="self-stretch text-[#605A57] text-[13px] md:text-[13px] font-normal leading-[22px] md:leading-[22px] font-sans">
+        {description}
+      </div>
     </div>
   )
 }

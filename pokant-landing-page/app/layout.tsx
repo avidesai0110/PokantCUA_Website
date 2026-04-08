@@ -1,37 +1,41 @@
 import type React from "react"
-import type { Metadata, Viewport } from "next"
-import { Plus_Jakarta_Sans, JetBrains_Mono } from "next/font/google"
-import { RejectionHandler } from "./rejection-handler"
+import type { Metadata } from "next"
+import { Space_Grotesk, JetBrains_Mono, Instrument_Serif } from "next/font/google"
 import "./globals.css"
 
-const jakarta = Plus_Jakarta_Sans({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
-  variable: "--font-jakarta",
+  variable: "--font-body",
+  display: "swap",
+  preload: true,
 })
 
-const jetbrains = JetBrains_Mono({
+const spaceGroteskDisplay = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+  preload: true,
+})
+
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
+  display: "swap",
+  preload: true,
+})
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  weight: ["400"],
+  display: "swap",
+  preload: false,
 })
 
 export const metadata: Metadata = {
-  title: "Pokant - Production reliability for browser agents",
+  title: "Pokant — Browser automation that works in production",
   description:
-    "Add reliability, observability, and error recovery to any browser automation agent. Two lines of code. Zero dependencies.",
-  keywords: [
-    "browser automation",
-    "agent reliability",
-    "error recovery",
-    "browser use",
-    "playwright",
-    "observability",
-    "web scraping",
-    "RPA",
-  ],
-}
-
-export const viewport: Viewport = {
-  themeColor: "#0a0a0a",
+    "One API to automate any browser workflow. AI-powered navigation, adaptive retries, and structured output.",
 }
 
 export default function RootLayout({
@@ -40,11 +44,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={`${jakarta.variable} ${jetbrains.variable}`}>
-      <body className="font-sans antialiased">
-        <RejectionHandler />
-        {children}
-      </body>
+    <html
+      lang="en"
+      className={`${spaceGrotesk.variable} ${spaceGroteskDisplay.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable} antialiased`}
+    >
+      <head />
+      <body className="font-sans antialiased">{children}</body>
     </html>
   )
 }
