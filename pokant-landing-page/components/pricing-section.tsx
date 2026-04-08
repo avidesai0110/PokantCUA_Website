@@ -6,7 +6,7 @@ export default function PricingSection() {
       price: "$0",
       priceNote: "no credit card required",
       cta: "Get API Key",
-      ctaHref: "https://app.pokant.live",
+      ctaHref: "https://app.pokant.live/login",
       dark: false,
       features: [
         "50 explores / month",
@@ -22,7 +22,7 @@ export default function PricingSection() {
       price: "$0.02",
       priceNote: "per replay · $0.40 per explore",
       cta: "Get started",
-      ctaHref: "https://app.pokant.live",
+      ctaHref: "https://app.pokant.live/login",
       dark: true,
       features: [
         "Unlimited explores",

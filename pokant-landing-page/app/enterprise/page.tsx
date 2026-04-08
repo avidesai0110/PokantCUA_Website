@@ -137,13 +137,13 @@ export default function EnterprisePage() {
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3">
                   <a
-                    href="https://app.pokant.live"
+                    href="https://app.pokant.live/login"
                     className="px-3 sm:px-4 md:px-[16px] py-1.5 sm:py-2 bg-white shadow-[0px_1px_2px_rgba(55,50,47,0.12)] overflow-hidden rounded-full flex justify-center items-center no-underline hover:bg-gray-50 transition-colors"
                   >
                     <span className="text-[#37322F] text-xs md:text-[13px] font-medium leading-5 font-sans">Log in</span>
                   </a>
                   <a
-                    href="https://app.pokant.live"
+                    href="https://app.pokant.live/login"
                     className="px-3 sm:px-4 md:px-[16px] py-1.5 sm:py-2 bg-[#37322F] shadow-[0px_1px_2px_rgba(55,50,47,0.12)] overflow-hidden rounded-full flex justify-center items-center no-underline hover:bg-[#2A2520] transition-colors"
                   >
                     <span className="text-white text-xs md:text-[13px] font-medium leading-5 font-sans">Get Started</span>
