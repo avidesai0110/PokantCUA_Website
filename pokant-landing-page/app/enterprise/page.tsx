@@ -176,7 +176,7 @@ export default function EnterprisePage() {
                 </p>
                 <div className="flex items-center gap-4 mt-2">
                   <a
-                    href="mailto:sales@pokant.live"
+                    href="/contact"
                     className="h-11 px-8 relative bg-[#37322F] shadow-[0px_0px_0px_2.5px_rgba(255,255,255,0.08)_inset] overflow-hidden rounded-full flex justify-center items-center no-underline hover:bg-[#2A2520] transition-colors"
                   >
                     <div className="flex flex-col justify-center text-white text-[13px] font-medium leading-5 font-sans">
@@ -337,7 +337,7 @@ export default function EnterprisePage() {
                     </div>
                     <div>
                       <a
-                        href="mailto:sales@pokant.live"
+                        href="/contact"
                         className="h-10 px-8 py-[6px] relative bg-[#37322F] shadow-[0px_2px_4px_rgba(55,50,47,0.12)] overflow-hidden rounded-[99px] flex justify-center items-center cursor-pointer hover:bg-[#2A2520] transition-colors no-underline inline-flex w-fit"
                       >
                         <div className="w-full h-[41px] absolute left-0 top-[-0.5px] bg-gradient-to-b from-[rgba(255,255,255,0.20)] to-[rgba(0,0,0,0.10)] mix-blend-multiply"></div>
@@ -408,7 +408,7 @@ export default function EnterprisePage() {
                   </div>
                   <div className="flex justify-start items-center gap-4">
                     <a
-                      href="mailto:sales@pokant.live"
+                      href="/contact"
                       className="h-10 px-12 py-[6px] relative bg-[#37322F] shadow-[0px_0px_0px_2.5px_rgba(255,255,255,0.08)_inset] overflow-hidden rounded-full flex justify-center items-center cursor-pointer hover:bg-[#2A2520] transition-colors no-underline"
                     >
                       <div className="w-44 h-[41px] absolute left-0 top-0 bg-gradient-to-b from-[rgba(255,255,255,0)] to-[rgba(0,0,0,0.10)] mix-blend-multiply"></div>
