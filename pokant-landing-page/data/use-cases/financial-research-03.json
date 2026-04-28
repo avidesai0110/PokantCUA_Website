@@ -1,0 +1,36 @@
+{
+  "id": "fr-003",
+  "task_id": "task-fr-003",
+  "category": "Financial Research",
+  "use_case": "Funding landscape",
+  "topic": "Series B fintech funding trends 2024",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 86,
+  "cost_usd": 0.32,
+  "sources": [
+    { "url": "https://pitchbook.com/fintech-funding-report-2024", "title": "PitchBook Fintech Funding Report 2024", "domain": "pitchbook.com", "status": "fetched", "relevance_score": 0.96 },
+    { "url": "https://www.cbinsights.com/research/fintech-funding-trends-q3-2024", "title": "CB Insights: Fintech Funding Trends Q3 2024", "domain": "cbinsights.com", "status": "fetched", "relevance_score": 0.94 },
+    { "url": "https://a16z.com/fintech-market-update-2024", "title": "a16z Fintech Market Update 2024", "domain": "a16z.com", "status": "fetched", "relevance_score": 0.89 },
+    { "url": "https://www.crunchbase.com/fintech-series-b-analysis", "title": "Crunchbase: Series B Fintech Round Analysis", "domain": "crunchbase.com", "status": "fetched", "relevance_score": 0.87 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Series B fintech funding in 2024 has reset to 2019 levels with median round sizes of $28M at 12-15x ARR multiples, favoring profitable or near-profitable companies with clear paths to unit economics over high-growth, high-burn models.",
+    "key_findings": [
+      "Median Series B round size dropped to $28M from $45M peak in 2021, with 40% fewer deals closed YoY as investors demand $5M+ ARR and positive unit economics",
+      "Embedded finance and B2B payments are the most funded subsectors, capturing 35% of all Series B fintech dollars, while consumer neobanking fell to just 8%",
+      "Time between Series A and B extended to 26 months median (from 18 months in 2021), with 62% of 2022 Series A companies still not having raised follow-on rounds"
+    ],
+    "confidence_score": 0.89
+  }
+}

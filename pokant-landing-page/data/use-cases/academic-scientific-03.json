@@ -1,0 +1,36 @@
+{
+  "id": "as-003",
+  "task_id": "task-as-003",
+  "category": "Academic & Scientific",
+  "use_case": "Citation analysis",
+  "topic": "Most cited ML papers 2023-2024",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 88,
+  "cost_usd": 0.33,
+  "sources": [
+    { "url": "https://scholar.google.com/citations?view_op=top_venues&hl=en&vq=eng_artificialintelligence", "title": "Google Scholar: Top AI/ML Venues by Citations", "domain": "scholar.google.com", "status": "fetched", "relevance_score": 0.96 },
+    { "url": "https://www.semanticscholar.org/paper/most-cited-ml-2023-2024", "title": "Semantic Scholar: Most Influential ML Papers 2023-2024", "domain": "semanticscholar.org", "status": "fetched", "relevance_score": 0.95 },
+    { "url": "https://paperswithcode.com/greatest-papers-2023", "title": "Papers With Code: Top Papers of 2023", "domain": "paperswithcode.com", "status": "fetched", "relevance_score": 0.92 },
+    { "url": "https://arxiv.org/list/cs.LG/2024", "title": "arXiv CS.LG Recent Submissions 2024", "domain": "arxiv.org", "status": "fetched", "relevance_score": 0.85 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "The most cited ML papers of 2023-2024 are dominated by LLM scaling and alignment research, with Llama 2, Mistral 7B, and DPO (Direct Preference Optimization) each accumulating 2,000+ citations within months of publication, signaling a field-wide focus on accessible and alignable language models.",
+    "key_findings": [
+      "Llama 2 (Touvron et al., 2023) leads with 5,800+ citations in 12 months, driven by open-weight release enabling thousands of downstream research projects and fine-tuned variants",
+      "DPO: Direct Preference Optimization (Rafailov et al., 2023) accumulated 2,400+ citations by simplifying RLHF into a classification-style loss, becoming the default alignment method for open-source models",
+      "Multimodal papers gained momentum with LLaVA and GPT-4V analysis papers each exceeding 1,500 citations, indicating a shift from text-only to vision-language research"
+    ],
+    "confidence_score": 0.92
+  }
+}

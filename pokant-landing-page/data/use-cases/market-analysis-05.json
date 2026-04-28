@@ -1,0 +1,36 @@
+{
+  "id": "ma-005",
+  "task_id": "task-ma-005",
+  "category": "Market Analysis",
+  "use_case": "Customer segment analysis",
+  "topic": "Mid-market B2B buyer personas",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 77,
+  "cost_usd": 0.29,
+  "sources": [
+    { "url": "https://www.forrester.com/b2b-buyer-journey-2024", "title": "Forrester: B2B Buyer Journey Research 2024", "domain": "forrester.com", "status": "fetched", "relevance_score": 0.95 },
+    { "url": "https://www.gartner.com/mid-market-technology-buyers", "title": "Gartner Mid-Market Technology Buyer Profiles", "domain": "gartner.com", "status": "fetched", "relevance_score": 0.93 },
+    { "url": "https://www.hubspot.com/state-of-b2b-buying-report", "title": "HubSpot State of B2B Buying Report", "domain": "hubspot.com", "status": "fetched", "relevance_score": 0.86 },
+    { "url": "https://www.trustradius.com/buyer-behavior-survey", "title": "TrustRadius B2B Buyer Behavior Survey 2024", "domain": "trustradius.com", "status": "fetched", "relevance_score": 0.84 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Mid-market B2B buyers (100-1000 employees) exhibit four distinct personas: the Efficiency-Driven Ops Leader, the Growth-Focused VP, the Risk-Averse IT Director, and the Cost-Conscious CFO, each requiring different messaging and proof points during a 4.2 month average sales cycle.",
+    "key_findings": [
+      "Mid-market buying committees average 6.8 stakeholders, up from 5.4 in 2022, with IT security gaining veto power in 73% of software purchases",
+      "Self-service evaluation is critical: 82% of mid-market buyers complete 60%+ of their research before engaging sales, prioritizing peer reviews and case studies",
+      "Price sensitivity is highest for the CFO persona who requires ROI payback within 12 months, while VP-level buyers prioritize time-to-value over total cost"
+    ],
+    "confidence_score": 0.91
+  }
+}

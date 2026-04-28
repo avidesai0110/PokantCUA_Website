@@ -1,0 +1,36 @@
+{
+  "id": "cr-006",
+  "task_id": "task-cr-006",
+  "category": "Company Research",
+  "use_case": "Org structure mapping",
+  "topic": "Salesforce engineering team hierarchy",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 58,
+  "cost_usd": 0.19,
+  "sources": [
+    { "url": "https://www.linkedin.com/company/salesforce/people", "title": "Salesforce Engineering Leadership on LinkedIn", "domain": "linkedin.com", "status": "fetched", "relevance_score": 0.93 },
+    { "url": "https://engineering.salesforce.com/team-structure", "title": "Salesforce Engineering Blog - Team Organization", "domain": "engineering.salesforce.com", "status": "fetched", "relevance_score": 0.91 },
+    { "url": "https://www.salesforce.com/company/leadership", "title": "Salesforce Executive Leadership Page", "domain": "salesforce.com", "status": "fetched", "relevance_score": 0.88 },
+    { "url": "https://www.glassdoor.com/salesforce-engineering-reviews", "title": "Glassdoor Salesforce Engineering Team Reviews", "domain": "glassdoor.com", "status": "fetched", "relevance_score": 0.79 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Salesforce engineering is organized into 6 major product pillars (Sales Cloud, Service Cloud, Platform, Data Cloud, Marketing, and Einstein AI) with approximately 12,000 engineers reporting through SVP-level pillar leads to the CTO office.",
+    "key_findings": [
+      "Engineering org restructured in 2024 to consolidate AI efforts under a unified Einstein AI pillar with 1,500+ dedicated engineers",
+      "Platform team is the largest pillar (~3,200 engineers) responsible for core infrastructure, Hyperforce, and multi-tenant architecture",
+      "Each pillar operates semi-autonomously with own release cycles, though shared platform services create cross-team dependencies averaging 2-3 sprint delays"
+    ],
+    "confidence_score": 0.85
+  }
+}

@@ -52,6 +52,8 @@ export default function FooterSection() {
               <span className="text-[#49423D] text-sm font-normal leading-5 font-sans">SDK</span>
               <span className="text-[#49423D] text-sm font-normal leading-5 font-sans">Dashboard</span>
               <span className="text-[#49423D] text-sm font-normal leading-5 font-sans">Pricing</span>
+              <a href="/benchmark" className="text-[#49423D] text-sm font-normal leading-5 font-sans no-underline hover:text-[#37322F] transition-colors">Benchmark</a>
+              <a href="/use-cases" className="text-[#49423D] text-sm font-normal leading-5 font-sans no-underline hover:text-[#37322F] transition-colors">Use Cases</a>
               <span className="text-[#49423D] text-sm font-normal leading-5 font-sans">Changelog</span>
             </div>
           </div>

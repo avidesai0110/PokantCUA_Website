@@ -1,0 +1,36 @@
+{
+  "id": "cr-004",
+  "task_id": "task-cr-004",
+  "category": "Company Research",
+  "use_case": "Tech stack analysis",
+  "topic": "Figma's infrastructure evolution",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 74,
+  "cost_usd": 0.28,
+  "sources": [
+    { "url": "https://www.figma.com/blog/how-figmas-multiplayer-technology-works", "title": "How Figma's Multiplayer Technology Works", "domain": "figma.com", "status": "fetched", "relevance_score": 0.98 },
+    { "url": "https://www.figma.com/blog/rust-in-production", "title": "Figma's Journey to Rust in Production", "domain": "figma.com", "status": "fetched", "relevance_score": 0.94 },
+    { "url": "https://stackshare.io/figma/figma", "title": "Figma Tech Stack on StackShare", "domain": "stackshare.io", "status": "fetched", "relevance_score": 0.90 },
+    { "url": "https://engineering.figma.com/scaling-rendering-engine", "title": "Scaling Figma's Rendering Engine with WebGL and WASM", "domain": "engineering.figma.com", "status": "fetched", "relevance_score": 0.87 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Figma evolved from a C++ to WebAssembly rendering engine with a Rust-based multiplayer backend, leveraging CRDTs for real-time collaboration and achieving sub-16ms frame times in browser through custom GPU-accelerated rendering pipelines.",
+    "key_findings": [
+      "Core rendering engine compiled to WebAssembly from C++ achieves near-native performance with a custom 2D GPU renderer bypassing DOM entirely",
+      "Multiplayer collaboration built on CRDTs processed by a Rust server, replacing earlier OT-based approach for better offline and conflict resolution",
+      "Infrastructure migrated from AWS to a hybrid multi-cloud setup with edge nodes for reduced latency in Asia-Pacific regions"
+    ],
+    "confidence_score": 0.94
+  }
+}

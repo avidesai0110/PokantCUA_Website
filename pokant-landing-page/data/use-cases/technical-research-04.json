@@ -1,0 +1,36 @@
+{
+  "id": "tr-004",
+  "task_id": "task-tr-004",
+  "category": "Technical Research",
+  "use_case": "Performance benchmarking",
+  "topic": "PostgreSQL vs CockroachDB for OLTP",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 98,
+  "cost_usd": 0.37,
+  "sources": [
+    { "url": "https://www.cockroachlabs.com/blog/cockroachdb-vs-postgresql-benchmark", "title": "CockroachDB vs PostgreSQL: Performance Benchmarks", "domain": "cockroachlabs.com", "status": "fetched", "relevance_score": 0.94 },
+    { "url": "https://www.percona.com/blog/postgresql-oltp-benchmarks-2024", "title": "Percona: PostgreSQL OLTP Benchmark Results 2024", "domain": "percona.com", "status": "fetched", "relevance_score": 0.93 },
+    { "url": "https://github.com/cockroachdb/cockroach/wiki/TPC-C-Performance", "title": "CockroachDB TPC-C Performance Results", "domain": "github.com", "status": "fetched", "relevance_score": 0.90 },
+    { "url": "https://use-the-index-luke.com/sql/testing-scalability", "title": "SQL Scalability Testing Methodology", "domain": "use-the-index-luke.com", "status": "fetched", "relevance_score": 0.82 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "PostgreSQL delivers 2-5x better single-node OLTP latency and throughput than CockroachDB, but CockroachDB provides linear horizontal scalability and automatic geo-distribution, making it superior for multi-region workloads requiring strong consistency above 50K TPS.",
+    "key_findings": [
+      "Single-node PostgreSQL achieves 2.3x higher TPC-C throughput (45K tpmC vs 19K tpmC) with P99 latencies of 12ms vs 34ms on equivalent hardware",
+      "CockroachDB's distributed transactions add 15-25ms overhead per cross-range operation but maintain linearizable consistency across regions without application-level sharding",
+      "Break-even point for CockroachDB occurs at approximately 3 nodes: beyond this, its horizontal scaling advantage surpasses PostgreSQL's vertical scaling ceiling on single-node configurations"
+    ],
+    "confidence_score": 0.92
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id": "cr-002",
+  "task_id": "task-cr-002",
+  "category": "Company Research",
+  "use_case": "Company due diligence",
+  "topic": "Databricks pre-IPO assessment",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 102,
+  "cost_usd": 0.41,
+  "sources": [
+    { "url": "https://www.databricks.com/company/newsroom/press-releases", "title": "Databricks Newsroom & Press Releases", "domain": "databricks.com", "status": "fetched", "relevance_score": 0.97 },
+    { "url": "https://www.bloomberg.com/news/databricks-ipo-2025", "title": "Databricks Eyes 2025 IPO at $55B+ Valuation", "domain": "bloomberg.com", "status": "fetched", "relevance_score": 0.95 },
+    { "url": "https://pitchbook.com/profiles/databricks-profile", "title": "Databricks Company Profile & Funding History", "domain": "pitchbook.com", "status": "fetched", "relevance_score": 0.91 },
+    { "url": "https://www.cnbc.com/databricks-revenue-growth-analysis", "title": "Databricks Revenue Surpasses $2B ARR", "domain": "cnbc.com", "status": "fetched", "relevance_score": 0.88 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Databricks has reached $2.4B ARR with 60%+ YoY growth, positioning for a potential 2025 IPO at a $55-65B valuation driven by its unified lakehouse platform and strong enterprise adoption across Fortune 500 companies.",
+    "key_findings": [
+      "ARR exceeded $2.4B with net revenue retention above 140%, indicating strong expansion within existing accounts",
+      "The acquisition of MosaicML for $1.3B accelerated its generative AI strategy with foundation model training capabilities",
+      "Key IPO risks include continued operating losses, intense competition from Snowflake and cloud-native services, and dependency on cloud provider partnerships"
+    ],
+    "confidence_score": 0.91
+  }
+}

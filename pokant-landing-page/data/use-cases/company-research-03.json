@@ -1,0 +1,36 @@
+{
+  "id": "cr-003",
+  "task_id": "task-cr-003",
+  "category": "Company Research",
+  "use_case": "Executive background check",
+  "topic": "CTO hiring candidate validation",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 63,
+  "cost_usd": 0.22,
+  "sources": [
+    { "url": "https://www.linkedin.com/in/candidate-profile", "title": "Candidate LinkedIn Professional Profile", "domain": "linkedin.com", "status": "fetched", "relevance_score": 0.95 },
+    { "url": "https://github.com/candidate-repos", "title": "Candidate GitHub Open Source Contributions", "domain": "github.com", "status": "fetched", "relevance_score": 0.89 },
+    { "url": "https://patents.google.com/patent-search-results", "title": "US Patent Office - Candidate Patent Filings", "domain": "patents.google.com", "status": "fetched", "relevance_score": 0.82 },
+    { "url": "https://techcrunch.com/candidate-mentions", "title": "Media Mentions and Conference Talks", "domain": "techcrunch.com", "status": "fetched", "relevance_score": 0.76 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "The CTO candidate has a verified 15-year track record in infrastructure engineering, with prior VP Eng roles at two Series C+ startups and 3 granted patents in distributed systems, though one prior company exit was a distressed acquisition.",
+    "key_findings": [
+      "Confirmed leadership of 120+ person engineering org at previous company with successful SOC 2 and ISO 27001 certifications",
+      "Published 8 technical blog posts and spoke at KubeCon and QCon, demonstrating strong technical credibility",
+      "One of three prior companies underwent a distressed acquisition at 0.4x invested capital, warranting further reference checks on leadership during downturn"
+    ],
+    "confidence_score": 0.86
+  }
+}

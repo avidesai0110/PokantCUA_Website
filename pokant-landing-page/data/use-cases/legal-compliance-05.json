@@ -1,0 +1,36 @@
+{
+  "id": "lc-005",
+  "task_id": "task-lc-005",
+  "category": "Legal & Compliance",
+  "use_case": "Compliance framework",
+  "topic": "SOC 2 Type II audit preparation",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "failed",
+  "duration_seconds": 118,
+  "cost_usd": 0.43,
+  "sources": [
+    { "url": "https://www.aicpa.org/soc-2-overview", "title": "AICPA: SOC 2 Overview and Trust Service Criteria", "domain": "aicpa.org", "status": "fetched", "relevance_score": 0.96 },
+    { "url": "https://www.vanta.com/resources/soc-2-guide", "title": "Vanta: Complete Guide to SOC 2 Compliance", "domain": "vanta.com", "status": "fetched", "relevance_score": 0.93 }
+  ],
+  "sources_failed": [
+    { "url": "https://www.schellman.com/soc-2-audit-preparation-checklist", "title": "Schellman SOC 2 Audit Preparation Checklist", "domain": "schellman.com", "status": "failed", "relevance_score": 0.0 },
+    { "url": "https://www.kpmg.com/soc-reporting-framework-guide", "title": "KPMG SOC Reporting Framework Guide", "domain": "kpmg.com", "status": "failed", "relevance_score": 0.0 }
+  ],
+  "schema_match": false,
+  "result": {
+    "summary": "Research task failed due to inability to access critical audit preparation resources behind authentication walls. Partial data retrieved from public sources is insufficient for a comprehensive compliance framework analysis.",
+    "key_findings": [
+      "SOC 2 Type II requires a minimum 6-month observation period for control effectiveness testing",
+      "Trust Service Criteria cover five categories: Security, Availability, Processing Integrity, Confidentiality, and Privacy"
+    ],
+    "confidence_score": 0.41
+  }
+}

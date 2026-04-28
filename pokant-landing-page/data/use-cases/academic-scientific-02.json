@@ -1,0 +1,36 @@
+{
+  "id": "as-002",
+  "task_id": "task-as-002",
+  "category": "Academic & Scientific",
+  "use_case": "Research synthesis",
+  "topic": "Retrieval augmented generation methods",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 105,
+  "cost_usd": 0.39,
+  "sources": [
+    { "url": "https://arxiv.org/abs/2312.10997", "title": "Retrieval-Augmented Generation for Large Language Models: A Survey", "domain": "arxiv.org", "status": "fetched", "relevance_score": 0.98 },
+    { "url": "https://arxiv.org/abs/2401.15884", "title": "CRAG: Corrective Retrieval Augmented Generation", "domain": "arxiv.org", "status": "fetched", "relevance_score": 0.94 },
+    { "url": "https://www.pinecone.io/learn/retrieval-augmented-generation", "title": "Pinecone: RAG Comprehensive Guide", "domain": "pinecone.io", "status": "fetched", "relevance_score": 0.91 },
+    { "url": "https://arxiv.org/abs/2310.11511", "title": "Self-RAG: Learning to Retrieve, Generate, and Critique", "domain": "arxiv.org", "status": "fetched", "relevance_score": 0.93 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "RAG methods have evolved from naive retrieve-and-append approaches to sophisticated multi-stage pipelines incorporating query rewriting, hybrid retrieval, re-ranking, and self-reflective generation, with advanced RAG achieving 15-25% improvement in factual accuracy over baseline LLMs.",
+    "key_findings": [
+      "Advanced RAG pipelines using query decomposition, HyDE (Hypothetical Document Embeddings), and multi-step retrieval outperform naive RAG by 20-30% on knowledge-intensive benchmarks",
+      "Self-RAG introduces learned retrieval and critique tokens that allow the model to adaptively decide when to retrieve, achieving state-of-the-art on open-domain QA without always-on retrieval overhead",
+      "Hybrid retrieval combining dense embeddings (e.g., BGE, E5) with sparse methods (BM25) consistently outperforms either approach alone by 8-15% on recall@10 across diverse domains"
+    ],
+    "confidence_score": 0.95
+  }
+}

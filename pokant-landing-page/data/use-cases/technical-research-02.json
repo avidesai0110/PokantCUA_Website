@@ -1,0 +1,36 @@
+{
+  "id": "tr-002",
+  "task_id": "task-tr-002",
+  "category": "Technical Research",
+  "use_case": "Framework comparison",
+  "topic": "React Server Components vs Astro Islands",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 72,
+  "cost_usd": 0.26,
+  "sources": [
+    { "url": "https://react.dev/blog/2024/react-server-components", "title": "React Server Components Documentation", "domain": "react.dev", "status": "fetched", "relevance_score": 0.97 },
+    { "url": "https://docs.astro.build/en/concepts/islands", "title": "Astro Islands Architecture Documentation", "domain": "docs.astro.build", "status": "fetched", "relevance_score": 0.95 },
+    { "url": "https://www.patterns.dev/react/react-server-components", "title": "Patterns.dev: React Server Components Deep Dive", "domain": "patterns.dev", "status": "fetched", "relevance_score": 0.91 },
+    { "url": "https://web.dev/rendering-on-the-web", "title": "Web.dev: Rendering on the Web Performance Analysis", "domain": "web.dev", "status": "fetched", "relevance_score": 0.86 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "React Server Components offer seamless full-stack React integration with streaming SSR and automatic code splitting, while Astro Islands provide framework-agnostic partial hydration with zero-JS-by-default, making RSC better for complex apps and Astro better for content-heavy sites.",
+    "key_findings": [
+      "RSC reduces client bundle size by 30-50% for data-heavy components but still ships the React runtime (~40KB), while Astro Islands can achieve zero JS on static pages with selective hydration",
+      "Astro Islands support mixing React, Vue, Svelte, and Solid components on the same page, offering migration flexibility that RSC's React-only model cannot match",
+      "RSC's streaming SSR with Suspense boundaries provides superior perceived performance for dynamic apps, delivering 40% faster Time to Interactive vs traditional SSR in Next.js benchmarks"
+    ],
+    "confidence_score": 0.94
+  }
+}

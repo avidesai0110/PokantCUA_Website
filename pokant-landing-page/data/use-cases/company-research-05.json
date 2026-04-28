@@ -1,0 +1,36 @@
+{
+  "id": "cr-005",
+  "task_id": "task-cr-005",
+  "category": "Company Research",
+  "use_case": "M&A target screening",
+  "topic": "AI infrastructure startups $10-50M ARR",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 115,
+  "cost_usd": 0.44,
+  "sources": [
+    { "url": "https://pitchbook.com/ai-infrastructure-market-map", "title": "AI Infrastructure Market Map 2024", "domain": "pitchbook.com", "status": "fetched", "relevance_score": 0.96 },
+    { "url": "https://www.cbinsights.com/research/ai-infrastructure-startups", "title": "AI Infrastructure Startups to Watch", "domain": "cbinsights.com", "status": "fetched", "relevance_score": 0.93 },
+    { "url": "https://crunchbase.com/lists/ai-infra-10-50m-arr", "title": "AI Infra Companies by Revenue Range", "domain": "crunchbase.com", "status": "fetched", "relevance_score": 0.91 },
+    { "url": "https://www.mckinsey.com/ai-infrastructure-investment-landscape", "title": "McKinsey AI Infrastructure Investment Landscape", "domain": "mckinsey.com", "status": "fetched", "relevance_score": 0.84 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Identified 14 AI infrastructure startups in the $10-50M ARR range across inference optimization, vector databases, and ML pipeline orchestration, with median revenue growth of 180% YoY and average last-round valuations of 45x ARR.",
+    "key_findings": [
+      "Vector database companies (Pinecone, Weaviate, Qdrant) show strongest growth trajectories with 200%+ YoY ARR expansion driven by RAG adoption",
+      "Inference optimization startups command highest multiples (50-60x ARR) due to direct GPU cost savings value proposition",
+      "ML pipeline orchestration targets are most acquisition-friendly with 3 of 5 identified companies having less than 18 months runway at current burn rates"
+    ],
+    "confidence_score": 0.89
+  }
+}

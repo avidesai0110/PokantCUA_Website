@@ -1,0 +1,36 @@
+{
+  "id": "ma-004",
+  "task_id": "task-ma-004",
+  "category": "Market Analysis",
+  "use_case": "Geographic expansion",
+  "topic": "Fintech regulation in Southeast Asia",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 108,
+  "cost_usd": 0.39,
+  "sources": [
+    { "url": "https://www.mas.gov.sg/fintech-regulatory-framework", "title": "MAS Fintech Regulatory Framework Singapore", "domain": "mas.gov.sg", "status": "fetched", "relevance_score": 0.96 },
+    { "url": "https://www.ojk.go.id/fintech-regulations-indonesia", "title": "OJK Indonesia Fintech Licensing Requirements", "domain": "ojk.go.id", "status": "fetched", "relevance_score": 0.93 },
+    { "url": "https://www.bain.com/southeast-asia-digital-financial-services", "title": "Bain: Southeast Asia Digital Financial Services 2024", "domain": "bain.com", "status": "fetched", "relevance_score": 0.91 },
+    { "url": "https://fintechnews.sg/sea-fintech-regulation-overview", "title": "Southeast Asia Fintech Regulation Landscape Overview", "domain": "fintechnews.sg", "status": "fetched", "relevance_score": 0.88 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Southeast Asia's fintech regulatory landscape varies significantly across ASEAN-6 markets, with Singapore offering the most structured sandbox approach, Indonesia requiring local entity partnerships, and Vietnam rapidly liberalizing its digital payments framework.",
+    "key_findings": [
+      "Singapore's MAS regulatory sandbox has approved 250+ fintech experiments with a clear graduation pathway, making it the preferred market entry point",
+      "Indonesia requires foreign fintechs to partner with local licensed entities and caps foreign ownership at 85% for payment services",
+      "Vietnam's new digital banking regulations (effective Q2 2024) reduce licensing timelines from 18 months to 6 months for qualified applicants with ASEAN presence"
+    ],
+    "confidence_score": 0.87
+  }
+}

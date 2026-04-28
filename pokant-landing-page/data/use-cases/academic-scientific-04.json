@@ -1,0 +1,36 @@
+{
+  "id": "as-004",
+  "task_id": "task-as-004",
+  "category": "Academic & Scientific",
+  "use_case": "Methodology comparison",
+  "topic": "Few-shot vs fine-tuning benchmarks",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "failed",
+  "duration_seconds": 112,
+  "cost_usd": 0.41,
+  "sources": [
+    { "url": "https://arxiv.org/abs/2303.18223", "title": "A Survey on In-Context Learning", "domain": "arxiv.org", "status": "fetched", "relevance_score": 0.94 },
+    { "url": "https://arxiv.org/abs/2305.14314", "title": "QLoRA: Efficient Finetuning of Quantized Language Models", "domain": "arxiv.org", "status": "fetched", "relevance_score": 0.91 }
+  ],
+  "sources_failed": [
+    { "url": "https://openreview.net/forum?id=few-shot-vs-finetuning-benchmark", "title": "OpenReview: Systematic Few-Shot vs Fine-Tuning Benchmark", "domain": "openreview.net", "status": "failed", "relevance_score": 0.0 },
+    { "url": "https://proceedings.neurips.cc/paper/2024/benchmark-comparison", "title": "NeurIPS 2024: Comprehensive Adaptation Method Comparison", "domain": "proceedings.neurips.cc", "status": "failed", "relevance_score": 0.0 }
+  ],
+  "schema_match": false,
+  "result": {
+    "summary": "Research task failed due to inability to access key benchmark comparison papers behind conference paywalls. Retrieved partial data covers individual methods but lacks the systematic cross-method comparison needed for a complete methodology analysis.",
+    "key_findings": [
+      "QLoRA enables fine-tuning of 65B parameter models on a single 48GB GPU with minimal quality loss compared to full fine-tuning",
+      "In-context learning performance is highly sensitive to example selection and ordering, with up to 30% accuracy variance based on prompt construction"
+    ],
+    "confidence_score": 0.38
+  }
+}

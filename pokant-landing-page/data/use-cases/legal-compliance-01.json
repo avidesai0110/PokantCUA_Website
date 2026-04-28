@@ -1,0 +1,36 @@
+{
+  "id": "lc-001",
+  "task_id": "task-lc-001",
+  "category": "Legal & Compliance",
+  "use_case": "Regulatory overview",
+  "topic": "EU AI Act compliance requirements",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 104,
+  "cost_usd": 0.40,
+  "sources": [
+    { "url": "https://eur-lex.europa.eu/legal-content/EN/TXT/eu-ai-act", "title": "EUR-Lex: EU Artificial Intelligence Act Full Text", "domain": "eur-lex.europa.eu", "status": "fetched", "relevance_score": 0.99 },
+    { "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai", "title": "European Commission: AI Regulatory Framework Overview", "domain": "digital-strategy.ec.europa.eu", "status": "fetched", "relevance_score": 0.96 },
+    { "url": "https://www.holisticai.com/eu-ai-act-compliance-guide", "title": "Holistic AI: EU AI Act Compliance Guide", "domain": "holisticai.com", "status": "fetched", "relevance_score": 0.91 },
+    { "url": "https://iapp.org/resources/eu-ai-act-analysis", "title": "IAPP: EU AI Act Practical Analysis", "domain": "iapp.org", "status": "fetched", "relevance_score": 0.89 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "The EU AI Act establishes a risk-based regulatory framework with four tiers (unacceptable, high-risk, limited, minimal), requiring conformity assessments, transparency obligations, and human oversight mechanisms, with phased enforcement beginning February 2025.",
+    "key_findings": [
+      "High-risk AI systems (hiring, credit scoring, law enforcement) require mandatory conformity assessments, data governance documentation, and ongoing monitoring with potential fines up to 35M EUR or 7% of global turnover",
+      "General-purpose AI models (including LLMs) face transparency requirements including technical documentation, copyright compliance summaries, and systemic risk assessments for models trained above 10^25 FLOPs",
+      "Enforcement timeline is phased: prohibited practices banned by February 2025, GPAI obligations by August 2025, and full high-risk system requirements by August 2026"
+    ],
+    "confidence_score": 0.95
+  }
+}

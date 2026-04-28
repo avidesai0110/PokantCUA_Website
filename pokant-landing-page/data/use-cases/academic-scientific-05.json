@@ -1,0 +1,36 @@
+{
+  "id": "as-005",
+  "task_id": "task-as-005",
+  "category": "Academic & Scientific",
+  "use_case": "Emerging research",
+  "topic": "Mixture of experts scaling laws",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 101,
+  "cost_usd": 0.38,
+  "sources": [
+    { "url": "https://arxiv.org/abs/2401.04088", "title": "Mixtral of Experts: A Sparse Mixture of Experts Language Model", "domain": "arxiv.org", "status": "fetched", "relevance_score": 0.97 },
+    { "url": "https://arxiv.org/abs/2402.07871", "title": "DeepSeekMoE: Towards Ultimate Expert Specialization", "domain": "arxiv.org", "status": "fetched", "relevance_score": 0.95 },
+    { "url": "https://arxiv.org/abs/2209.01667", "title": "ST-MoE: Designing Stable and Transferable Sparse Expert Models", "domain": "arxiv.org", "status": "fetched", "relevance_score": 0.92 },
+    { "url": "https://ai.google/research/publications/scaling-laws-for-sparse-models", "title": "Google Research: Scaling Laws for Sparse Mixture of Experts", "domain": "ai.google", "status": "fetched", "relevance_score": 0.90 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Mixture of Experts models achieve equivalent quality to dense models at 2-4x fewer active parameters per token, with scaling laws showing MoE benefit increases logarithmically with expert count, though routing instability and expert collapse remain key challenges above 64 experts.",
+    "key_findings": [
+      "Mixtral 8x7B demonstrates that 8 experts with top-2 routing achieves GPT-3.5-level quality while activating only 13B of 47B total parameters per forward pass, a 3.6x efficiency gain",
+      "DeepSeekMoE's fine-grained expert segmentation (64 experts, top-6 routing) shows 18% better performance per FLOP than coarse-grained approaches, suggesting optimal expert granularity is finer than previously assumed",
+      "Expert collapse (where router converges to using only a subset of experts) becomes severe beyond 64 experts without auxiliary load-balancing losses, with Google's ST-MoE showing stable training requires 0.01-0.1 balancing coefficient"
+    ],
+    "confidence_score": 0.93
+  }
+}

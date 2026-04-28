@@ -1,0 +1,36 @@
+{
+  "id": "as-006",
+  "task_id": "task-as-006",
+  "category": "Academic & Scientific",
+  "use_case": "Cross-domain review",
+  "topic": "LLMs in drug discovery applications",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 109,
+  "cost_usd": 0.42,
+  "sources": [
+    { "url": "https://www.nature.com/articles/llms-drug-discovery-review-2024", "title": "Nature: Large Language Models in Drug Discovery - A Review", "domain": "nature.com", "status": "fetched", "relevance_score": 0.97 },
+    { "url": "https://arxiv.org/abs/2402.08567", "title": "BioMedLM: A Foundation Model for Biomedical Natural Language", "domain": "arxiv.org", "status": "fetched", "relevance_score": 0.93 },
+    { "url": "https://www.science.org/doi/ai-accelerated-drug-design", "title": "Science: AI-Accelerated Drug Design and Molecular Generation", "domain": "science.org", "status": "fetched", "relevance_score": 0.91 },
+    { "url": "https://www.biopharmatrend.com/llm-pharma-applications", "title": "BioPharma Trend: LLM Applications in Pharmaceutical R&D", "domain": "biopharmatrend.com", "status": "fetched", "relevance_score": 0.86 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "LLMs are transforming drug discovery across three key stages: target identification through biomedical literature synthesis, molecular generation via SMILES/SELFIES-trained models, and clinical trial optimization through protocol analysis, with early evidence showing 30-40% acceleration in preclinical timelines.",
+    "key_findings": [
+      "Molecular language models trained on SMILES representations (MolGPT, ChemBERTa) can generate novel drug candidates with desired properties, achieving 78% validity rate and 45% novelty in generated molecules",
+      "LLM-powered biomedical literature synthesis reduces target identification time from weeks to hours, with BioMedLM demonstrating 92% accuracy in extracting drug-target interactions from PubMed abstracts",
+      "Clinical trial protocol optimization using LLMs for eligibility criteria analysis has shown 23% improvement in patient recruitment predictions and 15% reduction in protocol amendment rates in Phase II trials"
+    ],
+    "confidence_score": 0.89
+  }
+}

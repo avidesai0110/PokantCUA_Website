@@ -1,0 +1,36 @@
+{
+  "id": "ma-003",
+  "task_id": "task-ma-003",
+  "category": "Market Analysis",
+  "use_case": "Pricing benchmarking",
+  "topic": "Developer tool pricing strategies",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 68,
+  "cost_usd": 0.25,
+  "sources": [
+    { "url": "https://openviewpartners.com/developer-tool-pricing-survey", "title": "OpenView 2024 Developer Tool Pricing Survey", "domain": "openviewpartners.com", "status": "fetched", "relevance_score": 0.96 },
+    { "url": "https://www.heavybit.com/devtools-pricing-models", "title": "Heavybit: DevTools Pricing Model Breakdown", "domain": "heavybit.com", "status": "fetched", "relevance_score": 0.92 },
+    { "url": "https://vercel.com/pricing", "title": "Vercel Pricing Page", "domain": "vercel.com", "status": "fetched", "relevance_score": 0.84 },
+    { "url": "https://www.bvp.com/cloud-index-developer-tools", "title": "Bessemer Cloud Index - Developer Tools Segment", "domain": "bvp.com", "status": "fetched", "relevance_score": 0.88 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Usage-based pricing now dominates developer tools at 67% adoption, with a hybrid model (free tier + usage-based + enterprise flat rate) emerging as the highest-converting approach, yielding 35% better net revenue retention than pure seat-based pricing.",
+    "key_findings": [
+      "67% of developer tools have adopted usage-based pricing components, up from 41% in 2022, with compute-minutes and API calls as top metrics",
+      "Free tier to paid conversion rates average 4.2% for pure PLG devtools, but hybrid models with sales-assisted enterprise tiers achieve 8.7% conversion",
+      "Median price point for team tier is $20/seat/month with usage caps, while enterprise contracts average $48K ACV with committed usage minimums"
+    ],
+    "confidence_score": 0.92
+  }
+}

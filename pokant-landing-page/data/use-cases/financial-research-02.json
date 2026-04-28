@@ -1,0 +1,36 @@
+{
+  "id": "fr-002",
+  "task_id": "task-fr-002",
+  "category": "Financial Research",
+  "use_case": "Cost structure analysis",
+  "topic": "Cloud infrastructure cost optimization",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 79,
+  "cost_usd": 0.29,
+  "sources": [
+    { "url": "https://www.flexera.com/cloud-cost-management-report-2024", "title": "Flexera 2024 State of Cloud Cost Management", "domain": "flexera.com", "status": "fetched", "relevance_score": 0.95 },
+    { "url": "https://www.finops.org/framework", "title": "FinOps Foundation: Cloud Financial Management Framework", "domain": "finops.org", "status": "fetched", "relevance_score": 0.93 },
+    { "url": "https://aws.amazon.com/aws-cost-management", "title": "AWS Cost Management Best Practices", "domain": "aws.amazon.com", "status": "fetched", "relevance_score": 0.88 },
+    { "url": "https://www.vantage.sh/cloud-cost-report", "title": "Vantage Cloud Cost Report 2024", "domain": "vantage.sh", "status": "fetched", "relevance_score": 0.86 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Organizations waste an average of 32% of cloud spend on idle or oversized resources, with FinOps practices reducing total cloud costs by 20-35% through reserved instances, rightsizing, and automated scaling without impacting application performance.",
+    "key_findings": [
+      "Compute costs represent 58% of total cloud spend with average utilization of only 27%, indicating massive rightsizing opportunity through instance type optimization and spot instance adoption",
+      "Reserved Instances and Savings Plans deliver 40-72% cost reduction but require 1-3 year commitments; optimal coverage is 60-70% reserved with 30-40% on-demand for flexibility",
+      "GPU/AI workloads are the fastest-growing cost category at 4.2x YoY, with inference costs representing 80-90% of ML infrastructure spend vs training at 10-20%"
+    ],
+    "confidence_score": 0.93
+  }
+}

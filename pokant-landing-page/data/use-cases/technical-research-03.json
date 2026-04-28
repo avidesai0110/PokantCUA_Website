@@ -1,0 +1,36 @@
+{
+  "id": "tr-003",
+  "task_id": "task-tr-003",
+  "category": "Technical Research",
+  "use_case": "Security audit prep",
+  "topic": "OWASP top 10 for API security",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 56,
+  "cost_usd": 0.20,
+  "sources": [
+    { "url": "https://owasp.org/API-Security/editions/2023/en/0x11-t10", "title": "OWASP API Security Top 10 - 2023 Edition", "domain": "owasp.org", "status": "fetched", "relevance_score": 0.99 },
+    { "url": "https://www.akamai.com/api-security-report-2024", "title": "Akamai State of API Security Report 2024", "domain": "akamai.com", "status": "fetched", "relevance_score": 0.92 },
+    { "url": "https://salt.security/api-security-trends", "title": "Salt Security: API Attack Trends Analysis", "domain": "salt.security", "status": "fetched", "relevance_score": 0.90 },
+    { "url": "https://cheatsheetseries.owasp.org/cheatsheets/REST_Security_Cheat_Sheet.html", "title": "OWASP REST Security Cheat Sheet", "domain": "cheatsheetseries.owasp.org", "status": "fetched", "relevance_score": 0.88 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "The OWASP API Security Top 10 (2023 edition) highlights Broken Object Level Authorization and Broken Authentication as the two most critical API vulnerabilities, with 68% of API breaches in 2024 exploiting authorization flaws rather than traditional injection attacks.",
+    "key_findings": [
+      "BOLA (Broken Object Level Authorization) remains the #1 API vulnerability, present in 40% of audited APIs, typically exploited by manipulating object IDs in requests",
+      "Unrestricted Resource Consumption (new in 2023 list) is increasingly exploited against AI/ML APIs where a single inference request can consume significant GPU resources",
+      "Server-Side Request Forgery (SSRF) moved up to #7 due to cloud-native architectures exposing internal metadata endpoints through misconfigured API gateways"
+    ],
+    "confidence_score": 0.96
+  }
+}

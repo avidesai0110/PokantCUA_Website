@@ -1,0 +1,36 @@
+{
+  "id": "lc-003",
+  "task_id": "task-lc-003",
+  "category": "Legal & Compliance",
+  "use_case": "IP landscape",
+  "topic": "Computer vision patent landscape",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 110,
+  "cost_usd": 0.42,
+  "sources": [
+    { "url": "https://patents.google.com/search?q=computer+vision+deep+learning", "title": "Google Patents: Computer Vision Deep Learning Search", "domain": "patents.google.com", "status": "fetched", "relevance_score": 0.94 },
+    { "url": "https://www.wipo.int/publications/ai-patents-report-2024", "title": "WIPO: Artificial Intelligence Patent Landscape Report 2024", "domain": "wipo.int", "status": "fetched", "relevance_score": 0.96 },
+    { "url": "https://www.patentsview.org/computer-vision-trends", "title": "PatentsView: Computer Vision Patent Filing Trends", "domain": "patentsview.org", "status": "fetched", "relevance_score": 0.90 },
+    { "url": "https://ipwatchdog.com/computer-vision-patent-litigation-trends", "title": "IPWatchdog: Computer Vision Patent Litigation Trends", "domain": "ipwatchdog.com", "status": "fetched", "relevance_score": 0.85 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "The computer vision patent landscape shows 48,000+ active patent families dominated by Samsung, IBM, Google, and Chinese tech giants, with generative AI and vision-language models representing the fastest-growing filing categories at 120% YoY growth.",
+    "key_findings": [
+      "Top patent holders by family count: Samsung (4,200+), IBM (3,800+), Google (3,100+), Huawei (2,900+), and Baidu (2,600+), with Chinese entities filing 52% of all new CV patents in 2023",
+      "Vision-language model patents (CLIP, Florence-type architectures) grew 120% YoY in 2023, signaling a strategic shift from task-specific CV to foundation model approaches",
+      "Patent litigation in CV remains concentrated in autonomous driving (38% of cases) and medical imaging (22%), with NPE (non-practicing entity) suits accounting for 45% of all CV patent litigation"
+    ],
+    "confidence_score": 0.87
+  }
+}

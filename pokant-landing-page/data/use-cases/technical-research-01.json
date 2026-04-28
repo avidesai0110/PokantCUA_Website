@@ -1,0 +1,36 @@
+{
+  "id": "tr-001",
+  "task_id": "task-tr-001",
+  "category": "Technical Research",
+  "use_case": "Architecture deep dive",
+  "topic": "Event sourcing patterns at scale",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 89,
+  "cost_usd": 0.33,
+  "sources": [
+    { "url": "https://martinfowler.com/eaaDev/EventSourcing.html", "title": "Martin Fowler: Event Sourcing Pattern", "domain": "martinfowler.com", "status": "fetched", "relevance_score": 0.96 },
+    { "url": "https://www.confluent.io/blog/event-sourcing-using-apache-kafka", "title": "Event Sourcing with Apache Kafka at Scale", "domain": "confluent.io", "status": "fetched", "relevance_score": 0.94 },
+    { "url": "https://engineering.linkedin.com/event-sourcing-architecture", "title": "LinkedIn Engineering: Event Sourcing Architecture", "domain": "engineering.linkedin.com", "status": "fetched", "relevance_score": 0.90 },
+    { "url": "https://axoniq.io/resources/event-sourcing-patterns", "title": "AxonIQ: Event Sourcing Patterns and Anti-Patterns", "domain": "axoniq.io", "status": "fetched", "relevance_score": 0.87 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Event sourcing at scale requires careful attention to snapshotting strategies, event schema evolution, and projection rebuilding capabilities, with production systems typically handling 50K-500K events/second using partitioned Kafka topics or purpose-built event stores.",
+    "key_findings": [
+      "Snapshotting every N events (typically 100-500) is essential for read performance; without it, aggregate reconstruction times grow linearly and become untenable beyond 10K events per aggregate",
+      "Schema evolution is the most common pain point: Avro with a schema registry or Protobuf with backward-compatible changes are preferred over JSON for production event stores",
+      "CQRS is nearly always paired with event sourcing at scale, with separate read models materialized via projections that can be rebuilt independently from the event log"
+    ],
+    "confidence_score": 0.93
+  }
+}

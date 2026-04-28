@@ -98,7 +98,7 @@ export default function LandingPage() {
                       Pokant
                     </div>
                   </a>
-                  <nav className="pl-4 sm:pl-5 lg:pl-6 hidden sm:flex flex-row gap-3 md:gap-5">
+                  <nav className="pl-4 sm:pl-5 lg:pl-6 hidden sm:flex flex-row gap-2 md:gap-4">
                     <a href="#features" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
                       Features
                     </a>
@@ -107,6 +107,12 @@ export default function LandingPage() {
                     </a>
                     <a href="/enterprise" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
                       Enterprise
+                    </a>
+                    <a href="/benchmark" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
+                      Benchmark
+                    </a>
+                    <a href="/use-cases" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
+                      Use Cases
                     </a>
                   </nav>
                 </div>

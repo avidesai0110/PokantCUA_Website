@@ -1,0 +1,36 @@
+{
+  "id": "cr-001",
+  "task_id": "task-cr-001",
+  "category": "Company Research",
+  "use_case": "Competitive landscape analysis",
+  "topic": "Stripe vs Adyen market positioning",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 87,
+  "cost_usd": 0.32,
+  "sources": [
+    { "url": "https://stripe.com/reports/annual-2024", "title": "Stripe Annual Report 2024", "domain": "stripe.com", "status": "fetched", "relevance_score": 0.96 },
+    { "url": "https://www.adyen.com/investor-relations/financial-results", "title": "Adyen Financial Results H2 2024", "domain": "adyen.com", "status": "fetched", "relevance_score": 0.94 },
+    { "url": "https://www.forbes.com/fintech/payments-landscape", "title": "Global Payments Landscape Report", "domain": "forbes.com", "status": "fetched", "relevance_score": 0.88 },
+    { "url": "https://techcrunch.com/2024/stripe-adyen-comparison", "title": "Stripe vs Adyen: Platform Wars Heat Up", "domain": "techcrunch.com", "status": "fetched", "relevance_score": 0.85 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Stripe dominates in developer-first SMB and startup segments with 3.1M+ businesses, while Adyen holds stronger enterprise positioning with unified commerce capabilities and direct acquiring licenses across 30+ countries.",
+    "key_findings": [
+      "Stripe processes over $1T in annual payment volume, primarily from platform and marketplace customers",
+      "Adyen's unified commerce approach gives it an edge in omnichannel retail with 15% YoY merchant growth",
+      "Stripe's financial services expansion (Treasury, Issuing, Capital) creates deeper platform lock-in than Adyen's payment-focused strategy"
+    ],
+    "confidence_score": 0.93
+  }
+}

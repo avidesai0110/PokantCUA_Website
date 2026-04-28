@@ -1,0 +1,36 @@
+{
+  "id": "ma-002",
+  "task_id": "task-ma-002",
+  "category": "Market Analysis",
+  "use_case": "Trend identification",
+  "topic": "Edge computing adoption in retail",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 82,
+  "cost_usd": 0.31,
+  "sources": [
+    { "url": "https://www.gartner.com/edge-computing-retail-report", "title": "Gartner: Edge Computing in Retail 2024", "domain": "gartner.com", "status": "fetched", "relevance_score": 0.95 },
+    { "url": "https://aws.amazon.com/retail/edge-solutions", "title": "AWS Retail Edge Computing Solutions", "domain": "aws.amazon.com", "status": "fetched", "relevance_score": 0.88 },
+    { "url": "https://www.retaildive.com/edge-computing-adoption-survey", "title": "Retail Dive: Edge Computing Adoption Survey Results", "domain": "retaildive.com", "status": "fetched", "relevance_score": 0.91 },
+    { "url": "https://www.idc.com/retail-edge-spending-forecast", "title": "IDC Retail Edge Infrastructure Spending Forecast", "domain": "idc.com", "status": "fetched", "relevance_score": 0.87 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Edge computing adoption in retail is accelerating at 34% CAGR, driven by real-time inventory management, computer vision for loss prevention, and personalized in-store experiences, with 62% of top-100 retailers piloting edge solutions by end of 2024.",
+    "key_findings": [
+      "Computer vision at the edge is the top use case with 45% of retail edge deployments focused on loss prevention and checkout-free experiences",
+      "Latency-sensitive applications like dynamic pricing and real-time inventory tracking are driving 34% CAGR in retail edge infrastructure spend",
+      "Hybrid edge-cloud architectures dominate with 78% of retailers preferring cloud-managed edge nodes over fully autonomous edge deployments"
+    ],
+    "confidence_score": 0.90
+  }
+}

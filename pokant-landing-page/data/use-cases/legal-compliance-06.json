@@ -1,0 +1,36 @@
+{
+  "id": "lc-006",
+  "task_id": "task-lc-006",
+  "category": "Legal & Compliance",
+  "use_case": "Licensing review",
+  "topic": "Open source license compatibility matrix",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 70,
+  "cost_usd": 0.26,
+  "sources": [
+    { "url": "https://opensource.org/licenses", "title": "Open Source Initiative: Approved Licenses List", "domain": "opensource.org", "status": "fetched", "relevance_score": 0.96 },
+    { "url": "https://www.gnu.org/licenses/license-compatibility.html", "title": "GNU: License Compatibility and Relicensing", "domain": "gnu.org", "status": "fetched", "relevance_score": 0.94 },
+    { "url": "https://fossa.com/blog/open-source-license-compatibility", "title": "FOSSA: Open Source License Compatibility Guide", "domain": "fossa.com", "status": "fetched", "relevance_score": 0.92 },
+    { "url": "https://choosealicense.com/appendix", "title": "GitHub Choose a License: License Comparison Table", "domain": "choosealicense.com", "status": "fetched", "relevance_score": 0.89 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Open source license compatibility follows a permissive-to-copyleft hierarchy where MIT/BSD can be incorporated into any project, Apache 2.0 adds patent protection, and GPL/AGPL create copyleft obligations that propagate to derivative works and network-accessible services respectively.",
+    "key_findings": [
+      "MIT and BSD-2-Clause are universally compatible and can be included in GPL, Apache, or proprietary projects, making them the safest dependencies for commercial SaaS products",
+      "Apache 2.0 is compatible with GPLv3 but NOT with GPLv2 due to additional patent retaliation clauses, a common compatibility trap in dependency trees",
+      "AGPL-3.0 (used by MongoDB, Grafana) requires source disclosure for network-accessible services, leading 67% of enterprise SaaS companies to maintain explicit AGPL exclusion policies in their dependency governance"
+    ],
+    "confidence_score": 0.96
+  }
+}

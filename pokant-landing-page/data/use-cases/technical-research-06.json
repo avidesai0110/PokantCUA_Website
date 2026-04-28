@@ -1,0 +1,36 @@
+{
+  "id": "tr-006",
+  "task_id": "task-tr-006",
+  "category": "Technical Research",
+  "use_case": "Protocol analysis",
+  "topic": "WebTransport vs WebSocket for real-time",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 67,
+  "cost_usd": 0.24,
+  "sources": [
+    { "url": "https://web.dev/webtransport", "title": "Web.dev: WebTransport API Explained", "domain": "web.dev", "status": "fetched", "relevance_score": 0.96 },
+    { "url": "https://www.w3.org/TR/webtransport", "title": "W3C WebTransport Specification", "domain": "w3.org", "status": "fetched", "relevance_score": 0.94 },
+    { "url": "https://datatracker.ietf.org/doc/html/rfc6455", "title": "RFC 6455: The WebSocket Protocol", "domain": "datatracker.ietf.org", "status": "fetched", "relevance_score": 0.88 },
+    { "url": "https://quic.xargs.org", "title": "QUIC Protocol Illustrated", "domain": "quic.xargs.org", "status": "fetched", "relevance_score": 0.83 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "WebTransport built on HTTP/3 and QUIC offers multiplexed streams without head-of-line blocking and unreliable datagrams for latency-sensitive use cases, while WebSocket remains the pragmatic choice for broad compatibility and simpler ordered-message scenarios.",
+    "key_findings": [
+      "WebTransport eliminates head-of-line blocking by leveraging QUIC's independent stream multiplexing, reducing P99 latency by 35-60% in high-packet-loss scenarios compared to WebSocket over TCP",
+      "Unreliable datagrams in WebTransport enable game state updates and live video where dropped frames are acceptable, a capability fundamentally impossible with WebSocket's TCP-guaranteed delivery",
+      "Browser support for WebTransport covers 78% of global users (Chrome, Edge, Opera) as of 2024, but Safari's lack of support makes WebSocket still necessary as a fallback for production applications"
+    ],
+    "confidence_score": 0.91
+  }
+}

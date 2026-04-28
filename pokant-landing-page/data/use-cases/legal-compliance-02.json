@@ -1,0 +1,36 @@
+{
+  "id": "lc-002",
+  "task_id": "task-lc-002",
+  "category": "Legal & Compliance",
+  "use_case": "Data privacy audit",
+  "topic": "GDPR vs CCPA data handling",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 92,
+  "cost_usd": 0.35,
+  "sources": [
+    { "url": "https://gdpr.eu/checklist", "title": "GDPR.eu: Complete Compliance Checklist", "domain": "gdpr.eu", "status": "fetched", "relevance_score": 0.97 },
+    { "url": "https://oag.ca.gov/privacy/ccpa", "title": "California Attorney General: CCPA Official Resources", "domain": "oag.ca.gov", "status": "fetched", "relevance_score": 0.95 },
+    { "url": "https://iapp.org/resources/article/comparing-gdpr-and-ccpa", "title": "IAPP: Comparing GDPR and CCPA Side-by-Side", "domain": "iapp.org", "status": "fetched", "relevance_score": 0.94 },
+    { "url": "https://www.dlapiper.com/data-protection-comparison-guide", "title": "DLA Piper: Global Data Protection Comparison Guide", "domain": "dlapiper.com", "status": "fetched", "relevance_score": 0.88 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "GDPR and CCPA share core principles of data subject rights and transparency but differ fundamentally in scope (GDPR applies to all data processing, CCPA to commercial sale/sharing), consent models (opt-in vs opt-out), and enforcement mechanisms.",
+    "key_findings": [
+      "GDPR requires explicit opt-in consent for data processing with 6 legal bases, while CCPA defaults to opt-out for data sale/sharing and does not require consent for general data collection",
+      "GDPR's right to erasure is broader than CCPA's right to delete, covering all processing activities vs CCPA's limitation to data collected from the consumer directly",
+      "Enforcement disparity is significant: GDPR fines reached 2.1B EUR total in 2023 with dedicated DPAs in each member state, while CCPA enforcement remains primarily through the California AG with fewer than 30 formal actions"
+    ],
+    "confidence_score": 0.94
+  }
+}

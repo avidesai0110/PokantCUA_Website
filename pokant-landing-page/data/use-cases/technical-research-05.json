@@ -1,0 +1,36 @@
+{
+  "id": "tr-005",
+  "task_id": "task-tr-005",
+  "category": "Technical Research",
+  "use_case": "Migration planning",
+  "topic": "Monolith to microservices patterns",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 84,
+  "cost_usd": 0.30,
+  "sources": [
+    { "url": "https://martinfowler.com/articles/break-monolith-into-microservices.html", "title": "Martin Fowler: How to Break a Monolith into Microservices", "domain": "martinfowler.com", "status": "fetched", "relevance_score": 0.97 },
+    { "url": "https://microservices.io/patterns/decomposition", "title": "Microservices.io: Decomposition Patterns", "domain": "microservices.io", "status": "fetched", "relevance_score": 0.95 },
+    { "url": "https://engineering.shopify.com/monolith-to-modular", "title": "Shopify Engineering: Monolith to Modular Architecture", "domain": "engineering.shopify.com", "status": "fetched", "relevance_score": 0.92 },
+    { "url": "https://www.infoq.com/strangler-fig-pattern-migration", "title": "InfoQ: Strangler Fig Pattern for Incremental Migration", "domain": "infoq.com", "status": "fetched", "relevance_score": 0.89 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "The Strangler Fig pattern remains the safest migration approach, with successful monolith-to-microservices migrations typically taking 18-36 months and following a domain-driven decomposition strategy, extracting 3-5 bounded contexts per quarter.",
+    "key_findings": [
+      "Strangler Fig pattern with an API gateway facade allows incremental migration with zero-downtime cutover, used successfully by Shopify, Amazon, and Etsy",
+      "Database decomposition is the hardest step: shared database anti-pattern must be resolved via Change Data Capture (CDC) or the Saga pattern before services can be independently deployed",
+      "Teams that start with the modular monolith intermediate step (clear module boundaries within a single deployable) have 60% higher success rates than direct microservices extraction"
+    ],
+    "confidence_score": 0.95
+  }
+}

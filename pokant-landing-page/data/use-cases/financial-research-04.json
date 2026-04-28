@@ -1,0 +1,36 @@
+{
+  "id": "fr-004",
+  "task_id": "task-fr-004",
+  "category": "Financial Research",
+  "use_case": "Unit economics",
+  "topic": "SaaS metrics benchmarks by stage",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 71,
+  "cost_usd": 0.27,
+  "sources": [
+    { "url": "https://www.saastr.com/saas-metrics-benchmarks-2024", "title": "SaaStr: SaaS Metrics Benchmarks 2024", "domain": "saastr.com", "status": "fetched", "relevance_score": 0.97 },
+    { "url": "https://www.bvp.com/atlas/benchmarks", "title": "Bessemer Cloud Index: Benchmarks by Stage", "domain": "bvp.com", "status": "fetched", "relevance_score": 0.95 },
+    { "url": "https://www.iconiqcapital.com/growth-benchmarks", "title": "ICONIQ Growth: SaaS Benchmarks Report", "domain": "iconiqcapital.com", "status": "fetched", "relevance_score": 0.91 },
+    { "url": "https://www.openviewpartners.com/saas-benchmarks", "title": "OpenView SaaS Benchmarks Report 2024", "domain": "openviewpartners.com", "status": "fetched", "relevance_score": 0.88 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Top-quartile SaaS companies at Series B stage ($5-15M ARR) show 80%+ gross margins, 120%+ net dollar retention, CAC payback under 18 months, and burn multiples below 1.5x, with the Rule of 40 re-emerging as the key efficiency metric for fundraising.",
+    "key_findings": [
+      "Seed to Series A: median growth rate of 3x YoY, gross margins of 65-75%, with CAC payback period less relevant as investors prioritize product-market fit signals",
+      "Series B ($5-15M ARR): top quartile shows 100%+ YoY growth, 82% gross margins, 130% NDR, and LTV:CAC ratio of 5:1 with payback under 15 months",
+      "Series C+ ($15-50M ARR): growth expectations moderate to 60-80% YoY, but free cash flow margin becomes critical with top performers at -10% to +5% FCF margin"
+    ],
+    "confidence_score": 0.94
+  }
+}

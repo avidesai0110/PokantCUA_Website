@@ -1,0 +1,36 @@
+{
+  "id": "lc-004",
+  "task_id": "task-lc-004",
+  "category": "Legal & Compliance",
+  "use_case": "Contract analysis",
+  "topic": "SaaS enterprise agreement terms",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 65,
+  "cost_usd": 0.23,
+  "sources": [
+    { "url": "https://www.saastr.com/enterprise-saas-contract-terms-guide", "title": "SaaStr: Enterprise SaaS Contract Terms Guide", "domain": "saastr.com", "status": "fetched", "relevance_score": 0.95 },
+    { "url": "https://www.cooleygo.com/saas-agreement-best-practices", "title": "Cooley GO: SaaS Agreement Best Practices", "domain": "cooleygo.com", "status": "fetched", "relevance_score": 0.93 },
+    { "url": "https://www.gartner.com/smarterwithgartner/negotiate-saas-contracts", "title": "Gartner: How to Negotiate SaaS Contracts", "domain": "gartner.com", "status": "fetched", "relevance_score": 0.88 },
+    { "url": "https://www.termly.io/saas-agreement-template-analysis", "title": "Termly: SaaS Agreement Template Analysis", "domain": "termly.io", "status": "fetched", "relevance_score": 0.82 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Enterprise SaaS agreements increasingly include AI-specific data processing clauses, with the most negotiated terms being data ownership/portability, SLA commitments with financial credits, liability caps at 12-24 months of fees, and auto-renewal with 60-90 day notice periods.",
+    "key_findings": [
+      "Data ownership clauses are the #1 most negotiated term in 2024, with 78% of enterprise buyers requiring explicit language that customer data is not used for model training",
+      "SLA standards have tightened: 99.9% uptime is table stakes, with top-tier enterprise contracts requiring 99.99% with escalating service credits (10% at 99.5%, 25% at 99.0%)",
+      "Auto-renewal terms are shifting from annual to quarterly opt-out windows in 34% of new enterprise agreements, reflecting buyer pushback against long lock-in periods"
+    ],
+    "confidence_score": 0.90
+  }
+}

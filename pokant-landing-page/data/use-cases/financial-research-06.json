@@ -1,0 +1,36 @@
+{
+  "id": "fr-006",
+  "task_id": "task-fr-006",
+  "category": "Financial Research",
+  "use_case": "Valuation comps",
+  "topic": "Developer tools public company multiples",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 83,
+  "cost_usd": 0.31,
+  "sources": [
+    { "url": "https://www.bvp.com/atlas/cloud-index", "title": "Bessemer Cloud Index: Developer Tools Segment", "domain": "bvp.com", "status": "fetched", "relevance_score": 0.97 },
+    { "url": "https://www.jaminball.com/clouded-judgement-devtools-multiples", "title": "Clouded Judgement: DevTools Public Market Multiples", "domain": "jaminball.com", "status": "fetched", "relevance_score": 0.95 },
+    { "url": "https://finance.yahoo.com/sector/technology/developer-platforms", "title": "Yahoo Finance: Developer Platform Public Companies", "domain": "finance.yahoo.com", "status": "fetched", "relevance_score": 0.88 },
+    { "url": "https://www.meritech.com/saas-comparisons/developer-tools", "title": "Meritech Capital: SaaS Comps - Developer Tools", "domain": "meritech.com", "status": "fetched", "relevance_score": 0.92 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Public developer tool companies trade at median 12x NTM revenue with a wide dispersion from 6x (mature, slower-growth) to 25x+ (high-growth, AI-adjacent), with the Rule of 40 score explaining 75% of the valuation variance across the cohort.",
+    "key_findings": [
+      "Top-tier multiples (20-25x NTM revenue) commanded by Datadog, Cloudflare, and GitLab driven by 30%+ growth and expanding platform plays with net retention above 130%",
+      "Mid-tier (10-15x) includes Twilio, Elastic, and JFrog with 15-25% growth and stable margins, representing the most common comp range for Series C+ developer tool startups",
+      "Discount for profitability concerns has narrowed: unprofitable high-growth devtools traded at only a 15% discount to profitable peers in 2024, down from 35% in 2022"
+    ],
+    "confidence_score": 0.93
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "id": "ma-001",
+  "task_id": "task-ma-001",
+  "category": "Market Analysis",
+  "use_case": "TAM/SAM/SOM estimation",
+  "topic": "Vertical SaaS for construction",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 95,
+  "cost_usd": 0.36,
+  "sources": [
+    { "url": "https://www.grandviewresearch.com/construction-software-market", "title": "Construction Management Software Market Report 2024-2030", "domain": "grandviewresearch.com", "status": "fetched", "relevance_score": 0.97 },
+    { "url": "https://www.mckinsey.com/construction-technology-adoption", "title": "McKinsey: Technology Adoption in Construction", "domain": "mckinsey.com", "status": "fetched", "relevance_score": 0.93 },
+    { "url": "https://procore.com/investor-relations/annual-report", "title": "Procore Technologies Annual Report 2024", "domain": "procore.com", "status": "fetched", "relevance_score": 0.89 },
+    { "url": "https://www.statista.com/construction-industry-digital-spend", "title": "Construction Industry IT Spending Statistics", "domain": "statista.com", "status": "fetched", "relevance_score": 0.86 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "The vertical SaaS market for construction has a TAM of $18.2B, SAM of $7.8B (focusing on North American commercial construction), and achievable SOM of $1.2B for a mid-market project management platform entering in 2025.",
+    "key_findings": [
+      "TAM of $18.2B driven by global construction industry spending $13.5T annually with only 1.5% allocated to software",
+      "SAM narrows to $7.8B when focused on North American commercial and infrastructure segments with 50+ employee general contractors",
+      "SOM of $1.2B achievable within 5 years based on Procore's growth trajectory and remaining whitespace in estimating, procurement, and field productivity tools"
+    ],
+    "confidence_score": 0.88
+  }
+}

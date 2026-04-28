@@ -1,0 +1,36 @@
+{
+  "id": "fr-005",
+  "task_id": "task-fr-005",
+  "category": "Financial Research",
+  "use_case": "Market sizing",
+  "topic": "API management market 2024-2028",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 76,
+  "cost_usd": 0.28,
+  "sources": [
+    { "url": "https://www.marketsandmarkets.com/api-management-market-report", "title": "MarketsandMarkets: API Management Market Forecast 2024-2028", "domain": "marketsandmarkets.com", "status": "fetched", "relevance_score": 0.96 },
+    { "url": "https://www.gartner.com/reviews/market/full-lifecycle-api-management", "title": "Gartner Magic Quadrant: Full Lifecycle API Management", "domain": "gartner.com", "status": "fetched", "relevance_score": 0.94 },
+    { "url": "https://konghq.com/api-landscape-report", "title": "Kong: State of the API Landscape 2024", "domain": "konghq.com", "status": "fetched", "relevance_score": 0.88 },
+    { "url": "https://www.postman.com/state-of-api-report", "title": "Postman State of the API Report 2024", "domain": "postman.com", "status": "fetched", "relevance_score": 0.85 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "The global API management market is projected to grow from $6.2B in 2024 to $14.8B by 2028 at a 24.3% CAGR, driven by microservices adoption, API-first architectures, and the explosion of AI model APIs requiring gateway and observability infrastructure.",
+    "key_findings": [
+      "AI/ML API management is the fastest-growing segment at 45% CAGR, driven by enterprises needing to manage, rate-limit, and monitor access to multiple LLM providers",
+      "Cloud-native API gateways are displacing traditional API management platforms, with Kong, Envoy-based solutions, and AWS API Gateway capturing 52% of new deployments",
+      "API security and governance represent 30% of market spend as organizations average 15,000+ APIs in production with only 40% having complete API inventories"
+    ],
+    "confidence_score": 0.91
+  }
+}

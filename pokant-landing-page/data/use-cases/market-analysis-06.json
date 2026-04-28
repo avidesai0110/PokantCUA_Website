@@ -1,0 +1,36 @@
+{
+  "id": "ma-006",
+  "task_id": "task-ma-006",
+  "category": "Market Analysis",
+  "use_case": "Competitive positioning",
+  "topic": "LLM API providers feature matrix",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 91,
+  "cost_usd": 0.34,
+  "sources": [
+    { "url": "https://artificialanalysis.ai/leaderboard", "title": "Artificial Analysis LLM Leaderboard & Pricing", "domain": "artificialanalysis.ai", "status": "fetched", "relevance_score": 0.97 },
+    { "url": "https://openai.com/pricing", "title": "OpenAI API Pricing and Models", "domain": "openai.com", "status": "fetched", "relevance_score": 0.94 },
+    { "url": "https://docs.anthropic.com/claude/docs/models-overview", "title": "Anthropic Claude Models Overview", "domain": "docs.anthropic.com", "status": "fetched", "relevance_score": 0.93 },
+    { "url": "https://cloud.google.com/vertex-ai/generative-ai/pricing", "title": "Google Vertex AI Gemini Pricing", "domain": "cloud.google.com", "status": "fetched", "relevance_score": 0.89 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "The LLM API market has consolidated around 5 major providers (OpenAI, Anthropic, Google, Meta/open-source, Mistral) with differentiation shifting from raw capability to developer experience, latency, and specialized features like tool use and structured outputs.",
+    "key_findings": [
+      "OpenAI maintains market leadership with GPT-4 Turbo but faces narrowing quality gaps; Claude 3.5 Sonnet leads on coding benchmarks and Gemini 1.5 Pro on long-context tasks",
+      "Pricing has compressed 80% in 18 months with GPT-4 class models now available at $3-5/M input tokens, pushing differentiation toward latency and reliability SLAs",
+      "Structured outputs (JSON mode, tool calling, function calling) and multimodal input support have become table stakes, with batch processing APIs emerging as the next competitive frontier"
+    ],
+    "confidence_score": 0.95
+  }
+}

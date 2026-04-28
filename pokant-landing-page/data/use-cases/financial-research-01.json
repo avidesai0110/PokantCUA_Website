@@ -1,0 +1,36 @@
+{
+  "id": "fr-001",
+  "task_id": "task-fr-001",
+  "category": "Financial Research",
+  "use_case": "Revenue modeling",
+  "topic": "Usage-based pricing revenue forecasting",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "summary": { "type": "string", "description": "Brief summary" },
+      "key_findings": { "type": "array", "description": "Key findings" },
+      "confidence_score": { "type": "number", "description": "Confidence 0-1" }
+    },
+    "required": ["summary", "key_findings", "confidence_score"]
+  },
+  "status": "completed",
+  "duration_seconds": 93,
+  "cost_usd": 0.35,
+  "sources": [
+    { "url": "https://openviewpartners.com/usage-based-pricing-report-2024", "title": "OpenView: Usage-Based Pricing Benchmarks 2024", "domain": "openviewpartners.com", "status": "fetched", "relevance_score": 0.97 },
+    { "url": "https://www.bvp.com/atlas/state-of-the-cloud-2024", "title": "Bessemer State of the Cloud 2024 - Revenue Models", "domain": "bvp.com", "status": "fetched", "relevance_score": 0.93 },
+    { "url": "https://www.twilio.com/investor-relations/revenue-model", "title": "Twilio Revenue Model Analysis", "domain": "twilio.com", "status": "fetched", "relevance_score": 0.87 },
+    { "url": "https://www.saastr.com/usage-based-pricing-forecasting-models", "title": "SaaStr: Forecasting Revenue with Usage-Based Pricing", "domain": "saastr.com", "status": "fetched", "relevance_score": 0.85 }
+  ],
+  "sources_failed": [],
+  "schema_match": true,
+  "result": {
+    "summary": "Usage-based pricing companies require fundamentally different forecasting models than seat-based SaaS, using cohort-based usage expansion curves and commitment-vs-overage analysis, with best-in-class companies achieving 120-150% net dollar retention through natural usage growth.",
+    "key_findings": [
+      "Cohort-based forecasting using 6-month trailing usage growth per customer segment is 3x more accurate than top-down ARR projections for usage-based models",
+      "Committed usage contracts with overage billing yield the most predictable revenue with 85-90% of revenue from commitments and 10-15% overage upside",
+      "Revenue volatility is 2.5x higher for pure consumption models vs hybrid (commit + usage), requiring larger cash reserves and making quarterly guidance challenging for public companies"
+    ],
+    "confidence_score": 0.90
+  }
+}
