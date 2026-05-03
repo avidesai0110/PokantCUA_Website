@@ -55,14 +55,14 @@ export default function ContactPage() {
               <div className="w-full max-w-[760px] flex flex-col items-center gap-4 px-4">
                 <div className="px-[14px] py-[6px] bg-white shadow-[0px_0px_0px_4px_rgba(55,50,47,0.05)] overflow-hidden rounded-[90px] flex justify-start items-center gap-[8px] border border-[rgba(2,6,23,0.08)]">
                   <div className="text-center flex justify-center flex-col text-[#37322F] text-xs font-medium leading-3 font-sans">
-                    Pilot access
+                    Get started
                   </div>
                 </div>
                 <h1 className="text-center text-[#37322F] text-[28px] sm:text-[42px] md:text-[56px] font-bold leading-[1.05] tracking-tight font-display px-2">
-                  Let&apos;s start with one jurisdiction.
+                  Automate any government portal workflow.
                 </h1>
                 <p className="text-center text-[rgba(55,50,47,0.70)] text-base md:text-lg leading-relaxed font-sans max-w-[480px]">
-                  Tell us which state or local portal is the biggest pain point. We&apos;ll scope a 4-week pilot and get the first filings running.
+                  Tell us what your team is doing manually today. We&apos;ll describe the task or record the workflow — and have it running autonomously the next day.
                 </p>
               </div>
             </div>
@@ -147,7 +147,7 @@ export default function ContactPage() {
 
                         <div className="flex flex-col gap-1.5">
                           <label className="text-[#37322F] text-xs font-medium font-sans" htmlFor="message">
-                            Which portal(s) are you filing on today? <span className="text-[rgba(55,50,47,0.40)]">*</span>
+                            What workflows are you doing manually today? <span className="text-[rgba(55,50,47,0.40)]">*</span>
                           </label>
                           <textarea
                             id="message"
@@ -182,11 +182,11 @@ export default function ContactPage() {
                         description: "and schedule a scoping call within the week.",
                       },
                       {
-                        label: "Pilot: 4 weeks, one jurisdiction",
-                        description: "We pick a portal together, stand up the agent, and run live tasks.",
+                        label: "Running autonomously the next day",
+                        description: "Describe the task or walk through it once — we stand up the agent and run live tasks.",
                       },
                       {
-                        label: "No usage billing during the pilot",
+                        label: "No usage billing to start",
                         description: "Fixed fee — we eat the infrastructure cost.",
                       },
                     ].map((item, i) => (

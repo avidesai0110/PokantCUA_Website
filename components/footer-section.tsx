@@ -25,10 +25,10 @@ export default function FooterSection() {
               Docs
             </a>
             <a
-              href="mailto:avidesai0110@gmail.com"
+              href="/contact"
               className="text-[#49423D] text-sm font-normal leading-5 font-sans hover:underline"
             >
-              avidesai0110@gmail.com
+              Contact
             </a>
           </div>
         </div>

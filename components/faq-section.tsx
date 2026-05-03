@@ -19,14 +19,24 @@ const faqData: FAQItem[] = [
       "Agents are resilient to portal UI changes by design. When an element can't be found at its expected location, the agent tries alternate locators, then falls back to text and ARIA-based matching, then a targeted LLM call to locate the element from the page's accessibility tree. Most portal updates resolve without human intervention. If a portal undergoes a major restructure, we re-run the agent on the updated portal and update the workflow.",
   },
   {
+    question: "What happens when a government step requires physical mail or a wet signature?",
+    answer:
+      "Some compliance filings still require a physical document — a signed annual report, a notarized amendment, a paper check to a jurisdiction that doesn't accept ACH. We handle those steps in the workflow too. Where physical mail is required, we coordinate the send and record the tracking confirmation as part of the audit trail.",
+  },
+  {
     question: "How is this different from running our own Playwright + LLM stack?",
     answer:
-      "Three things you don't have to build: a pre-built library of agent workflows for hundreds of government portals; audit-grade logs that tie every submission to a timestamped action trace; and self-healing that works across portal updates without re-recording. You connect your credentials and send tasks — we handle the infrastructure, browser management, CAPTCHA solving, and on-call for anything that breaks.",
+      "Three things you don't have to build: (1) a pre-built, maintained library of portal agent workflows — we cover 9 state DORs and 330+ localities so you skip exploration entirely; (2) tamper-evident audit logs that cryptographically seal every submission and hold up in a state audit years later; (3) self-healing that survives overnight portal UI changes without re-recording. You connect credentials and send tasks. We own the portal library, the browser infrastructure, and the on-call rotation.",
   },
   {
     question: "What does a pilot look like?",
     answer:
       "Four weeks. We pick one jurisdiction together — ideally the portal that costs your ops team the most time today. We stand up the agent, integrate it with your system via API or SDK, and run live tasks. Fixed fee, no usage billing during the pilot.",
+  },
+  {
+    question: "Do you handle the full compliance lifecycle, or just individual filings?",
+    answer:
+      "Full lifecycle. Registration, renewals, amendments, payments — agents handle every recurring step, not just the first filing. Once a jurisdiction is onboarded, the same workflow covers the ongoing compliance calendar. You don't need to re-scope each task type.",
   },
   {
     question: "What about CAPTCHAs, MFA, and session expiry on state portals?",

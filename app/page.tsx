@@ -6,6 +6,7 @@ import { useState, useEffect, useRef } from "react"
 import EffortlessIntegration from "../components/effortless-integration-updated"
 import { DashboardPreview } from "../components/dashboard-preview"
 import DocumentationSection from "../components/documentation-section"
+import WhyDifferentSection from "../components/why-different-section"
 import EnterpriseSection from "../components/enterprise-section"
 import FAQSection from "../components/faq-section"
 import CTASection from "../components/cta-section"
@@ -101,6 +102,9 @@ export default function LandingPage() {
                     <a href="#how-it-works" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
                       How it works
                     </a>
+                    <a href="#use-cases" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
+                      Use cases
+                    </a>
                     <a href="#coverage" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
                       Coverage
                     </a>
@@ -130,9 +134,9 @@ export default function LandingPage() {
                     on any government portal.
                   </div>
                   <div className="w-full max-w-[520px] text-center text-[rgba(55,50,47,0.70)] text-sm sm:text-base md:text-lg leading-relaxed font-sans font-normal px-2 sm:px-4 md:px-0">
-                    Computer-use agents that navigate, fill, and submit — across tax agencies,
+                    Computer-use agents that navigate, fill, submit, and extract — across tax agencies,
                     <br className="hidden sm:block" />
-                    licensing boards, and regulatory portals. No APIs. No manual work.
+                    licensing boards, and regulatory portals. No portal APIs needed. Simple REST API for your team.
                   </div>
                 </div>
               </div>
@@ -163,7 +167,7 @@ export default function LandingPage() {
                 <DashboardPreview activeCard={activeCard} />
               </div>
 
-              <div id="how-it-works" className="self-stretch border-t border-[#E0DEDB] border-b border-[#E0DEDB] flex justify-center items-start">
+              <div className="self-stretch border-t border-[#E0DEDB] border-b border-[#E0DEDB] flex justify-center items-start">
                 <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden">
                   {/* Left decorative pattern */}
                   <div className="w-[120px] sm:w-[140px] md:w-[162px] left-[-40px] sm:left-[-50px] md:left-[-58px] top-[-120px] absolute flex flex-col justify-start items-start">
@@ -179,22 +183,22 @@ export default function LandingPage() {
                 <div className="flex-1 px-0 sm:px-2 md:px-0 flex flex-col md:flex-row justify-center items-stretch gap-0">
                   {/* Feature Cards */}
                   <FeatureCard
-                    title="Any portal, any task"
-                    description="Tax filings, license renewals, permit applications, compliance submissions — if a human can do it in a browser, the agent can do it faster."
+                    title="Pre-built for 330+ jurisdictions"
+                    description="A maintained library of agent workflows for state DORs and local portals — Colorado home-rule cities, Louisiana parishes, Alabama localities. No recording required."
                     isActive={activeCard === 0}
                     progress={activeCard === 0 ? progress : 0}
                     onClick={() => handleCardClick(0)}
                   />
                   <FeatureCard
                     title="Handles the hard parts"
-                    description="Login walls, CAPTCHAs, session timeouts, multi-step forms — the agent navigates them end-to-end and confirms successful submission."
+                    description="Login walls, CAPTCHAs, MFA, session timeouts, multi-step forms — the agent navigates them end-to-end. Submission is confirmed and receipted before the task is marked complete."
                     isActive={activeCard === 1}
                     progress={activeCard === 1 ? progress : 0}
                     onClick={() => handleCardClick(1)}
                   />
                   <FeatureCard
-                    title="Self-healing across portal updates"
-                    description="When a portal changes its UI, a 4-tier repair cascade fixes the workflow automatically. Your deadlines don't slip because a button moved."
+                    title="Tamper-evident audit trail"
+                    description="Every run produces a cryptographically sealed record — timestamped screenshots, the full action sequence, and exact field values submitted. So there's never any question about what was submitted."
                     isActive={activeCard === 2}
                     progress={activeCard === 2 ? progress : 0}
                     onClick={() => handleCardClick(2)}
@@ -215,7 +219,7 @@ export default function LandingPage() {
               </div>
 
               {/* Bento Grid Section */}
-              <div className="w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center">
+              <div id="how-it-works" className="w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center">
                 {/* Header Section */}
                 <div className="self-stretch px-4 sm:px-6 md:px-8 lg:px-0 lg:max-w-[1060px] lg:w-[1060px] py-8 sm:py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center gap-6">
                   <div className="w-full max-w-[616px] lg:w-[616px] px-4 sm:px-6 py-4 sm:py-5 shadow-[0px_2px_4px_rgba(50,45,43,0.06)] overflow-hidden rounded-lg flex flex-col justify-start items-center gap-3 sm:gap-4 shadow-none">
@@ -277,13 +281,13 @@ export default function LandingPage() {
                     <div className="border-b md:border-b-0 border-r-0 md:border-r border-[rgba(55,50,47,0.12)] p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-start items-start gap-4">
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-[#37322F] flex items-center justify-center text-white text-xs font-semibold font-sans flex-shrink-0">2</div>
-                        <h3 className="text-[#37322F] text-lg font-semibold leading-tight font-sans">Describe</h3>
+                        <h3 className="text-[#37322F] text-lg font-semibold leading-tight font-sans">Describe or record</h3>
                       </div>
                       <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
-                        Send a task in plain language via API or dashboard. The agent interprets it, navigates the portal, handles authentication, fills every field, and submits.
+                        Describe the task in plain language, or walk through it once and we record the workflow. Either way, the agent handles every run from there — authentication, form filling, submission.
                       </p>
                       <div className="w-full mt-2 bg-[#fbfaf9] border border-[rgba(55,50,47,0.12)] rounded-lg p-3 text-xs font-mono text-[#605A57] space-y-1">
-                        <div className="text-[#37322F] font-medium">&rarr; Navigate to portal</div>
+                        <div className="text-[#37322F] font-medium">&rarr; Plain language or recorded workflow</div>
                         <div>&rarr; Handle login + MFA</div>
                         <div>&rarr; Fill and verify fields</div>
                         <div>&rarr; Submit and confirm</div>
@@ -298,13 +302,13 @@ export default function LandingPage() {
                         <h3 className="text-[#37322F] text-lg font-semibold leading-tight font-sans">Audit</h3>
                       </div>
                       <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
-                        Every run produces a timestamped audit trail — screenshots at each step, the full action sequence, and the exact values submitted. Retrieve it any time.
+                        Every run produces a tamper-evident audit trail — timestamped screenshots at each step, the full action sequence, and the exact values submitted. Records are cryptographically sealed so they hold up years later in a state audit. Retrieve them any time via API.
                       </p>
                       <div className="w-full mt-auto bg-[#fbfaf9] border border-[rgba(55,50,47,0.12)] rounded-lg p-3 text-xs font-mono text-[#605A57] space-y-1">
                         <div className="text-[#37322F] font-medium">&rarr; Timestamped screenshots</div>
                         <div>&rarr; Full action trace</div>
                         <div>&rarr; Submitted field values</div>
-                        <div>&rarr; Exportable audit record</div>
+                        <div>&rarr; Cryptographic seal</div>
                         <div className="text-green-600 font-medium mt-1">&check; Audit-grade</div>
                       </div>
                     </div>
@@ -324,13 +328,18 @@ export default function LandingPage() {
                 </div>
               </div>
 
+              {/* Use Cases Section */}
+              <div id="use-cases" className="w-full">
+                <DocumentationSection />
+              </div>
+
               {/* Coverage Section */}
               <div id="coverage" className="w-full">
                 <EnterpriseSection />
               </div>
 
-              {/* Code Example Section */}
-              <DocumentationSection />
+              {/* Why Different Section */}
+              <WhyDifferentSection />
 
               {/* FAQ Section */}
               <FAQSection />

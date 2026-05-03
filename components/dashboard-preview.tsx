@@ -74,7 +74,7 @@ export function DashboardPreview({ activeCard = 0 }: { activeCard?: number }) {
                   <div
                     key={item}
                     className={`text-xs py-1.5 px-2 rounded cursor-pointer font-medium ${
-                      (activeCard < 2 && i === 1) || (activeCard === 2 && i === 2)
+                      i === 1
                         ? "bg-[#37322f]/8 text-[#37322f]"
                         : "text-[#605a57] hover:text-[#37322f]"
                     }`}
@@ -190,62 +190,51 @@ export function DashboardPreview({ activeCard = 0 }: { activeCard?: number }) {
                 </div>
               </div>
 
-              {/* Panel 2 — Self-healing (Self-healing across portal updates) */}
+              {/* Panel 2 — Audit record (Tamper-evident audit trail) */}
               <div
                 className="absolute inset-0 p-4 transition-opacity duration-300"
                 style={{ opacity: activeCard === 2 ? 1 : 0, pointerEvents: activeCard === 2 ? "auto" : "none" }}
               >
                 <div className="flex items-center justify-between mb-3">
-                  <h2 className="text-sm font-semibold text-[#37322f]">Workflow repair</h2>
-                  <span className="text-xs font-mono text-[#605a57]">suts.colorado.gov</span>
+                  <div className="flex items-center gap-2">
+                    <span className="text-[#605a57] text-xs cursor-pointer hover:text-[#37322f]">← Tasks</span>
+                    <span className="text-[#37322f] text-sm font-semibold truncate">File Q1 2026 sales tax return</span>
+                  </div>
+                  <span className="px-2 py-0.5 rounded text-[10px] font-medium bg-green-50 text-green-700 flex items-center gap-1">✓ Completed</span>
                 </div>
 
                 <div className="border border-[#e0dedb] rounded overflow-hidden font-mono text-xs">
-                  <div className="px-3 py-1.5 bg-[#fbfaf9] border-b border-[#e0dedb] text-[10px] font-medium text-[#605a57] uppercase tracking-wide font-sans">
-                    Step 7 of 9 — Click &quot;Submit Return&quot;
+                  <div className="px-3 py-1.5 bg-[#fbfaf9] border-b border-[#e0dedb] flex items-center justify-between">
+                    <span className="text-[10px] font-medium text-[#605a57] uppercase tracking-wide font-sans">Audit record</span>
+                    <span className="text-[10px] text-green-600 font-sans font-medium flex items-center gap-1">⬡ Sealed</span>
                   </div>
                   <div className="p-3 space-y-2">
 
-                    <div className="flex items-start gap-2">
-                      <span className="text-amber-500 flex-shrink-0">⚠</span>
-                      <div>
-                        <div className="text-[#37322f]">Selector not found</div>
-                        <div className="text-[#9ca3af] text-[10px] mt-0.5">#submit-filing-btn</div>
-                      </div>
-                    </div>
-
-                    <div className="border-t border-[#e0dedb] pt-2 space-y-1.5">
+                    <div className="space-y-1.5">
                       {[
-                        { attempt: "Attempt 1", selector: '[data-action="submit"]', found: false },
-                        { attempt: "Attempt 2", selector: 'button[type="submit"]', found: false },
-                        { attempt: "Attempt 3", selector: '[aria-label="Submit Return"]', found: true },
-                      ].map((a, i) => (
-                        <div key={i} className="flex items-center justify-between gap-2">
-                          <div className="flex items-center gap-2">
-                            <span className="text-[#9ca3af] text-[10px]">→</span>
-                            <span className="text-[#605a57] text-[10px]">{a.attempt}</span>
-                            <span className="text-[#37322f]">{a.selector}</span>
+                        { time: "09:14:02", step: "Navigated to portal", detail: "suts.colorado.gov" },
+                        { time: "09:14:05", step: "Authenticated", detail: "Session established" },
+                        { time: "09:14:09", step: "CAPTCHA solved", detail: "reCAPTCHA v2 · 2.1s" },
+                        { time: "09:14:23", step: "Fields submitted", detail: "Gross $248,400 · Tax $14,904" },
+                        { time: "09:14:26", step: "Confirmation received", detail: "Conf. #CO-2026-Q1-847291" },
+                      ].map((row, i) => (
+                        <div key={i} className="flex items-start gap-2">
+                          <span className="text-[#9ca3af] text-[10px] w-14 flex-shrink-0">{row.time}</span>
+                          <span className="text-green-600 flex-shrink-0">✓</span>
+                          <div className="flex-1 min-w-0">
+                            <span className="text-[#37322f]">{row.step}</span>
+                            <span className="text-[#9ca3af] ml-2">{row.detail}</span>
                           </div>
-                          <span className={a.found ? "text-green-600" : "text-[#9ca3af]"}>
-                            {a.found ? "✓ found" : "✗"}
-                          </span>
                         </div>
                       ))}
                     </div>
 
-                    <div className="border-t border-[#e0dedb] pt-2 space-y-1">
-                      <div className="flex items-center gap-2">
-                        <span className="text-green-600">✓</span>
-                        <span className="text-[#37322f]">Return submitted</span>
-                        <span className="text-[#9ca3af] text-[10px]">Conf. #CO-2026-Q1-847291</span>
-                      </div>
-                      <div className="flex items-center gap-2 text-[10px] text-[#605a57]">
+                    <div className="border-t border-[#e0dedb] pt-2 flex items-center justify-between">
+                      <div className="flex items-center gap-1.5 text-[10px] text-[#605a57]">
                         <span className="text-[#9ca3af]">↳</span>
-                        <span>Workflow patched:</span>
-                        <span className="text-amber-600 line-through">#submit-filing-btn</span>
-                        <span className="text-[#9ca3af]">→</span>
-                        <span className="text-green-600">[aria-label]</span>
+                        <span>5 screenshots · full action trace · field values</span>
                       </div>
+                      <span className="text-[10px] text-[#9ca3af] font-sans">sha256: a3f9…c12e</span>
                     </div>
 
                   </div>

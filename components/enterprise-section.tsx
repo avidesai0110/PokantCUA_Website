@@ -9,8 +9,8 @@ export default function EnterpriseSection() {
       label: "70+ Colorado home-rule cities, 64 Louisiana parishes, ~200 Alabama self-administered localities",
     },
     {
-      stat: "Audit-grade",
-      label: "Timestamped screenshots, action traces, and field values for every run",
+      stat: "Sealed receipts",
+      label: "Cryptographically sealed, timestamped records for every run. Replayable in an audit years later — not just logs.",
     },
   ]
 
@@ -62,10 +62,10 @@ export default function EnterpriseSection() {
                 State and local tax portals have no APIs. Your customers operate in hundreds of jurisdictions — each with a separate web portal that changes without warning.
               </p>
               <p className="text-[#605A57] text-sm md:text-base font-normal leading-relaxed font-sans">
-                We deploy computer-use agents that navigate these portals the way a human would — logging in, filling forms, handling CAPTCHAs, and confirming submission. You send a task. The agent completes it.
+                We deploy computer-use agents that navigate these portals the way a human would — logging in, filling forms, handling CAPTCHAs, and confirming submission. Describe the task in plain language, or record a workflow once. The agent handles every run from there.
               </p>
               <p className="text-[#605A57] text-sm md:text-base font-normal leading-relaxed font-sans">
-                Every action produces an audit trail: timestamped screenshots, the full navigation sequence, and exact field values submitted. When a state issues a notice, you have the receipts.
+                Every action produces a tamper-evident, cryptographically sealed record: timestamped screenshots, the full navigation sequence, and exact field values submitted. When a state issues a notice three years later, you can replay exactly what was filed, field by field.
               </p>
             </div>
 

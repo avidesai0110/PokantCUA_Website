@@ -1,5 +1,3 @@
-"use client"
-
 import type React from "react"
 
 function Badge({ icon, text }: { icon: React.ReactNode; text: string }) {
@@ -13,66 +11,57 @@ function Badge({ icon, text }: { icon: React.ReactNode; text: string }) {
   )
 }
 
-const useCases = [
+const tiles = [
   {
-    title: "Tax filings",
+    title: "Pre-built portal library",
     description:
-      "Sales tax returns, use tax, payroll tax. State DORs and local jurisdictions — including home-rule cities and parishes with no API access.",
+      "We maintain a library of agent workflows for every jurisdiction we support. Describe the task or record a workflow once — we handle every run from there. No exploring, no scripting, no maintenance.",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="7" height="7" rx="0.5" stroke="#37322F" strokeWidth="1.25" fill="none" />
+        <rect x="11" y="2" width="7" height="7" rx="0.5" stroke="#37322F" strokeWidth="1.25" fill="none" />
+        <rect x="2" y="11" width="7" height="7" rx="0.5" stroke="#37322F" strokeWidth="1.25" fill="none" />
+        <rect x="11" y="11" width="7" height="7" rx="0.5" stroke="#37322F" strokeWidth="1.25" fill="none" />
+      </svg>
+    ),
+  },
+  {
+    title: "4-tier self-healing",
+    description:
+      "Government portals change their UI without notice — often overnight. When a step breaks, our repair cascade tries alternate locators, ARIA-based matching, and a targeted LLM recovery call before escalating. Most changes resolve before your next run.",
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M3.5 10a6.5 6.5 0 1 1 1.9 4.6" stroke="#37322F" strokeWidth="1.25" strokeLinecap="round" />
+        <path d="M3.5 15V10H8.5" stroke="#37322F" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    ),
+  },
+  {
+    title: "Cryptographically sealed receipts",
+    description:
+      "Every run produces a tamper-evident record: timestamped screenshots, the full action sequence, and exact field values submitted — sealed so they can be replayed in an audit years later. Not just logs. Receipts.",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect x="3" y="2" width="14" height="16" rx="1" stroke="#37322F" strokeWidth="1.25" fill="none" />
-        <path d="M6 7h8M6 10h8M6 13h5" stroke="#37322F" strokeWidth="1.25" strokeLinecap="round" />
+        <circle cx="10" cy="9" r="2.5" stroke="#37322F" strokeWidth="1.25" fill="none" />
+        <path d="M7.5 14c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5" stroke="#37322F" strokeWidth="1.25" strokeLinecap="round" />
       </svg>
     ),
   },
   {
-    title: "License renewals",
+    title: "End-to-end, including physical steps",
     description:
-      "Contractor licenses, business permits, professional certifications. Annual renewals across state licensing boards before deadlines slip.",
+      "Registration to renewals to amendments to payments — we cover the full compliance lifecycle. Where a government step requires physical mail or a wet signature, we handle that too.",
     icon: (
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="10" cy="10" r="7" stroke="#37322F" strokeWidth="1.25" fill="none" />
-        <path d="M7 10l2 2 4-4" stroke="#37322F" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "Compliance submissions",
-    description:
-      "OSHA reports, environmental filings, regulatory disclosures. Meet mandatory deadlines without building and maintaining portal scripts.",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M10 2L3 6v8l7 4 7-4V6L10 2z" stroke="#37322F" strokeWidth="1.25" fill="none" />
-        <path d="M10 2v12M3 6l7 4 7-4" stroke="#37322F" strokeWidth="1.25" />
-      </svg>
-    ),
-  },
-  {
-    title: "Registration & setup",
-    description:
-      "New business registrations, tax account openings, permit applications — and the renewals, amendments, and annual filings that follow. Once an entity is registered, we stay on the compliance calendar.",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <rect x="2" y="4" width="16" height="12" rx="1" stroke="#37322F" strokeWidth="1.25" fill="none" />
-        <path d="M10 8v6M7 11h6" stroke="#37322F" strokeWidth="1.25" strokeLinecap="round" />
-      </svg>
-    ),
-  },
-  {
-    title: "Data extraction & lookups",
-    description:
-      "Pull tax rates by jurisdiction, check filing status, retrieve account balances, look up permit records. The agent reads and returns structured data from any portal — no scraping infrastructure required.",
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="9" cy="9" r="5.5" stroke="#37322F" strokeWidth="1.25" fill="none" />
-        <path d="M13.5 13.5L17 17" stroke="#37322F" strokeWidth="1.25" strokeLinecap="round" />
-        <path d="M7 9h4M9 7v4" stroke="#37322F" strokeWidth="1.25" strokeLinecap="round" />
+        <rect x="2" y="5" width="16" height="11" rx="1" stroke="#37322F" strokeWidth="1.25" fill="none" />
+        <path d="M2 7l8 5 8-5" stroke="#37322F" strokeWidth="1.25" strokeLinecap="round" />
       </svg>
     ),
   },
 ]
 
-export default function DocumentationSection() {
+export default function WhyDifferentSection() {
   return (
     <div className="w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center">
       {/* Header */}
@@ -81,23 +70,24 @@ export default function DocumentationSection() {
           <Badge
             icon={
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M1 6h10M6 1v10" stroke="#37322F" strokeWidth="1.25" strokeLinecap="round" />
+                <path d="M6 1v10M1 6h10" stroke="#37322F" strokeWidth="1.25" strokeLinecap="round" />
+                <circle cx="6" cy="6" r="3" stroke="#37322F" strokeWidth="1" fill="none" />
               </svg>
             }
-            text="Use cases"
+            text="Why it's different"
           />
           <div className="self-stretch text-center flex justify-center flex-col text-[#49423D] text-3xl md:text-5xl font-bold leading-tight md:leading-[60px] font-display tracking-tight">
-            Every task your team does manually in a government portal.
+            Government portals aren&apos;t websites. They&apos;re bureaucracies.
           </div>
           <div className="self-stretch text-center text-[#605A57] text-base font-normal leading-7 font-sans">
-            Submit filings, renew licenses, pull data, check status — if a human can do it in a browser,
+            Generic automation treats a state DOR portal like a shopping cart checkout.
             <br className="hidden md:block" />
-            the agent can do it faster, cheaper, and with a full audit trail.
+            We don&apos;t. Every layer is built for the specific failure modes of government compliance infrastructure.
           </div>
         </div>
       </div>
 
-      {/* Use cases grid */}
+      {/* Tiles grid */}
       <div className="self-stretch flex justify-center items-start">
         <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden">
           <div className="w-[120px] sm:w-[140px] md:w-[162px] left-[-40px] sm:left-[-50px] md:left-[-58px] top-[-120px] absolute flex flex-col justify-start items-start">
@@ -111,7 +101,7 @@ export default function DocumentationSection() {
         </div>
 
         <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-0 border-l border-r border-[rgba(55,50,47,0.12)]">
-          {useCases.map((item, i) => (
+          {tiles.map((item, i) => (
             <div
               key={i}
               className="border-b border-r-0 md:odd:border-r border-[rgba(55,50,47,0.12)] p-6 md:p-8 lg:p-10 flex flex-col gap-4"

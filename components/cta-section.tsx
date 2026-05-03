@@ -24,12 +24,12 @@ export default function CTASection() {
         <div className="w-full max-w-[586px] px-6 py-5 md:py-8 overflow-hidden rounded-lg flex flex-col justify-start items-center gap-6 relative z-20">
           <div className="self-stretch flex flex-col justify-start items-start gap-3">
             <div className="self-stretch text-center flex justify-center flex-col text-[#49423D] text-3xl md:text-5xl font-bold leading-tight md:leading-[56px] font-display tracking-tight">
-              Start with one jurisdiction.
+              Automate any government portal workflow.
             </div>
             <div className="self-stretch text-center text-[#605A57] text-base leading-7 font-sans font-medium">
-              Pick the portal that costs your ops team the most time.
+              Describe the task or record a workflow once.
               <br />
-              We&apos;ll have it filing autonomously in four weeks.
+              We&apos;ll have it running autonomously the next day.
             </div>
           </div>
           <div className="w-full max-w-[497px] flex flex-col justify-center items-center gap-12">
