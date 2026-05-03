@@ -1,60 +1,41 @@
 import type React from "react"
-import type { Metadata, Viewport } from "next"
-import { Outfit, Instrument_Sans, JetBrains_Mono, Geist } from "next/font/google"
-import { RejectionHandler } from "./rejection-handler"
+import type { Metadata } from "next"
+import { Space_Grotesk, JetBrains_Mono, Instrument_Serif } from "next/font/google"
 import "./globals.css"
-import { cn } from "@/lib/utils";
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'});
-
-const outfit = Outfit({
-  subsets: ["latin"],
-  variable: "--font-heading",
-  display: "swap",
-})
-
-const instrumentSans = Instrument_Sans({
+const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-body",
   display: "swap",
+  preload: true,
+})
+
+const spaceGroteskDisplay = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-heading",
+  display: "swap",
+  preload: true,
 })
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
   display: "swap",
+  preload: true,
+})
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  weight: ["400"],
+  display: "swap",
+  preload: false,
 })
 
 export const metadata: Metadata = {
-  title: "Pokant — Production-grade browser automation",
+  title: "Pokant — Browser automation that works in production",
   description:
-    "One API to automate any browser workflow. AI-powered navigation, self-healing retries, and structured output. First run $0.40, every run after $0.02.",
-  keywords: [
-    "browser automation",
-    "AI agent",
-    "web scraping",
-    "RPA",
-    "browser use",
-    "playwright",
-    "web automation API",
-  ],
-  openGraph: {
-    title: "Pokant — Browser automation that works in production",
-    description:
-      "One API to automate any browser workflow. AI-powered, self-healing, 95% cheaper at scale.",
-    url: "https://pokant.live",
-    siteName: "Pokant",
-    type: "website",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Pokant — Browser automation that works in production",
-    description: "One API to automate any browser workflow.",
-  },
-}
-
-export const viewport: Viewport = {
-  themeColor: "#ffffff",
+    "One API to automate any browser workflow. AI-powered navigation, adaptive retries, and structured output.",
 }
 
 export default function RootLayout({
@@ -63,11 +44,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning className={cn(outfit.variable, instrumentSans.variable, jetbrainsMono.variable, "font-sans", geist.variable)}>
-      <body className="font-sans antialiased">
-        <RejectionHandler />
-        {children}
-      </body>
+    <html
+      lang="en"
+      className={`${spaceGrotesk.variable} ${spaceGroteskDisplay.variable} ${jetbrainsMono.variable} ${instrumentSerif.variable} antialiased`}
+    >
+      <head />
+      <body className="font-sans antialiased">{children}</body>
     </html>
   )
 }

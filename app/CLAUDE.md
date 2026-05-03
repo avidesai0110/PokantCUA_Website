@@ -1,40 +1,57 @@
 # Landing Page Design Rules
 
 ## Aesthetic Direction
-- Light/white theme with editorial typography
-- Inspiration: browserbase.com layout, linear.app typography, stripe.com code examples
-- This is a developer tool AND enterprise product — professional, not playful
+- Dark theme (#0a0a0a background) with layered visual depth
+- Inspiration: browserbase.com immersive hero, linear.app typography, neon.tech glow effects
+- This is a developer tool AND enterprise product — premium, atmospheric, not playful
+- The page should feel IMMERSIVE — layered backgrounds, not flat
 
 ## Typography
-- Headings: Use font-serif (Playfair Display or Instrument Serif via next/font/google)
-- Body: Use font-sans (DM Sans via next/font/google)
-- Code: Use font-mono (JetBrains Mono via next/font/google)
-- DO NOT use Inter, Roboto, Arial, system fonts, or Space Grotesk for anything
+- Headings: Use font-sans (Space Grotesk or Instrument Sans via next/font/google) — bold, modern
+- Body: DM Sans for body text
+- Code: JetBrains Mono
+- DO NOT use Inter for headings. Inter is acceptable for body only.
+- DO NOT use Roboto, Arial, or system fonts for anything
 
 ## Colors
-- Background: white (#ffffff) main, #fafafa alternating sections
-- Text: #0a0a0a headings, #374151 body
-- Accent: #2563eb (blue-600) for CTAs — NO purple, NO gradients on buttons
-- Code blocks: dark (#1e1e2e) with syntax colors — code stays dark on light page
-- Cards: white, border-gray-200, shadow-sm
+- Background: #0a0a0a (near-black)
+- Text: white for headings, gray-400 (#9ca3af) for body text
+- Accent: #3b82f6 (blue-500) for CTAs, highlights, interactive elements
+- Cards: bg-white/5 with border-white/10
+- Hover states: border-blue-500/30 glow
+- NO purple anywhere. NO gradients on buttons.
+- Code blocks: slightly lighter dark (#1e1e2e)
 
-## Animations (using motion library, NOT framer-motion)
-- Import from "motion/react" not "framer-motion"
-- Hero: staggered fade-in-up on page load
-- Sections: whileInView fade-in-up with stagger for cards
-- Code block: typing animation for hero code example
-- Nav: backdrop-blur on scroll
-- Keep it subtle — 0.5-0.8s duration, ease-out, no bouncing
+## Hero Visual Effects (CRITICAL — this is what makes the page not look generic)
+- Layer z-0: Animated CSS gradient background (large gradient, animate background-position)
+- Layer z-10: Dot grid pattern overlay (radial-gradient dots, masked with radial fade)
+- Layer z-20: 2-3 floating glow blobs (bg-blue-500/20 blur-[100px], CSS keyframe animated)
+- Layer z-30: Content (headline, subtext, CTAs)
+- The hero must NOT be flat black with text. It needs atmospheric depth.
+
+## Animations
+- Use motion library (import from "motion/react", NOT "framer-motion")
+- Hero: staggered fade-in on mount
+- Sections: whileInView with viewport={{ once: true }}
+- 0.5-0.8s duration, ease-out
+- NO bouncing, NO spinning, NO aggressive effects
 
 ## Layout
 - max-w-6xl mx-auto for content
 - py-24 md:py-32 between sections
-- Alternating white / #fafafa section backgrounds
-- "use client" directive required (motion needs client-side React)
+- Section dividers: border-t border-white/5 (subtle, not heavy)
+- "use client" directive required at top of page.tsx
+
+## Components Available
+- Magic UI: AnimatedGridPattern, DotPattern, Marquee, TypingAnimation (installed via shadcn)
+- Lucide React icons (already installed)
+- motion library (already installed)
+- Use these instead of building from scratch
 
 ## DO NOT
+- Use a white/light background
+- Put code blocks in the hero section
+- Use typing animations in the hero
 - Use purple gradients
-- Use Inter font
-- Use generic card layouts with rounded-2xl and heavy shadows
-- Use emoji as section icons
 - Make it look like every other AI landing page
+- Use flat, solid backgrounds without layered effects

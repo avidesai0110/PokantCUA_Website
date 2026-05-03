@@ -14,7 +14,8 @@ const config: Config = {
       fontFamily: {
         sans: ["var(--font-body)", "system-ui", "sans-serif"],
         display: ["var(--font-heading)", "system-ui", "sans-serif"],
-        mono: ["var(--font-mono)", "monospace"],
+        mono: ["var(--font-mono)", "ui-monospace", "monospace"],
+        serif: ["var(--font-serif)", "ui-serif", "serif"],
       },
       animation: {
         "cursor-blink": "blink 1s step-end infinite",
