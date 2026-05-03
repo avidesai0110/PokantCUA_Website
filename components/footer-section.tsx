@@ -16,14 +16,14 @@ export default function FooterSection() {
         {/* Links */}
         <div className="self-stretch p-4 md:p-8 flex flex-col justify-start items-start gap-3">
           <div className="flex flex-col justify-end items-start gap-2">
-            <a
+            {/* <a
               href="https://api.pokant.live/docs"
               target="_blank"
               rel="noopener noreferrer"
               className="text-[#49423D] text-sm font-normal leading-5 font-sans hover:underline"
             >
               Docs
-            </a>
+            </a> */}
             <a
               href="/contact"
               className="text-[#49423D] text-sm font-normal leading-5 font-sans hover:underline"

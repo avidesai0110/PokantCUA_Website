@@ -108,9 +108,9 @@ export default function LandingPage() {
                     <a href="#coverage" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
                       Coverage
                     </a>
-                    <a href="https://api.pokant.live/docs" target="_blank" rel="noopener noreferrer" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
+                    {/* <a href="https://api.pokant.live/docs" target="_blank" rel="noopener noreferrer" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
                       Docs
-                    </a>
+                    </a> */}
                   </nav>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3">
