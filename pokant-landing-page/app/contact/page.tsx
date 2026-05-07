@@ -28,29 +28,23 @@ export default function ContactPage() {
                     </div>
                   </a>
                   <nav className="pl-4 sm:pl-5 lg:pl-6 hidden sm:flex flex-row gap-3 md:gap-5">
-                    <a href="/#features" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
-                      Features
+                    <a href="/#how-it-works" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
+                      How it works
                     </a>
-                    <a href="https://api.pokant.live/docs" target="_blank" rel="noopener noreferrer" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
+                    <a href="/#coverage" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
+                      Coverage
+                    </a>
+                    {/* <a href="https://api.pokant.live/docs" target="_blank" rel="noopener noreferrer" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
                       Docs
-                    </a>
-                    <a href="/enterprise" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
-                      Enterprise
-                    </a>
+                    </a> */}
                   </nav>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3">
                   <a
-                    href="https://app.pokant.live/login"
-                    className="px-3 sm:px-4 md:px-[16px] py-1.5 sm:py-2 bg-white shadow-[0px_1px_2px_rgba(55,50,47,0.12)] overflow-hidden rounded-full flex justify-center items-center no-underline hover:bg-gray-50 transition-colors"
-                  >
-                    <span className="text-[#37322F] text-xs md:text-[13px] font-medium leading-5 font-sans">Log in</span>
-                  </a>
-                  <a
-                    href="https://app.pokant.live/login"
+                    href="/contact"
                     className="px-3 sm:px-4 md:px-[16px] py-1.5 sm:py-2 bg-[#37322F] shadow-[0px_1px_2px_rgba(55,50,47,0.12)] overflow-hidden rounded-full flex justify-center items-center no-underline hover:bg-[#2A2520] transition-colors"
                   >
-                    <span className="text-white text-xs md:text-[13px] font-medium leading-5 font-sans">Get Started</span>
+                    <span className="text-white text-xs md:text-[13px] font-medium leading-5 font-sans">Get pilot access</span>
                   </a>
                 </div>
               </div>
@@ -61,14 +55,14 @@ export default function ContactPage() {
               <div className="w-full max-w-[760px] flex flex-col items-center gap-4 px-4">
                 <div className="px-[14px] py-[6px] bg-white shadow-[0px_0px_0px_4px_rgba(55,50,47,0.05)] overflow-hidden rounded-[90px] flex justify-start items-center gap-[8px] border border-[rgba(2,6,23,0.08)]">
                   <div className="text-center flex justify-center flex-col text-[#37322F] text-xs font-medium leading-3 font-sans">
-                    Talk to Sales
+                    Get started
                   </div>
                 </div>
                 <h1 className="text-center text-[#37322F] text-[28px] sm:text-[42px] md:text-[56px] font-bold leading-[1.05] tracking-tight font-display px-2">
-                  Let&apos;s talk about your workflow.
+                  Automate any government portal workflow.
                 </h1>
                 <p className="text-center text-[rgba(55,50,47,0.70)] text-base md:text-lg leading-relaxed font-sans max-w-[480px]">
-                  Tell us what you need automated. We&apos;ll scope it, build it, and get the first workflow live within a week.
+                  Tell us what your team is doing manually today. We&apos;ll describe the task or record the workflow — and have it running autonomously the next day.
                 </p>
               </div>
             </div>
@@ -99,7 +93,7 @@ export default function ContactPage() {
                         </div>
                         <div className="text-[#37322F] text-xl font-semibold font-sans">Message sent!</div>
                         <div className="text-[#605A57] text-sm leading-relaxed font-sans">
-                          We&apos;ll be in touch within one business day. In the meantime, feel free to email us directly at{" "}
+                          We&apos;ll be in touch within one business day. You can also reach us at{" "}
                           <a href="mailto:avidesai0110@gmail.com" className="text-[#37322F] underline underline-offset-2">
                             avidesai0110@gmail.com
                           </a>
@@ -117,7 +111,7 @@ export default function ContactPage() {
                             type="text"
                             name="name"
                             required
-                            placeholder="Avi Desai"
+                            placeholder="Jane Kim"
                             className="h-10 px-3 bg-white border border-[rgba(55,50,47,0.16)] rounded-lg text-[#37322F] text-sm font-sans placeholder:text-[rgba(55,50,47,0.32)] focus:outline-none focus:border-[#37322F] transition-colors"
                           />
                           <ValidationError field="name" prefix="Name" errors={state.errors} className="text-red-500 text-xs font-sans" />
@@ -132,7 +126,7 @@ export default function ContactPage() {
                             type="email"
                             name="email"
                             required
-                            placeholder="avi@company.com"
+                            placeholder="jane@anrok.com"
                             className="h-10 px-3 bg-white border border-[rgba(55,50,47,0.16)] rounded-lg text-[#37322F] text-sm font-sans placeholder:text-[rgba(55,50,47,0.32)] focus:outline-none focus:border-[#37322F] transition-colors"
                           />
                           <ValidationError field="email" prefix="Email" errors={state.errors} className="text-red-500 text-xs font-sans" />
@@ -146,20 +140,20 @@ export default function ContactPage() {
                             id="company"
                             type="text"
                             name="company"
-                            placeholder="Acme Corp"
+                            placeholder="Anrok"
                             className="h-10 px-3 bg-white border border-[rgba(55,50,47,0.16)] rounded-lg text-[#37322F] text-sm font-sans placeholder:text-[rgba(55,50,47,0.32)] focus:outline-none focus:border-[#37322F] transition-colors"
                           />
                         </div>
 
                         <div className="flex flex-col gap-1.5">
                           <label className="text-[#37322F] text-xs font-medium font-sans" htmlFor="message">
-                            What do you need automated? <span className="text-[rgba(55,50,47,0.40)]">*</span>
+                            What workflows are you doing manually today? <span className="text-[rgba(55,50,47,0.40)]">*</span>
                           </label>
                           <textarea
                             id="message"
                             name="message"
                             required
-                            placeholder="We pull invoices from 12 vendor portals every Monday morning and it takes 3 hours..."
+                            placeholder="Colorado SUTS, LaTAP, CDTFA..."
                             rows={5}
                             className="px-3 py-2.5 bg-white border border-[rgba(55,50,47,0.16)] rounded-lg text-[#37322F] text-sm font-sans placeholder:text-[rgba(55,50,47,0.32)] focus:outline-none focus:border-[#37322F] transition-colors resize-none leading-relaxed"
                           />
@@ -173,7 +167,7 @@ export default function ContactPage() {
                         >
                           <div className="w-full h-[41px] absolute left-0 top-[-0.5px] bg-gradient-to-b from-[rgba(255,255,255,0.20)] to-[rgba(0,0,0,0.10)] mix-blend-multiply"></div>
                           <span className="flex flex-col justify-center text-[#FBFAF9] text-[13px] font-medium leading-5 font-sans">
-                            {state.submitting ? "Sending…" : "Send message"}
+                            {state.submitting ? "Sending\u2026" : "Send message"}
                           </span>
                         </button>
                       </form>
@@ -184,16 +178,16 @@ export default function ContactPage() {
                   <div className="p-6 md:p-8 lg:p-12 flex flex-col justify-center gap-8">
                     {[
                       {
-                        label: "Quick response",
-                        description: "We reply within one business day and typically schedule a call within 48 hours.",
+                        label: "We reply within one business day",
+                        description: "and schedule a scoping call within the week.",
                       },
                       {
-                        label: "Scoped in one call",
-                        description: "A 30-minute call is usually enough to scope your first workflow and estimate delivery time.",
+                        label: "Running autonomously the next day",
+                        description: "Describe the task or walk through it once — we stand up the agent and run live tasks.",
                       },
                       {
-                        label: "First workflow in a week",
-                        description: "We move fast. Most teams have their first automation live within 5–7 business days of kickoff.",
+                        label: "No usage billing to start",
+                        description: "Fixed fee — we eat the infrastructure cost.",
                       },
                     ].map((item, i) => (
                       <div key={i} className="flex flex-col gap-2 border-b border-[rgba(55,50,47,0.08)] pb-8 last:border-0 last:pb-0">

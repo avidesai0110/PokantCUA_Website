@@ -9,29 +9,44 @@ interface FAQItem {
 
 const faqData: FAQItem[] = [
   {
-    question: "What is Pokant?",
+    question: "What portals do you cover?",
     answer:
-      "Pokant is a browser automation platform with a single API. You send a URL and a task in plain English, and get structured JSON back. No selectors, no scripts, no maintenance. Pokant uses AI to navigate sites, extract data, and fill forms — and compiles successful runs into deterministic replays for production.",
+      "Colorado SUTS (state + home-rule cities), CDTFA, MyTax Illinois, LaTAP + Parish E-File, ALDOR / ONE SPOT, MyDORWAY, Florida DOR, and Texas Comptroller WebFile. New jurisdictions take 1–2 weeks to onboard.",
   },
   {
-    question: "What browsers and agents do you support?",
+    question: "What happens when a state DOR changes the portal UI?",
     answer:
-      "Pokant works with Browser Use, Playwright, and any CDP-compatible browser. For LLMs, it supports Claude, GPT-4o, and any LangChain-compatible model. You can also bring your own Browserbase session or local Chrome instance.",
+      "Agents are resilient to portal UI changes by design. When an element can't be found at its expected location, the agent tries alternate locators, then falls back to text and ARIA-based matching, then a targeted LLM call to locate the element from the page's accessibility tree. Most portal updates resolve without human intervention. If a portal undergoes a major restructure, we re-run the agent on the updated portal and update the workflow.",
   },
   {
-    question: "How reliable is it?",
+    question: "What happens when a government step requires physical mail or a wet signature?",
     answer:
-      "Pokant uses adaptive retry with 7 distinct error categories — network timeouts, element not found, auth walls, rate limits, CAPTCHA, navigation errors, and extraction failures. Each category has its own recovery strategy. Post-action verification confirms the task actually succeeded before returning a result.",
+      "Some compliance filings still require a physical document — a signed annual report, a notarized amendment, a paper check to a jurisdiction that doesn't accept ACH. We handle those steps in the workflow too. Where physical mail is required, we coordinate the send and record the tracking confirmation as part of the audit trail.",
   },
   {
-    question: "How is Pokant different from Skyvern?",
+    question: "How is this different from running our own Playwright + LLM stack?",
     answer:
-      "Skyvern is an agent — you use their AI or nothing. Pokant is the platform layer above. Today we use Browser Use under the hood (89% on WebVoyager, higher than Skyvern's 85%). Tomorrow we route to whatever agent works best. The architecture is agent-agnostic: Pokant adds compile-to-replay, adaptive retry, cost tracking, and structured output on top of any underlying agent.",
+      "Three things you don't have to build: (1) a pre-built, maintained library of portal agent workflows — we cover 9 state DORs and 330+ localities so you skip exploration entirely; (2) tamper-evident audit logs that cryptographically seal every submission and hold up in a state audit years later; (3) self-healing that survives overnight portal UI changes without re-recording. You connect credentials and send tasks. We own the portal library, the browser infrastructure, and the on-call rotation.",
   },
   {
-    question: "Can I self-host?",
+    question: "What does a pilot look like?",
     answer:
-      "Yes. The Pokant SDK is open source under the MIT License. You can run it against your own browser infrastructure. The cloud API provides managed execution, auto-scaling, and session pooling — but you're never locked in.",
+      "Four weeks. We pick one jurisdiction together — ideally the portal that costs your ops team the most time today. We stand up the agent, integrate it with your system via API or SDK, and run live tasks. Fixed fee, no usage billing during the pilot.",
+  },
+  {
+    question: "Do you handle the full compliance lifecycle, or just individual filings?",
+    answer:
+      "Full lifecycle. Registration, renewals, amendments, payments — agents handle every recurring step, not just the first filing. Once a jurisdiction is onboarded, the same workflow covers the ongoing compliance calendar. You don't need to re-scope each task type.",
+  },
+  {
+    question: "What about CAPTCHAs, MFA, and session expiry on state portals?",
+    answer:
+      "CAPTCHAs (reCAPTCHA, hCaptcha, Turnstile) are solved automatically during agent execution. For portals that require MFA, we support persistent session cookies so you authenticate once and subsequent runs proceed without re-authenticating until the session expires.",
+  },
+  {
+    question: "Is the data we submit secure?",
+    answer:
+      "Credentials are encrypted at rest with AES-256-GCM using per-account derived keys. Filing data in transit is TLS-encrypted. All access is scoped to your account via row-level security on the database.",
   },
 ]
 
@@ -68,7 +83,7 @@ export default function FAQSection() {
           <div className="w-full text-[#605A57] text-base font-normal leading-7 font-sans">
             Everything you need to know about
             <br className="hidden md:block" />
-            Pokant's browser automation API.
+            automating government portals with Pokant.
           </div>
         </div>
 

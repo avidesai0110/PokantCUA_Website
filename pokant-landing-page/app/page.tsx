@@ -3,10 +3,10 @@
 import type React from "react"
 
 import { useState, useEffect, useRef } from "react"
-import SmartSimpleBrilliant from "../components/smart-simple-brilliant"
 import EffortlessIntegration from "../components/effortless-integration-updated"
 import { DashboardPreview } from "../components/dashboard-preview"
 import DocumentationSection from "../components/documentation-section"
+import WhyDifferentSection from "../components/why-different-section"
 import EnterpriseSection from "../components/enterprise-section"
 import FAQSection from "../components/faq-section"
 import CTASection from "../components/cta-section"
@@ -99,29 +99,26 @@ export default function LandingPage() {
                     </div>
                   </a>
                   <nav className="pl-4 sm:pl-5 lg:pl-6 hidden sm:flex flex-row gap-3 md:gap-5">
-                    <a href="#features" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
-                      Features
+                    <a href="#how-it-works" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
+                      How it works
                     </a>
-                    <a href="https://api.pokant.live/docs" target="_blank" rel="noopener noreferrer" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
+                    <a href="#use-cases" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
+                      Use cases
+                    </a>
+                    <a href="#coverage" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
+                      Coverage
+                    </a>
+                    {/* <a href="https://api.pokant.live/docs" target="_blank" rel="noopener noreferrer" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
                       Docs
-                    </a>
-                    <a href="/enterprise" className="text-[rgba(49,45,43,0.80)] text-xs md:text-[13px] font-medium leading-[14px] font-sans hover:text-[#37322F] transition-colors">
-                      Enterprise
-                    </a>
+                    </a> */}
                   </nav>
                 </div>
                 <div className="flex items-center gap-2 sm:gap-3">
                   <a
-                    href="https://app.pokant.live/login"
-                    className="px-3 sm:px-4 md:px-[16px] py-1.5 sm:py-2 bg-white shadow-[0px_1px_2px_rgba(55,50,47,0.12)] overflow-hidden rounded-full flex justify-center items-center no-underline hover:bg-gray-50 transition-colors"
-                  >
-                    <span className="text-[#37322F] text-xs md:text-[13px] font-medium leading-5 font-sans">Log in</span>
-                  </a>
-                  <a
-                    href="https://app.pokant.live/login"
+                    href="/contact"
                     className="px-3 sm:px-4 md:px-[16px] py-1.5 sm:py-2 bg-[#37322F] shadow-[0px_1px_2px_rgba(55,50,47,0.12)] overflow-hidden rounded-full flex justify-center items-center no-underline hover:bg-[#2A2520] transition-colors"
                   >
-                    <span className="text-white text-xs md:text-[13px] font-medium leading-5 font-sans">Get Started</span>
+                    <span className="text-white text-xs md:text-[13px] font-medium leading-5 font-sans">Get pilot access</span>
                   </a>
                 </div>
               </div>
@@ -132,29 +129,24 @@ export default function LandingPage() {
               <div className="w-full max-w-[937px] lg:w-[937px] flex flex-col justify-center items-center gap-3 sm:gap-4 md:gap-5 lg:gap-6">
                 <div className="self-stretch rounded-[3px] flex flex-col justify-center items-center gap-4 sm:gap-5 md:gap-6 lg:gap-8">
                   <div className="w-full max-w-[820px] text-center flex justify-center flex-col text-[#37322F] text-[28px] sm:text-[42px] md:text-[62px] lg:text-[84px] font-bold leading-[1.05] tracking-tight font-display px-2 sm:px-4 md:px-0">
-                    Give your agents access
+                    Automate any task
                     <br />
-                    to the entire web.
+                    on any government portal.
                   </div>
                   <div className="w-full max-w-[520px] text-center text-[rgba(55,50,47,0.70)] text-sm sm:text-base md:text-lg leading-relaxed font-sans font-normal px-2 sm:px-4 md:px-0">
-                    One API call. Any website. Structured JSON back.
+                    Computer-use agents that navigate, fill, submit, and extract — across tax agencies,
                     <br className="hidden sm:block" />
-                    No selectors, no scripts, no maintenance.
+                    licensing boards, and regulatory portals. No portal APIs needed. Simple REST API for your team.
                   </div>
                 </div>
               </div>
 
               <div className="w-full max-w-[497px] lg:w-[497px] flex flex-col justify-center items-center gap-4 relative z-10 mt-6 sm:mt-8 md:mt-10 lg:mt-12">
                 <div className="backdrop-blur-[8.25px] flex justify-start items-center gap-4">
-                  <a href="https://app.pokant.live/login" className="h-10 sm:h-11 md:h-12 px-6 sm:px-8 md:px-10 lg:px-12 py-2 sm:py-[6px] relative bg-[#37322F] shadow-[0px_0px_0px_2.5px_rgba(255,255,255,0.08)_inset] overflow-hidden rounded-full flex justify-center items-center no-underline hover:bg-[#2A2520] hover:scale-105 active:scale-95 transition-all duration-200 ease-out">
+                  <a href="/contact" className="h-10 sm:h-11 md:h-12 px-6 sm:px-8 md:px-10 lg:px-12 py-2 sm:py-[6px] relative bg-[#37322F] shadow-[0px_0px_0px_2.5px_rgba(255,255,255,0.08)_inset] overflow-hidden rounded-full flex justify-center items-center no-underline hover:bg-[#2A2520] hover:scale-105 active:scale-95 transition-all duration-200 ease-out">
                     <div className="w-20 sm:w-24 md:w-28 lg:w-44 h-[41px] absolute left-0 top-[-0.5px] bg-gradient-to-b from-[rgba(255,255,255,0)] to-[rgba(0,0,0,0.10)] mix-blend-multiply"></div>
                     <div className="flex flex-col justify-center text-white text-sm sm:text-base md:text-[15px] font-medium leading-5 font-sans">
-                      Get Started
-                    </div>
-                  </a>
-                  <a href="/enterprise" className="h-10 sm:h-11 md:h-12 px-6 sm:px-8 md:px-10 lg:px-10 py-2 sm:py-[6px] relative bg-transparent border-2 border-[#37322F]/50 overflow-hidden rounded-full flex justify-center items-center cursor-pointer hover:border-[#37322F] hover:bg-[#37322F]/10 hover:scale-105 active:scale-95 transition-all duration-200 ease-out no-underline">
-                    <div className="flex flex-col justify-center text-[#37322F]/80 text-sm sm:text-base md:text-[15px] font-medium leading-5 font-sans">
-                      For Enterprises
+                      Get pilot access
                     </div>
                   </a>
                 </div>
@@ -172,10 +164,10 @@ export default function LandingPage() {
               </div>
 
               <div className="w-full relative z-5 my-8 sm:my-12 md:my-16 lg:my-16 mb-0">
-                <DashboardPreview />
+                <DashboardPreview activeCard={activeCard} />
               </div>
 
-              <div id="features" className="self-stretch border-t border-[#E0DEDB] border-b border-[#E0DEDB] flex justify-center items-start">
+              <div className="self-stretch border-t border-[#E0DEDB] border-b border-[#E0DEDB] flex justify-center items-start">
                 <div className="w-4 sm:w-6 md:w-8 lg:w-12 self-stretch relative overflow-hidden">
                   {/* Left decorative pattern */}
                   <div className="w-[120px] sm:w-[140px] md:w-[162px] left-[-40px] sm:left-[-50px] md:left-[-58px] top-[-120px] absolute flex flex-col justify-start items-start">
@@ -191,22 +183,22 @@ export default function LandingPage() {
                 <div className="flex-1 px-0 sm:px-2 md:px-0 flex flex-col md:flex-row justify-center items-stretch gap-0">
                   {/* Feature Cards */}
                   <FeatureCard
-                    title="Automate Any Website"
-                    description="Send a URL and task in plain English. Get structured JSON back. No scripts, no selectors, no maintenance."
+                    title="Pre-built for 330+ jurisdictions"
+                    description="A maintained library of agent workflows for state DORs and local portals — Colorado home-rule cities, Louisiana parishes, Alabama localities. No recording required."
                     isActive={activeCard === 0}
                     progress={activeCard === 0 ? progress : 0}
                     onClick={() => handleCardClick(0)}
                   />
                   <FeatureCard
-                    title="Self-Healing Retries"
-                    description="When tasks fail, our AI diagnoses why and retries with a different approach. Not blind retries — intelligent recovery."
+                    title="Handles the hard parts"
+                    description="Login walls, CAPTCHAs, MFA, session timeouts, multi-step forms — the agent navigates them end-to-end. Submission is confirmed and receipted before the task is marked complete."
                     isActive={activeCard === 1}
                     progress={activeCard === 1 ? progress : 0}
                     onClick={() => handleCardClick(1)}
                   />
                   <FeatureCard
-                    title="Compile to Replay"
-                    description="First run uses AI to explore the workflow. Every run after replays the compiled script deterministically. Reliable, fast, consistent."
+                    title="Tamper-evident audit trail"
+                    description="Every run produces a cryptographically sealed record — timestamped screenshots, the full action sequence, and exact field values submitted. So there's never any question about what was submitted."
                     isActive={activeCard === 2}
                     progress={activeCard === 2 ? progress : 0}
                     onClick={() => handleCardClick(2)}
@@ -227,7 +219,7 @@ export default function LandingPage() {
               </div>
 
               {/* Bento Grid Section */}
-              <div className="w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center">
+              <div id="how-it-works" className="w-full border-b border-[rgba(55,50,47,0.12)] flex flex-col justify-center items-center">
                 {/* Header Section */}
                 <div className="self-stretch px-4 sm:px-6 md:px-8 lg:px-0 lg:max-w-[1060px] lg:w-[1060px] py-8 sm:py-12 md:py-16 border-b border-[rgba(55,50,47,0.12)] flex justify-center items-center gap-6">
                   <div className="w-full max-w-[616px] lg:w-[616px] px-4 sm:px-6 py-4 sm:py-5 shadow-[0px_2px_4px_rgba(50,45,43,0.06)] overflow-hidden rounded-lg flex flex-col justify-start items-center gap-3 sm:gap-4 shadow-none">
@@ -240,15 +232,15 @@ export default function LandingPage() {
                           <rect x="7" y="7" width="4" height="4" stroke="#37322F" strokeWidth="1" fill="none" />
                         </svg>
                       }
-                      text="How Pokant works"
+                      text="How it works"
                     />
                     <div className="w-full max-w-[598.06px] lg:w-[598.06px] text-center flex justify-center flex-col text-[#49423D] text-xl sm:text-2xl md:text-3xl lg:text-5xl font-bold leading-tight md:leading-[60px] font-display tracking-tight">
-                      Explore once. Replay forever.
+                      Describe the task. The agent handles the rest.
                     </div>
                     <div className="self-stretch text-center text-[#605A57] text-sm sm:text-base font-normal leading-6 sm:leading-7 font-sans">
-                      AI navigates to figure out the workflow once,
+                      No scripts to write. No selectors to maintain.
                       <br />
-                      then replays it deterministically every time after.
+                      No portal APIs required.
                     </div>
                   </div>
                 </div>
@@ -268,57 +260,56 @@ export default function LandingPage() {
                   </div>
 
                   <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-0 border-l border-r border-[rgba(55,50,47,0.12)]">
-                    {/* Step 1 — Explore */}
+                    {/* Step 1 — Connect */}
                     <div className="border-b md:border-b-0 border-r-0 md:border-r border-[rgba(55,50,47,0.12)] p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-start items-start gap-4">
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-[#37322F] flex items-center justify-center text-white text-xs font-semibold font-sans flex-shrink-0">1</div>
-                        <h3 className="text-[#37322F] text-lg font-semibold leading-tight font-sans">Explore</h3>
+                        <h3 className="text-[#37322F] text-lg font-semibold leading-tight font-sans">Connect</h3>
                       </div>
                       <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
-                        Send a task in plain English. Our AI agent navigates the website, fills forms, clicks buttons, and extracts data.
+                        Provide credentials for the portals you need to automate. They&apos;re encrypted at rest and scoped to your account — the agent uses them to authenticate on your behalf.
                       </p>
                       <div className="w-full mt-2 bg-[#fbfaf9] border border-[rgba(55,50,47,0.12)] rounded-lg p-3 text-xs font-mono text-[#605A57] space-y-1">
-                        <div className="text-[#37322F] font-medium">→ Navigate to pricing page</div>
-                        <div>→ Wait for page load</div>
-                        <div>→ Extract plan names &amp; prices</div>
-                        <div>→ Return structured JSON</div>
-                        <div className="text-green-600 font-medium mt-1">✓ Compiled to workflow_id</div>
+                        <div className="text-[#37322F] font-medium">&rarr; Credentials stored AES-256-GCM</div>
+                        <div>&rarr; Scoped to your account</div>
+                        <div>&rarr; Row-level isolation</div>
+                        <div className="text-green-600 font-medium mt-1">&check; Ready to automate</div>
                       </div>
                     </div>
 
-                    {/* Step 2 — Compile */}
+                    {/* Step 2 — Describe */}
                     <div className="border-b md:border-b-0 border-r-0 md:border-r border-[rgba(55,50,47,0.12)] p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-start items-start gap-4">
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-[#37322F] flex items-center justify-center text-white text-xs font-semibold font-sans flex-shrink-0">2</div>
-                        <h3 className="text-[#37322F] text-lg font-semibold leading-tight font-sans">Compile</h3>
+                        <h3 className="text-[#37322F] text-lg font-semibold leading-tight font-sans">Describe or record</h3>
                       </div>
                       <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
-                        We record every action and compile the successful run into a deterministic Playwright script. No AI needed for replays.
+                        Describe the task in plain language, or walk through it once and we record the workflow. Either way, the agent handles every run from there — authentication, form filling, submission.
                       </p>
-                      <div className="w-full mt-2 flex items-center justify-center overflow-hidden">
-                        <SmartSimpleBrilliant
-                          width="100%"
-                          height={180}
-                          theme="light"
-                        />
+                      <div className="w-full mt-2 bg-[#fbfaf9] border border-[rgba(55,50,47,0.12)] rounded-lg p-3 text-xs font-mono text-[#605A57] space-y-1">
+                        <div className="text-[#37322F] font-medium">&rarr; Plain language or recorded workflow</div>
+                        <div>&rarr; Handle login + MFA</div>
+                        <div>&rarr; Fill and verify fields</div>
+                        <div>&rarr; Submit and confirm</div>
+                        <div className="text-green-600 font-medium mt-1">&check; Task complete</div>
                       </div>
                     </div>
 
-                    {/* Step 3 — Replay */}
+                    {/* Step 3 — Audit */}
                     <div className="p-4 sm:p-6 md:p-8 lg:p-10 flex flex-col justify-start items-start gap-4">
                       <div className="flex items-center gap-3">
                         <div className="w-8 h-8 rounded-full bg-[#37322F] flex items-center justify-center text-white text-xs font-semibold font-sans flex-shrink-0">3</div>
-                        <h3 className="text-[#37322F] text-lg font-semibold leading-tight font-sans">Replay</h3>
+                        <h3 className="text-[#37322F] text-lg font-semibold leading-tight font-sans">Audit</h3>
                       </div>
                       <p className="text-[#605A57] text-sm font-normal leading-relaxed font-sans">
-                        Execute the compiled workflow unlimited times. Self-healing fallback automatically fixes broken selectors when sites change.
+                        Every run produces a tamper-evident audit trail — timestamped screenshots at each step, the full action sequence, and the exact values submitted. Records are cryptographically sealed so they hold up years later in a state audit. Retrieve them any time via API.
                       </p>
                       <div className="w-full mt-auto bg-[#fbfaf9] border border-[rgba(55,50,47,0.12)] rounded-lg p-3 text-xs font-mono text-[#605A57] space-y-1">
-                        <div className="text-[#37322F] font-medium">→ Load compiled workflow</div>
-                        <div>→ Execute deterministic script</div>
-                        <div>→ Verify output schema</div>
-                        <div>→ Return structured JSON</div>
-                        <div className="text-green-600 font-medium mt-1">✓ Completed in 1.2s</div>
+                        <div className="text-[#37322F] font-medium">&rarr; Timestamped screenshots</div>
+                        <div>&rarr; Full action trace</div>
+                        <div>&rarr; Submitted field values</div>
+                        <div>&rarr; Cryptographic seal</div>
+                        <div className="text-green-600 font-medium mt-1">&check; Audit-grade</div>
                       </div>
                     </div>
                   </div>
@@ -337,13 +328,18 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              {/* Documentation Section */}
-              <DocumentationSection />
+              {/* Use Cases Section */}
+              <div id="use-cases" className="w-full">
+                <DocumentationSection />
+              </div>
 
-              {/* Enterprise Section */}
-              <div id="enterprise" className="w-full">
+              {/* Coverage Section */}
+              <div id="coverage" className="w-full">
                 <EnterpriseSection />
               </div>
+
+              {/* Why Different Section */}
+              <WhyDifferentSection />
 
               {/* FAQ Section */}
               <FAQSection />

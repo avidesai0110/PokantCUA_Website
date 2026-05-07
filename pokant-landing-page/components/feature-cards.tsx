@@ -11,8 +11,8 @@ export function FeatureCards() {
       highlighted: false,
     },
     {
-      title: "95% Cost Reduction",
-      description: "First run uses AI ($0.40). Every run after replays deterministically ($0.02). Same results, fraction of the cost.",
+      title: "Self-Healing Agents",
+      description: "Agents adapt when portals change their UI. Alternate locators, ARIA matching, and a targeted LLM fallback — tasks keep running without manual fixes.",
       highlighted: false,
     },
   ]

@@ -1,16 +1,16 @@
 export default function EnterpriseSection() {
   const valueProps = [
     {
-      stat: "10x faster",
-      label: "Automate hours of manual web work into minutes",
+      stat: "9 state DORs",
+      label: "CDTFA, Colorado SUTS, MyTax Illinois, LaTAP, Parish E-File, ALDOR / ONE SPOT, MyDORWAY, Florida DOR, Texas WebFile",
     },
     {
-      stat: "99% reliable",
-      label: "Adaptive retry catches failures before you do",
+      stat: "330+ localities",
+      label: "70+ Colorado home-rule cities, 64 Louisiana parishes, ~200 Alabama self-administered localities",
     },
     {
-      stat: "Full visibility",
-      label: "Dashboard with step replay, cost tracking, and alerts",
+      stat: "Sealed receipts",
+      label: "Cryptographically sealed, timestamped records for every run. Replayable in an audit years later — not just logs.",
     },
   ]
 
@@ -30,13 +30,13 @@ export default function EnterpriseSection() {
               </svg>
             </div>
             <div className="text-center flex justify-center flex-col text-[#37322F] text-xs font-medium leading-3 font-sans">
-              For Enterprise
+              Coverage
             </div>
           </div>
 
           {/* Title */}
           <div className="self-stretch text-center flex justify-center flex-col text-[#49423D] text-3xl md:text-5xl font-bold leading-tight md:leading-[60px] font-display tracking-tight">
-            We build and monitor browser automation for your team.
+            Built for the jurisdictions nobody else covers
           </div>
         </div>
       </div>
@@ -59,13 +59,13 @@ export default function EnterpriseSection() {
           <div className="border-b md:border-b-0 border-r-0 md:border-r border-[rgba(55,50,47,0.12)] p-4 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-center gap-6">
             <div className="flex flex-col gap-4">
               <p className="text-[#605A57] text-sm md:text-base font-normal leading-relaxed font-sans">
-                Your team spends hours every week on manual web tasks — pulling data from vendor portals, filing government forms, monitoring competitor pricing.
+                State and local tax portals have no APIs. Your customers operate in hundreds of jurisdictions — each with a separate web portal that changes without warning.
               </p>
               <p className="text-[#605A57] text-sm md:text-base font-normal leading-relaxed font-sans">
-                We deploy custom AI agents that handle these workflows end-to-end. You tell us what you need automated. We build it, monitor it, and guarantee it works.
+                We deploy computer-use agents that navigate these portals the way a human would — logging in, filling forms, handling CAPTCHAs, and confirming submission. Describe the task in plain language, or record a workflow once. The agent handles every run from there.
               </p>
               <p className="text-[#605A57] text-sm md:text-base font-normal leading-relaxed font-sans">
-                Already running browser automation? We add our reliability layer on top — adaptive retry, cost tracking, failure diagnosis, and a dashboard your ops team can actually use.
+                Every action produces a tamper-evident, cryptographically sealed record: timestamped screenshots, the full navigation sequence, and exact field values submitted. When a state issues a notice three years later, you can replay exactly what was filed, field by field.
               </p>
             </div>
 
@@ -74,7 +74,7 @@ export default function EnterpriseSection() {
               <a href="/contact" className="h-10 px-8 py-[6px] relative bg-[#37322F] shadow-[0px_2px_4px_rgba(55,50,47,0.12)] overflow-hidden rounded-[99px] flex justify-center items-center cursor-pointer hover:bg-[#2A2520] transition-colors no-underline">
                 <div className="w-full h-[41px] absolute left-0 top-[-0.5px] bg-gradient-to-b from-[rgba(255,255,255,0.20)] to-[rgba(0,0,0,0.10)] mix-blend-multiply"></div>
                 <div className="flex flex-col justify-center text-[#FBFAF9] text-[13px] font-medium leading-5 font-sans">
-                  Talk to Sales
+                  Get pilot access
                 </div>
               </a>
             </div>
